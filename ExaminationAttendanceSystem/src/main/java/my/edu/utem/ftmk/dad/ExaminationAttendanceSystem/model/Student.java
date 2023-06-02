@@ -15,6 +15,8 @@ public class Student {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "StudentId")
 	private String Student_id;
+	
+	@Column(name = "name")
 	private String Name;
 	private String Student_MatricNo;
 	private String Session_Group;
