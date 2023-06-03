@@ -43,10 +43,6 @@ public class Student {
 	@Column(name = "LecturerId")
 	private int LecturerId;
 	
-	/*
-	@Column(name = "ExaminationId")
-	private int ExaminationId;
-*/
 	public int getStudentId() {
 		return StudentId;
 	}
