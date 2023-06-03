@@ -15,8 +15,9 @@ public class Subject {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "SubjectId")
 	private String SubjectId;
-	@Column(name = "Name")
-	private String Name;
+	@Column(name = "SubjectName")
+	private String SubjectName;
+	
 	private List<Student> students = new ArrayList<Student>();
 	
 	public String getSubjectId() {
@@ -25,11 +26,11 @@ public class Subject {
 	public void setSubjectId(String subjectId) {
 		SubjectId = subjectId;
 	}
-	public String getName() {
-		return Name;
+	public String getSubjectName() {
+		return SubjectName;
 	}
-	public void setName(String name) {
-		this.Name = name;
+	public void setSubjectName(String subjectName) {
+		SubjectName = subjectName;
 	}
 	public List<Student> getStudents() {
 		return students;
