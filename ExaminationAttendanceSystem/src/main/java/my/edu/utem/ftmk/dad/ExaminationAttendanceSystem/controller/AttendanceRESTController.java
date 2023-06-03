@@ -35,7 +35,7 @@ public class AttendanceRESTController {
 	}
 	
 	@GetMapping("/")
-	public List<ExaminationAttendance> generateAttendanceReport(@RequestBody Student student, Examination exam)
+	public List<ExaminationAttendance> generateAttendanceReport()
 	{ 
 		return attendance.findAll();
 	}

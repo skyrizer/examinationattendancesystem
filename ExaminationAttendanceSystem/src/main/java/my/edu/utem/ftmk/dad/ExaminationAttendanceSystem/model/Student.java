@@ -36,16 +36,17 @@ public class Student {
 	
 	@Column(name = "StudentYearOfStudy")
 	private String StudentYearOfStudy;
-	
+
 	@Column(name = "FacultyId")
 	private int FacultyId;
 	
 	@Column(name = "LecturerId")
 	private int LecturerId;
 	
+	/*
 	@Column(name = "ExaminationId")
 	private int ExaminationId;
-
+*/
 	public int getStudentId() {
 		return StudentId;
 	}
@@ -125,7 +126,7 @@ public class Student {
 	public void setLecturerId(int lecturerId) {
 		LecturerId = lecturerId;
 	}
-
+/*
 	public int getExaminationId() {
 		return ExaminationId;
 	}
@@ -133,7 +134,7 @@ public class Student {
 	public void setExaminationId(int examinationId) {
 		ExaminationId = examinationId;
 	}
-	
+	*/
 	
 	
 	

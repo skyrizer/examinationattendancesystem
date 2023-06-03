@@ -15,7 +15,6 @@ import jakarta.persistence.TemporalType;
 @Table(name = "examination")
 public class Examination {
 
-	
 	//Primary Key
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
