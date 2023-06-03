@@ -34,7 +34,6 @@ public class AttendanceRESTController {
 		return attendance.save(examinationattendance);
 	}
 	
-
 	@GetMapping("/")
 	public List<ExaminationAttendance> generateAttendanceReport(@RequestBody Student student, Examination exam)
 	{ 
