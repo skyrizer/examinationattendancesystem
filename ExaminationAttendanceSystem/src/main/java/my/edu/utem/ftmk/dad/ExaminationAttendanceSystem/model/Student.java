@@ -6,16 +6,16 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-//this is for student 
+
 @Entity
 @Table(name = "student")
 public class Student {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "StudentId")
-	private String StudentId;
-	
+	private int StudentId;
+
 	@Column(name = "StudentName")
 	private String StudentName;
 	
@@ -46,14 +46,14 @@ public class Student {
 	@Column(name = "ExaminationId")
 	private int ExaminationId;
 
-	public String getStudentId() {
+	public int getStudentId() {
 		return StudentId;
 	}
 
-	public void setStudentId(String studentId) {
+	public void setStudentId(int studentId) {
 		StudentId = studentId;
 	}
-
+	
 	public String getStudentName() {
 		return StudentName;
 	}
