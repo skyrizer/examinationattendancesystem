@@ -1,42 +1,50 @@
 package my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name="examinationunit")
 public class ExaminationUnit {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "UnitId")
-	private int Unit_id;
+	private int UnitId;
 	
 	@Column(name = "UnitName")
-	private String Unit_Name;
+	private String UnitName;
 	
-	@Column(name = "availability")
-	private boolean Availability;
-	
-	public int getUnit_id() {
-		return Unit_id;
+	@Column(name = "UnitAvailability")
+	private boolean UnitAvailability;
+
+	public int getUnitId() {
+		return UnitId;
 	}
-	public void setUnit_id(int unit_id) {
-		Unit_id = unit_id;
+
+	public void setUnitId(int unitId) {
+		UnitId = unitId;
 	}
-	public String getUnit_Name() {
-		return Unit_Name;
+
+	public String getUnitName() {
+		return UnitName;
 	}
-	public void setUnit_Name(String unit_Name) {
-		Unit_Name = unit_Name;
+
+	public void setUnitName(String unitName) {
+		UnitName = unitName;
 	}
-	public boolean isAvailability() {
-		return Availability;
+
+	public boolean isUnitAvailability() {
+		return UnitAvailability;
 	}
-	public void setAvailability(boolean availability) {
-		Availability = availability;
+
+	public void setUnitAvailability(boolean unitAvailability) {
+		UnitAvailability = unitAvailability;
 	}
-	
 	
 	
 }

@@ -1,30 +1,39 @@
 package my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name="faculty")
 public class Faculty {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "FacultyId")
-	private int Faculty_id;
+	private int FacultyId;
 	
 	@Column(name = "FacultyName")
-	private String faculty_name;
+	private String FacultyName;
+
+	public int getFacultyId() {
+		return FacultyId;
+	}
+
+	public void setFacultyId(int facultyId) {
+		FacultyId = facultyId;
+	}
+
+	public String getFacultyName() {
+		return FacultyName;
+	}
+
+	public void setFacultyName(String facultyName) {
+		FacultyName = facultyName;
+	}
 	
-	public int getFaculty_id() {
-		return Faculty_id;
-	}
-	public void setFaculty_id(int faculty_id) {
-		Faculty_id = faculty_id;
-	}
-	public String getFaculty_name() {
-		return faculty_name;
-	}
-	public void setFaculty_name(String faculty_name) {
-		this.faculty_name = faculty_name;
-	}
+	
 }
