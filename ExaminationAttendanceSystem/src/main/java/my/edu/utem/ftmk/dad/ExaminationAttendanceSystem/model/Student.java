@@ -122,15 +122,6 @@ public class Student {
 	public void setLecturerId(int lecturerId) {
 		LecturerId = lecturerId;
 	}
-/*
-	public int getExaminationId() {
-		return ExaminationId;
-	}
-
-	public void setExaminationId(int examinationId) {
-		ExaminationId = examinationId;
-	}
-	*/
 	
 	
 	
