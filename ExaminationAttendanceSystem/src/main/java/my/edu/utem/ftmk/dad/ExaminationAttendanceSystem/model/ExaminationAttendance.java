@@ -22,6 +22,9 @@ public class ExaminationAttendance {
 	
 	@Column(name = "ExamAttendStatus")		
 	private String ExamAttendStatus;
+	
+	@Column(name = "InputType")		
+	private String InputType;
 	 
 	@ManyToOne
 	@JoinColumn(name = "ExaminationId")
@@ -31,7 +34,6 @@ public class ExaminationAttendance {
 	@JoinColumn(name = "StudentId")
 	private Student StudentId;
 	 
-	
 	public int getExamAttendId() {
 		return ExamAttendId;
 	}
@@ -44,6 +46,14 @@ public class ExaminationAttendance {
 	public void setExamAttendStatus(String examAttendStatus) {
 		ExamAttendStatus = examAttendStatus;
 	}
+	
+	public String getInputType() {
+		return InputType;
+	}
+	public void setInputType(String inputType) {
+		InputType = inputType;
+	}
+	
 	public Examination getExaminationId() {
 		return ExaminationId;
 	}
