@@ -60,4 +60,5 @@ public class Lecturer {
 	public void setLecturer_email(String lecturer_email) {
 		this.lecturer_email = lecturer_email;
 	}
+	
 }
