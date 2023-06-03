@@ -14,10 +14,12 @@ public class Student {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "StudentId")
-	private String Student_id;
+	private String StudentId;
 	
-	@Column(name = "name")
-	private String Name;
+	@Column(name = "StudentName")
+	private String StudentName;
+	
+	@Column
 	private String Student_MatricNo;
 	private String Session_Group;
 	private String course;
@@ -29,16 +31,16 @@ public class Student {
 	private int Examination_id;
 	
 	public String getStudent_id() {
-		return Student_id;
+		return StudentId;
 	}
 	public void setStudent_id(String student_id) {
-		Student_id = student_id;
+		StudentId = student_id;
 	}
 	public String getName() {
-		return Name;
+		return StudentName;
 	}
 	public void setName(String name) {
-		Name = name;
+		StudentName = name;
 	}
 	public String getStudent_MatricNo() {
 		return Student_MatricNo;
