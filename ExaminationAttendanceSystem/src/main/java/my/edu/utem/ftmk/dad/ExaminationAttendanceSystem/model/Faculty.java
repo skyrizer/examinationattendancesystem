@@ -1,8 +1,18 @@
 package my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 public class Faculty {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "FacultyId")
 	private int Faculty_id;
+	
+	@Column(name = "FacultyName")
 	private String faculty_name;
 	
 	public int getFaculty_id() {
