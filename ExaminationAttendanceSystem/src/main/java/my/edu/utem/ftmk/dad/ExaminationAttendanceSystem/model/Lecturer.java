@@ -1,22 +1,39 @@
 package my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+
 public class Lecturer {
 
-	private String lecturer_id;
+	//Primary Key
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "LecturerId")		
+	private int lecturer_id;
+	
+	@Column(name = "LecturerName")
 	private String lecturer_name;
-	private String subject_id;
+	
+	@ManyToOne
+	@Column(name = "SubjectId")
+	private Subject subject_id;
+	
+	@Column(name = "LecturerPhone")
 	private int lecturer_phone;
+	
+	@Column(name = "LecturerEmail")
 	private String lecturer_email;
 	
 	public Lecturer()
-	{
+	{}
 	
-	}
-	
-	public String getLecturer_id() {
+	public int getLecturer_id() {
 		return lecturer_id;
 	}
-	public void setLecturer_id(String lecturer_id) {
+	public void setLecturer_id(int lecturer_id) {
 		this.lecturer_id = lecturer_id;
 	}
 	public String getLecturer_name() {
@@ -25,10 +42,10 @@ public class Lecturer {
 	public void setLecturer_name(String lecturer_name) {
 		this.lecturer_name = lecturer_name;
 	}
-	public String getSubject_id() {
+	public Subject getSubject_id() {
 		return subject_id;
 	}
-	public void setSubject_id(String subject_id) {
+	public void setSubject_id(Subject subject_id) {
 		this.subject_id = subject_id;
 	}
 	public int getLecturer_phone() {
