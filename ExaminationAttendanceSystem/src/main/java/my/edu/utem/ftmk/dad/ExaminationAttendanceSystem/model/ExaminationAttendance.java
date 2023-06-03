@@ -50,12 +50,12 @@ public class ExaminationAttendance {
 	public void setExaminationId(Examination examinationId) {
 		ExaminationId = examinationId;
 	}
-	/*
+	
 	public Student getStudentId() {
 		return StudentId;
 	}
 	public void setStudentId(Student studentId) {
 		StudentId = studentId;
-	} */
+	} 
 	
 }

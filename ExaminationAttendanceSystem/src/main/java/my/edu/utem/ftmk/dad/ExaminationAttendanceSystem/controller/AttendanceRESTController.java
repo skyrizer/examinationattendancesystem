@@ -17,6 +17,7 @@ import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Student;
 
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.repository.AttendanceRepository;
 
+
 @RestController
 @RequestMapping("/api/attend")
 public class AttendanceRESTController {
@@ -33,6 +34,7 @@ public class AttendanceRESTController {
 		return attendance.save(examinationattendance);
 	}
 	
+
 	@GetMapping("/")
 	public List<ExaminationAttendance> generateAttendanceReport(@RequestBody Student student, Examination exam)
 	{ 
