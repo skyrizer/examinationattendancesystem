@@ -12,8 +12,6 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="examinationattendance")
-
-
 public class ExaminationAttendance {
 
 	//Primary Key
@@ -28,6 +26,7 @@ public class ExaminationAttendance {
 	@ManyToOne
 	@JoinColumn(name = "ExaminationId")
 	private Examination ExaminationId; 
+	
 	@ManyToOne
 	@JoinColumn(name = "StudentId")
 	private Student StudentId;
