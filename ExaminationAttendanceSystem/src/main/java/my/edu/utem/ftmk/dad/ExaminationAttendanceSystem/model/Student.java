@@ -19,83 +19,122 @@ public class Student {
 	@Column(name = "StudentName")
 	private String StudentName;
 	
-	@Column
-	private String Student_MatricNo;
-	private String Session_Group;
-	private String course;
-	private String Phone_Number;
-	private String email;
-	private String Year_of_Study;
-	private int Faculty_id;
-	private String Lecturer_id;
-	private int Examination_id;
+	@Column(name = "StudentMatricNo")
+	private String StudentMatricNo;
 	
-	public String getStudent_id() {
+	@Column(name = "StudentSessionGroup")
+	private String StudentSessionGroup;
+	
+	@Column(name = "StudentCourse")
+	private String StudentCourse;
+	
+	@Column(name = "StudentContact")
+	private String StudentContact;
+	
+	@Column(name = "StudentEmail")
+	private String StudentEmail;
+	
+	@Column(name = "StudentYearOfStudy")
+	private String StudentYearOfStudy;
+	
+	@Column(name = "FacultyId")
+	private int FacultyId;
+	
+	@Column(name = "LecturerId")
+	private int LecturerId;
+	
+	@Column(name = "ExaminationId")
+	private int ExaminationId;
+
+	public String getStudentId() {
 		return StudentId;
 	}
-	public void setStudent_id(String student_id) {
-		StudentId = student_id;
+
+	public void setStudentId(String studentId) {
+		StudentId = studentId;
 	}
-	public String getName() {
+
+	public String getStudentName() {
 		return StudentName;
 	}
-	public void setName(String name) {
-		StudentName = name;
+
+	public void setStudentName(String studentName) {
+		StudentName = studentName;
 	}
-	public String getStudent_MatricNo() {
-		return Student_MatricNo;
+
+	public String getStudentMatricNo() {
+		return StudentMatricNo;
 	}
-	public void setStudent_MatricNo(String student_MatricNo) {
-		Student_MatricNo = student_MatricNo;
+
+	public void setStudentMatricNo(String studentMatricNo) {
+		StudentMatricNo = studentMatricNo;
 	}
-	public String getSession_Group() {
-		return Session_Group;
+
+	public String getStudentSessionGroup() {
+		return StudentSessionGroup;
 	}
-	public void setSession_Group(String session_Group) {
-		Session_Group = session_Group;
+
+	public void setStudentSessionGroup(String studentSessionGroup) {
+		StudentSessionGroup = studentSessionGroup;
 	}
-	public String getCourse() {
-		return course;
+
+	public String getStudentCourse() {
+		return StudentCourse;
 	}
-	public void setCourse(String course) {
-		this.course = course;
+
+	public void setStudentCourse(String studentCourse) {
+		StudentCourse = studentCourse;
 	}
-	public String getPhone_Number() {
-		return Phone_Number;
+
+	public String getStudentContact() {
+		return StudentContact;
 	}
-	public void setPhone_Number(String phone_Number) {
-		Phone_Number = phone_Number;
+
+	public void setStudentContact(String studentContact) {
+		StudentContact = studentContact;
 	}
-	public String getEmail() {
-		return email;
+
+	public String getStudentEmail() {
+		return StudentEmail;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+
+	public void setStudentEmail(String studentEmail) {
+		StudentEmail = studentEmail;
 	}
-	public String getYear_of_Study() {
-		return Year_of_Study;
+
+	public String getStudentYearOfStudy() {
+		return StudentYearOfStudy;
 	}
-	public void setYear_of_Study(String year_of_Study) {
-		Year_of_Study = year_of_Study;
+
+	public void setStudentYearOfStudy(String studentYearOfStudy) {
+		StudentYearOfStudy = studentYearOfStudy;
 	}
-	public int getFaculty_id() {
-		return Faculty_id;
+
+	public int getFacultyId() {
+		return FacultyId;
 	}
-	public void setFaculty_id(int faculty_id) {
-		Faculty_id = faculty_id;
+
+	public void setFacultyId(int facultyId) {
+		FacultyId = facultyId;
 	}
-	public String getLecturer_id() {
-		return Lecturer_id;
+
+	public int getLecturerId() {
+		return LecturerId;
 	}
-	public void setLecturer_id(String lecturer_id) {
-		Lecturer_id = lecturer_id;
+
+	public void setLecturerId(int lecturerId) {
+		LecturerId = lecturerId;
 	}
-	public int getExamination_id() {
-		return Examination_id;
+
+	public int getExaminationId() {
+		return ExaminationId;
 	}
-	public void setExamination_id(int examination_id) {
-		Examination_id = examination_id;
+
+	public void setExaminationId(int examinationId) {
+		ExaminationId = examinationId;
 	}
+	
+	
 	
 	
 }
