@@ -20,10 +20,13 @@ public class Subject {
 	@Column(name = "SubjectId")
 	private String SubjectId;
 	
+	@Column(name = "SubjectCode")
+	private String SubjectCode;
+	
 	@Column(name = "SubjectName")
 	private String SubjectName;
 	
-	private List<Student> students = new ArrayList<Student>();
+	//private List<Student> students = new ArrayList<Student>();
 	
 	public String getSubjectId() {
 		return SubjectId;
@@ -37,11 +40,19 @@ public class Subject {
 	public void setSubjectName(String subjectName) {
 		SubjectName = subjectName;
 	}
+	/*
 	public List<Student> getStudents() {
 		return students;
 	}
 	public void setStudents(List<Student> students) {
 		this.students = students;
+	}
+	*/
+	public String getSubjectCode() {
+		return SubjectCode;
+	}
+	public void setSubjectCode(String subjectCode) {
+		SubjectCode = subjectCode;
 	}
 	
 	

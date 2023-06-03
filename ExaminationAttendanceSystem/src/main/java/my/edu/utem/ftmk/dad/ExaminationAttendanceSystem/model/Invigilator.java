@@ -5,9 +5,9 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="ingivilator")
-public class Invigilator {
+public class Invigilator extends Lecturer{
 
-	private int ExaminationId;
+	//private int ExaminationId;
 	
 	public Invigilator(String LecturerId)
 	{

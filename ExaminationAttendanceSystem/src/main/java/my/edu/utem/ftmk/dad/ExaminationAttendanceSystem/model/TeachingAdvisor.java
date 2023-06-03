@@ -7,7 +7,7 @@ import jakarta.persistence.Table;
 @Table(name="teachingadvisor")
 public class TeachingAdvisor extends Lecturer {
 
-	private String StudentId;
+	//private String StudentId;
 	
 	public TeachingAdvisor(String LecturerId)
 	{
