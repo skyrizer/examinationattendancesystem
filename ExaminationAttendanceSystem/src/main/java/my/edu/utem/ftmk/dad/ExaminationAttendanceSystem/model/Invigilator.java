@@ -7,9 +7,9 @@ import jakarta.persistence.Table;
 @Table(name="ingivilator")
 public class Invigilator {
 
-	private int Examination_id;
+	private int ExaminationId;
 	
-	public Invigilator(String lecturer_id)
+	public Invigilator(String LecturerId)
 	{
 		super();
 	}

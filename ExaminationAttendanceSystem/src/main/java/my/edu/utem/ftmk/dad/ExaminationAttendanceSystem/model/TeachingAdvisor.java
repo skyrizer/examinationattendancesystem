@@ -7,9 +7,9 @@ import jakarta.persistence.Table;
 @Table(name="teachingadvisor")
 public class TeachingAdvisor extends Lecturer {
 
-	private String Student_id;
+	private String StudentId;
 	
-	public TeachingAdvisor(String lecturer_id)
+	public TeachingAdvisor(String LecturerId)
 	{
 		super();
 	}
