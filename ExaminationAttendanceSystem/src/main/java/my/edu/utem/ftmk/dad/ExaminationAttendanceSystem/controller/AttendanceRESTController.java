@@ -56,29 +56,7 @@ public class AttendanceRESTController {
 		return attendance.findAll();
 	}
 
-	@GetMapping("/attend/list")
-	public String getAttendance(Model model)
-	{
-		// The URI for GET order types
-		String uri = "http://localhost:8080/orderapp/api/ordertypes";
-		
-		//Get a list order types from the web service
-		RestTemplate restTemplate = new RestTemplate();
-		ResponseEntity<ExaminationAttendance[]> response = restTemplate.getForEntity(uri, ExaminationAttendance[].class);
-		
-		// Parse JSON data to array of object
-		ExaminationAttendance attendance[] = response.getBody();
-		
-		// Parse an array to a list object
-		List<ExaminationAttendance > attendList = Arrays.asList(attendance);
-		
-		// Attach list to model as attribute
-		model.addAttribute("attendances", attendList);
-		
-		return "attends";	
-		
-	}
-
+	
 	//ignore this for a while
 	@GetMapping("/students/new")
 	public String createStudentAttendance(Model model)
