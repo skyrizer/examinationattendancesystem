@@ -1,7 +1,13 @@
 package my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.controller;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.http.HttpEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
@@ -50,4 +56,25 @@ public class AttendanceMenuController {
 	 * 
 	 * 
 	 */
+	@GetMapping("/attendance/list")
+	public String getOrderTypes(Model model)
+	{
+		// The URI for GET order types
+		String uri = "http://localhost:8080/examinationattendance/api/attends";
+		
+		//Get a list order types from the web service
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<ExaminationAttendance[]> response = restTemplate.getForEntity(uri, ExaminationAttendance[].class);
+		
+		// Parse JSON data to array of object
+		ExaminationAttendance attendance[] = response.getBody();
+		
+		// Parse an array to a list object
+		List<ExaminationAttendance> attendanceList = Arrays.asList(attendance);
+		
+		// Attach list to model as attribute
+		model.addAttribute("attendance", attendanceList);
+		
+		return "attends";
+	}
 }
