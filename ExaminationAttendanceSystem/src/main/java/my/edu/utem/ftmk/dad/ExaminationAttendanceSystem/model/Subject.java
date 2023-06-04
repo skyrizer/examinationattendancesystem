@@ -11,6 +11,7 @@ import jakarta.persistence.Table;
 
 import java.util.ArrayList;
 
+/***updated by WEIHEN*/
 
 
 // test connection
@@ -22,15 +23,15 @@ public class Subject {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "SubjectId")
 	private String SubjectId;
-	
+
 	@Column(name = "SubjectCode")
 	private String SubjectCode;
-	
+
 	@Column(name = "SubjectName")
 	private String SubjectName;
-	
+
 	//private List<Student> students = new ArrayList<Student>();
-	
+
 	public String getSubjectId() {
 		return SubjectId;
 	}
@@ -57,6 +58,6 @@ public class Subject {
 	public void setSubjectCode(String subjectCode) {
 		SubjectCode = subjectCode;
 	}
-	
-	
+
+
 }
