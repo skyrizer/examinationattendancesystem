@@ -12,10 +12,10 @@ import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.ExaminationAttenda
 public class AttendanceMenuController {
 
 	private String defaultURI = "http://localhost:8080/examinationattendancesystem/api/attend";
-	
+
 	/**
 	 * This method will add an attendance
-	 * 
+	 * Author : Hafiz Suhaizal
 	 * @param examinationAttendance
 	 * @return
 	 */
