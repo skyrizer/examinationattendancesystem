@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Examination Attendance System</title>
+<link rel="styLesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJLSAwiGgFAW/dAiS6JXm"
+	crossoigin="anonymous">
+</head>
+<body>
+	<div class = "container">
+		<div class = "row">
+			<div class = "coL-Lg-6 col-md-6 col-sm-6 container justify-content-center card">
+				<h1> class="text-center"> Examination Attendance System </h1>
+				<div class = "card-body">
+					<form th:action="@{/students}" th:object = "${student}" method="POST">
+						<div class="form-group">
+							<label>Choose A Reader</label>
+								<select th:field="*{InputType}">
+    								<option th:value="'Fingerprint'" th:text="Fingerprint">Fingerprint</option>
+   									<option th:value="'Qr Code'" th:text="Qr Code">Qr Code</option>
+   									<option th:value="'Matric Card'" th:text="Matric Card">Matric Card</option>
+   									<option th:value="'Self Check-In'" th:text="Self Check-In">Self Check-In</option>
+								</select>
+								</div>
+						<div class = "form-group">
+							<label> Matric Card </label>
+							<input
+							type="text"
+							name="Matric Card"
+							th:field = "*{StudentId}"
+							class= "form-control"
+							placeholder"Enter You Matric Card"
+							/>
+							</div>
+						<div class="box-footer">
+							<button type="submit" class = "btn btn-primary">
+							Submit
+							</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+								
