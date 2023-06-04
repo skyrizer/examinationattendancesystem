@@ -1,6 +1,7 @@
 package my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,13 +63,13 @@ public class AttendanceRESTController {
 		ResponseEntity<ExaminationAttendance[]> response = restTemplate.getForEntity(uri, ExaminationAttendance[].class);
 		
 		// Parse JSON data to array of object
-		ExaminationAttendance orderTypes[] = response.getBody();
+		ExaminationAttendance attendance[] = response.getBody();
 		
 		// Parse an array to a list object
-		List<OrderType> orderTypeList = Arrays.asList(orderTypes);
+		List<ExaminationAttendance > attendList = Arrays.asList(attendance);
 		
 		// Attach list to model as attribute
-		model.addAttribute("orderTypes", orderTypeList);
+		model.addAttribute("attendances", attendList);
 		
 		return "ordertypes";	
 		

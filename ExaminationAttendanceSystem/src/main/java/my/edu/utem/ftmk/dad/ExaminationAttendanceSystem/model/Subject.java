@@ -11,8 +11,6 @@ import jakarta.persistence.Table;
 
 import java.util.ArrayList;
 
-/***updated by WEIHEN*/
-
 
 // test connection
 @Entity

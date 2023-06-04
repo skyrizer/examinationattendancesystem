@@ -1,0 +1,89 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel = "stylesheet" href = "venue.css">
+    <marquee direction = "right" scrollamount = "15"> Examination Attendance System BITP3123 Group 10</marquee>
+    <title>Schedule - Examination Attendance System</title>
+    <div class="topnav">
+        <a class="Home" href="home.html">Home</a>
+        <a href="schedule.html">Examination Schedule</a>
+        <a href="attendance.html">Attendance Report</a>
+        <a href="AttendanceVenue.html">Attendance By Venue</a>
+      </div>
+    <br>
+</head>
+
+<body>
+      <h1><u>Examination Attendance by Venue</u></h1>
+      <b id = "type1" style="margin-left: 5%">Venue: </b>
+      <select name="Reader" id="Reader" style = "width: 10%; height: 30px; font-size: 15px;">
+        <option value="MatricCard">FTMK</option>
+        <option value="Fingerprint">FKP</option>
+        <option value="Fingerprint">FKE</option>
+        <option value="Fingerprint">FKEKK</option>
+      </select>
+
+      <b id = "type1" style="margin-left: 5%">Date: </b>
+      <input type="date" id="date" name="date" style = "height: 5%; font-size: 15px;">
+
+      <br><br>
+      <b id = "type1" style="margin-left: 5%">Input method: </b>
+      <select name="Reader" id="Reader" style = "width: 10%; height: 30px; font-size: 15px;">
+        <option value="MatricCard">Matric Card</option>
+        <option value="Fingerprint">Fingerprint</option>
+        <option value="QrCode">QR Code</option>
+        <option value="SelfCheck-In">Self Check-In</option>
+      </select>
+
+      <b style ="font-size: 20px;"><button type="button" style ="margin-left: 5%; width: 10%; height: 8%">Search</b></button>
+      <br>
+
+
+      <!---
+      <table border="5px" cellpadding="5" cellspacing="5" style = "margin-left:5%;">
+        <tr><td colspan = "7" style="text-align: center; font-family: Century Gothic; font-size: 25px;"><b> 
+          Examination Attendance in FTMK </b></td></tr>
+          <tr>
+            <th style="width:150px" scope="col">Matric No</th>
+            <th style="width:200px" scope="col">Student Name</th>
+            <th scope="col">Subject Code</th>
+            <th style = "width: 350px;" scope="col">Subject</th>
+            <th scope="col">Attendance Time</th>
+            <th scope="col">Input Method</th>
+        </tr>
+      </table>
+      -->
+
+      <br><br>
+      <div th:if="${students.size() > 0}">
+        <table class="table table-hover table-responsive-xl" border="5px" cellpadding="5" cellspacing="5" style = "margin-left:5%;">
+          <thead class="thead-light">
+            <tr><td colspan = "6" style="text-align: center; font-family: Century Gothic; font-size: 25px; margin-left: 10%;"><b> 
+            Attendance List in FTMK </b></td></tr>
+            <tr>
+              <th scope="col">Matric No</th>
+              <th scope="col">Student Name</th>
+              <th scope="col">Subject Code</th>
+              <th scope="col">Subject</th>
+              <th scope="col">Attendance Time</th>
+              <th scope="col">Input Method</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="attend: ${examinationattendance}">
+              <th scope="row">[[${attend.StudentMatricNo}]]</th>
+              <td>[[${attend.StudentMatricNo}]]</td>
+              <td>[[${attend.StudentName}]]</td>
+              <td>[[${attend.InputType}]]</td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+      <br><br>
+      <b style ="font-size: 20px;"><button type="button" onclick="window.location.href='home.html'" style ="margin-left: 5%; width: 10%; height: 8%">Back</b></button>
+      <b style ="font-size: 20px;"><button type="button" onclick="javascript:window.print()" style ="margin-left: 61%; width: 10%; height: 8%; ">Print</b></button>
+ 
+    </body>
+</html>
