@@ -44,7 +44,7 @@ public class AttendanceRESTController {
 	/*
 	 * This method will insert the attendance record to the database
 	*/ 
-	@PostMapping("/")
+	@PostMapping
 	public ExaminationAttendance recordAttendance(@RequestBody ExaminationAttendance examinationattendance)
 	{
 		return attendance.save(examinationattendance);
@@ -57,7 +57,7 @@ public class AttendanceRESTController {
 	}
 
 	
-	//ignore this for a while
+	/*//ignore this for a while
 	@GetMapping("/students/new")
 	public String createStudentAttendance(Model model)
 	{
@@ -65,6 +65,6 @@ public class AttendanceRESTController {
 		Student student=new Student();
 		model.addAttribute("student",student);
 		return "create_student";
-	}
+	}*/
 	
 }
