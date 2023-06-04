@@ -26,7 +26,7 @@ public class AttendanceMenuController {
 	 * @return
 	 */
 	@RequestMapping("/examinationattendance/save")
-	public void insertOrderType(@ModelAttribute ExaminationAttendance examinationAttendance)
+	public String insertOrderType(@ModelAttribute ExaminationAttendance examinationAttendance)
 	{
 		// Create a new RestTemplate
 		RestTemplate restTemplate = new RestTemplate();
@@ -47,7 +47,7 @@ public class AttendanceMenuController {
 		
 		// Redirect request to display a list of order type
 		//ni nnti tukarrr pegi next
-		//return "redirect:examinationattendance/save/list";
+		return "redirect:/attendance/list";
 	}
 
 	
