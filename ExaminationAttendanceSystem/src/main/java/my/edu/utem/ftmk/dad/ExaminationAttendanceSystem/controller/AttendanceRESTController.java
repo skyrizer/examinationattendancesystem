@@ -78,7 +78,6 @@ public class AttendanceRESTController {
 		return "attends";	
 		
 	}
-	
 
 	//ignore this for a while
 	@GetMapping("/students/new")
