@@ -1,7 +1,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel = "stylesheet" href = "attendance.css">
+    <link rel = "stylesheet" href = "css/attendance.css">
     <marquee direction = "right" scrollamount = "15"> Examination Attendance System BITP3123 Group 10</marquee>
     <title>Attendance - Examination Attendance System</title>
     <div class="topnav">
@@ -56,19 +56,18 @@
                 <th>Attendance Status</th>
             </tr>
             <tbody>
-                <tr th:each="attendance : ${examinationattendance}">
-                  <th scope="row">[[${attendance.orderTypeId}]]</th>
-                  <td>[[${orderType.code}]]</td>
-                  <td>[[${orderType.name}]]</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                <tr th:each="attendance : ${attendances}">
+                    <th scope="row">[[${attend.StudentMatricNo}]]</th>
+                    <td>[[${attend.StudentMatricNo}]]</td>
+                    <td>[[${attend.Subject}]]</td>
+                    <td></td>
+                    <td>[[${attend.InputType}]]</td>
+                    <td><span id='date-time'></span></td>
+                    <td></td>
             <tbody>
         </table>
     </h4>
-
     <b style ="font-size: 20px;"><button type="button" onclick="window.location.href='home.html'" style ="margin-left: 5%; width: 10%; height: 8%">Back</b></button>
-    <b style ="font-size: 20px;"><button type="button" onclick="javascript:window.print()" style ="margin-left: 64%; width: 10%; height: 8%; ">Print</b></button>
+    <b style ="font-size: 20px;"><button type="button" onclick="javascript:window.print()" style ="margin-left: 70%; width: 10%; height: 8%; ">Print</b></button>
 </body>
 </html>
