@@ -44,4 +44,10 @@ public class AttendanceMenuController {
 		//return "redirect:";
 	}
 
+	
+	/*
+	 * This method will retrive all the attendance within certain subject
+	 * 
+	 * 
+	 */
 }

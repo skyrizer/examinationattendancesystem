@@ -10,5 +10,5 @@ import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.ExaminationAttenda
 @Repository
 public interface AttendanceRepository extends JpaRepository<ExaminationAttendance, Integer> {
 
-	public List<ExaminationAttendance> findById(int ID);
+	public List<ExaminationAttendance> findById(int id);
 }

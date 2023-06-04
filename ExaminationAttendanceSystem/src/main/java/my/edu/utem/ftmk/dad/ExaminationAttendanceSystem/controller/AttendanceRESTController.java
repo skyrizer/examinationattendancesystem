@@ -56,8 +56,6 @@ public class AttendanceRESTController {
 	{ 
 		return attendance.findAll();
 	}
-
-
 	
 	@GetMapping("/{id}")
 	public List<ExaminationAttendance> searchRecordAttendId(@PathVariable int id)
