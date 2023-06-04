@@ -45,7 +45,7 @@ public class AttendanceRESTController {
 	/*
 	 * This method will insert the attendance record to the database
 	*/ 
-	@PostMapping("/")
+	@PostMapping
 	public ExaminationAttendance recordAttendance(@RequestBody ExaminationAttendance examinationattendance)
 	{
 		return attendance.save(examinationattendance);
