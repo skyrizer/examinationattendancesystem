@@ -55,6 +55,13 @@ public class AttendanceRESTController {
 	{ 
 		return attendance.findAll();
 	}
+	
+	@GetMapping("/{ID}")
+	public List<ExaminationAttendance> searchById(int ID)
+	{ 
+		return attendance.findById(ID);
+	}
+	
 
 	
 	/*//ignore this for a while
