@@ -11,6 +11,7 @@ import jakarta.persistence.Table;
 
 import java.util.ArrayList;
 
+// test connection
 @Entity
 @Table(name="subject")
 public class Subject {
