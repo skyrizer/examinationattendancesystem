@@ -34,8 +34,6 @@ import org.springframework.web.client.RestTemplate;
 
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.repository.ExaminationRepository;
 
-
-
 @RestController
 @RequestMapping("/api/attend")
 public class AttendanceRESTController {
@@ -57,7 +55,6 @@ public class AttendanceRESTController {
 	{ 
 		return attendance.findAll();
 	}
-	
 
 	@GetMapping("/attend/list")
 	public String getAttendance(Model model)
@@ -78,10 +75,11 @@ public class AttendanceRESTController {
 		// Attach list to model as attribute
 		model.addAttribute("attendances", attendList);
 		
-		return "ordertypes";	
+		return "attends";	
 		
 	}
 	
+
 	//ignore this for a while
 	@GetMapping("/students/new")
 	public String createStudentAttendance(Model model)
@@ -92,5 +90,4 @@ public class AttendanceRESTController {
 		return "create_student";
 	}
 	
-
 }
