@@ -58,9 +58,9 @@ public class AttendanceMenuController {
 	 * @return
 	 */
 	@GetMapping("/attendance/list")
-	public String getOrderTypes(Model model)
+	public String getAttendance(Model model)
 	{
-		// The URI for GET order types
+		// The URI for GET attendance
 		String uri = "http://localhost:8080/examinationattendance/api/attends";
 		
 		//Get a list order types from the web service
