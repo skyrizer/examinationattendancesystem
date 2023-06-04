@@ -19,7 +19,7 @@ import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.ExaminationAttenda
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Student;
 
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.repository.AttendanceRepository;
-<<<<<<< Updated upstream
+
 import org.springframework.ui.Model;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
@@ -31,10 +31,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
-=======
+
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.repository.ExaminationRepository;
 
->>>>>>> Stashed changes
 
 
 @RestController
@@ -59,7 +58,7 @@ public class AttendanceRESTController {
 		return attendance.findAll();
 	}
 	
-<<<<<<< Updated upstream
+
 	@GetMapping("/attend/list")
 	public String getAttendance(Model model)
 	{
@@ -83,7 +82,6 @@ public class AttendanceRESTController {
 		
 	}
 	
-=======
 	//ignore this for a while
 	@GetMapping("/students/new")
 	public String createStudentAttendance(Model model)
@@ -94,6 +92,5 @@ public class AttendanceRESTController {
 		return "create_student";
 	}
 	
-	
->>>>>>> Stashed changes
+
 }
