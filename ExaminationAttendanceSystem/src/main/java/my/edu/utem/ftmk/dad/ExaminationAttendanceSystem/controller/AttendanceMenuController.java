@@ -52,9 +52,10 @@ public class AttendanceMenuController {
 
 	
 	/*
-	 * This method will retrive all the attendance within certain subject
-	 * 
-	 * 
+	 * This method will retrieve all the attendance within certain subject
+	 * Author : Ng Wei Hen
+	 * @param examinationAttendance
+	 * @return
 	 */
 	@GetMapping("/attendance/list")
 	public String getOrderTypes(Model model)
