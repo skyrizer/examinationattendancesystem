@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.ExaminationAttendance;
 
 @Repository
-public interface AttendanceRepository extends JpaRepository<ExaminationAttendance, Long> {
+public interface AttendanceRepository extends JpaRepository<ExaminationAttendance, Integer> {
 
 	public List<ExaminationAttendance> findById(int ID);
 }

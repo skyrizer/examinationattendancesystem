@@ -3,6 +3,7 @@ package my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.controller;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -55,13 +56,14 @@ public class AttendanceRESTController {
 	{ 
 		return attendance.findAll();
 	}
+
+
 	
-	@GetMapping("/{ID}")
-	public List<ExaminationAttendance> searchById(int ID)
-	{ 
-		return attendance.findById(ID);
+	@GetMapping("/{id}")
+	public List<ExaminationAttendance> searchRecordAttendId(@PathVariable int id)
+	{
+		return attendance.findById(id);
 	}
-	
 
 	
 	/*//ignore this for a while
