@@ -16,6 +16,17 @@ import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.ExaminationAttenda
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Student;
 
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.repository.AttendanceRepository;
+import org.springframework.ui.Model;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.client.RestTemplate;
 
 
 @RestController
@@ -38,6 +49,29 @@ public class AttendanceRESTController {
 	public List<ExaminationAttendance> generateAttendanceReport()
 	{ 
 		return attendance.findAll();
+	}
+	
+	@GetMapping("/attend/list")
+	public String getAttendance(Model model)
+	{
+		// The URI for GET order types
+		String uri = "http://localhost:8080/orderapp/api/ordertypes";
+		
+		//Get a list order types from the web service
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<ExaminationAttendance[]> response = restTemplate.getForEntity(uri, ExaminationAttendance[].class);
+		
+		// Parse JSON data to array of object
+		ExaminationAttendance orderTypes[] = response.getBody();
+		
+		// Parse an array to a list object
+		List<OrderType> orderTypeList = Arrays.asList(orderTypes);
+		
+		// Attach list to model as attribute
+		model.addAttribute("orderTypes", orderTypeList);
+		
+		return "ordertypes";	
+		
 	}
 	
 }

@@ -13,7 +13,4 @@ import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Student;
 public interface AttendanceRepository extends JpaRepository<ExaminationAttendance, Long> {
 
 	
-
-	
-
 }
