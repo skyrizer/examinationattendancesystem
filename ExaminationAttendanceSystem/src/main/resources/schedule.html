@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
-    <link rel="stylesheet" type="text/css" th:href="@{/static/css/style.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
     <marquee direction = "right" scrollamount = "15"> Examination Attendance System BITP3123 Group 10</marquee>
@@ -73,8 +73,10 @@
         <tbody>
           <tr th:each="examlist:${ExamsList}">
               <th scope = "row">[[${examlist.SubjectId}]]</th>
-              <td></td>
-              <td></td>
+              <td>[[${examlist.SubjectName}]]</td>
+              <td>[[${examlist.ExaminationDate}]]</td>
+              <td>[[${examlist.ExaminationTime}]]</td>
+              <td>[[${examlist.UnitId}]]</td>
           </tr>
         </tbody>
       </table>

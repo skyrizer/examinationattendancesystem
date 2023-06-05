@@ -28,17 +28,17 @@ public class ExaminationMenuController {
 	public String getExamSchedules(Model model)
 	{
 		// The URI for GET order types
-		String uri = "http://localhost:8080/examinationattendancesystem/api/examination";
+		String uri = "http://localhost:8080/examinationattendancesystem/api/examination/find/schedule/raw";
 		
 		//Get a list order types from the web service
 		RestTemplate restTemplate = new RestTemplate();
 		ResponseEntity<Examination[]> response = restTemplate.getForEntity(uri, Examination[].class);
 		
 		// Parse JSON data to array of object
-		Examination objExam[] = response.getBody();
+		Examination objExams[] = response.getBody();
 		
 		// Parse an array to a list object
-		List<Examination> objExamList = Arrays.asList(objExam);
+		List<Examination> objExamList = Arrays.asList(objExams);
 		
 		// Attach list to model as attribute
 		model.addAttribute("ExamsList", objExamList);
