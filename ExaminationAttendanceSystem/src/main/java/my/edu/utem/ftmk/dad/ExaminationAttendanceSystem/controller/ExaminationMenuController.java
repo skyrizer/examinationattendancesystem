@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -16,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Examination;
-import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Subject;
-import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.ExaminationUnit;
 
 @Controller
 public class ExaminationMenuController {
@@ -29,7 +28,7 @@ public class ExaminationMenuController {
 	public String getExamTypes(Model model)
 	{
 		// The URI for GET order types
-		String uri = "http://localhost:8080/examinationattendancesystem/api/examination/list";
+		String uri = "http://localhost:8080/examinationattendancesystem/api/examination";
 		
 		//Get a list order types from the web service
 		RestTemplate restTemplate = new RestTemplate();
@@ -47,6 +46,9 @@ public class ExaminationMenuController {
 		// return an HTML file, schedule.html, to the browser
 		return "/schedule";
 	}
+	
+	
+
 	
 	/*
 	@GetMapping("/schedule")

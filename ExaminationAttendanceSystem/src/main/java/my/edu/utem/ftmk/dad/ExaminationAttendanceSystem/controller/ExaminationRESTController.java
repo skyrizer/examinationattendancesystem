@@ -33,8 +33,9 @@ public class ExaminationRESTController {
 	{
 		return exams.findAll();
 	}
+
 	
-	
+	/*
 	@GetMapping("/list")
 	public List<Object> getWrapPickUpOrderCode() {
 		
@@ -77,5 +78,6 @@ public class ExaminationRESTController {
 		
 		return examTypes;
 	}
+	*/
 
 }
