@@ -31,7 +31,7 @@ public class ExaminationAttendance {
 	private Examination ExaminationId; 
 	
 	@ManyToOne
-	@JoinColumn(name = "StudentId")
+	@JoinColumn(name = "StudentId")	
 	private Student StudentId;
 	 
 	public int getExamAttendId() {

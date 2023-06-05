@@ -25,8 +25,8 @@ public class AttendanceMenuController {
 	 * @param examinationAttendance
 	 * @return
 	 */
-	@RequestMapping("/examinationattendance/save")
-	public String insertOrderType(@ModelAttribute ExaminationAttendance examinationAttendance)
+	@RequestMapping("/examinationAttendance")
+	public void recordAttendance(@ModelAttribute ExaminationAttendance examinationAttendance)
 	{
 		// Create a new RestTemplate
 		RestTemplate restTemplate = new RestTemplate();
@@ -47,21 +47,16 @@ public class AttendanceMenuController {
 		
 		// Redirect request to display a list of order type
 		//ni nnti tukarrr pegi next
-		return "redirect:/attendance/list";
+		//return "redirect:/attendance/list";
 	}
 
 	
-	/*
-	 * This method will retrieve all the attendance within certain subject
-	 * Author : Ng Wei Hen
-	 * @param examinationAttendance
-	 * @return
-	 */
+	
 	@GetMapping("/attendance/list")
 	public String getAttendance(Model model)
 	{
 		// The URI for GET attendance
-		String uri = "http://localhost:8080/examinationattendance/api/attends";
+		String uri = "http://localhost:8080/examinationattendancesystem/api/attend";
 		
 		//Get a list order types from the web service
 		RestTemplate restTemplate = new RestTemplate();
