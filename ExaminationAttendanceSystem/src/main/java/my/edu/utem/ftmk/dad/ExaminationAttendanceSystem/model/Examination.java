@@ -1,5 +1,4 @@
 package my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model;
-
 import java.util.Date;
 
 import jakarta.persistence.Column;
@@ -51,7 +50,7 @@ public class Examination {
 	}
 
 	public void setExaminationDate(Date examinationDate) {
-		ExaminationDate = examinationDate;
+		this.ExaminationDate = examinationDate;
 	}
 
 	public String getExaminationTime() {
