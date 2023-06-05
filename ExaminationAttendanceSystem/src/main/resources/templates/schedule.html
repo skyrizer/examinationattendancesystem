@@ -4,7 +4,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
-  <title>REST Consumer</title>
+  <title>Schedule - Examination Attendance System</title>
 
   <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
   <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
@@ -19,7 +19,7 @@
   <div th:replace="fragments/header :: header"></div>
 
   <div class="container-fluid" style="max-width: 900px; margin: 0 auto;">
-    <h2 class="text-center">List of Order Types</h2>
+    <h2 class="text-center">Examination Schedule</h2>
 
     <div th:if="${message != null}" class="alert alert-success alert-dismissible fade show text-center message"
       role="alert">
@@ -47,7 +47,7 @@
       </form>
     </div> -->
 
-    <div th:if="${examTypes.size() > 0}">
+    <div th:if="${Examinations.size() > 0}">
       <table class="table table-hover table-responsive-xl">
         <thead class="thead-light">
           <tr>
@@ -60,13 +60,13 @@
           </tr>
         </thead>
         <tbody>
-          <tr th:each="examType : ${examTypes}">
-            <th scope="row">[[${orderType.orderTypeId}]]</th>
-            <td>[[${orderType.code}]]</td>
-            <td>[[${orderType.name}]]</td>
-            <td>[[${orderType.name}]]</td>
-            <td>[[${orderType.name}]]</td>
-            <td>[[${orderType.name}]]</td>
+          <tr th:each="examType : ${Examinations}">
+            <th scope="row">[[${examType.ExaminationId}]]</th>
+            <td>[[${examType.ExaminationDate}]]</td>
+            <td>[[${examType.ExaminationTime}]]</td>
+            <td>[[${examType.SubjectId}]]</td>
+            <td>[[${examType.LecturerId}]]</td>
+            <td>[[${examType.UnitId}]]</td>
             <!--
             <td>
               A link to edit an order type 
@@ -90,7 +90,7 @@
       </table>
     </div>
 
-    <div class="" th:unless="${orderTypes.size() > 0}">
+    <div class="" th:unless="${Examinations.size() > 0}">
       <span>No record found!</span>
     </div>
   </div>

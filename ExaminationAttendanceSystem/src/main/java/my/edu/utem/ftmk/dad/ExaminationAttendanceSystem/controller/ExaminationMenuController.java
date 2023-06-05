@@ -22,7 +22,7 @@ public class ExaminationMenuController {
 
 	private String defaultURI; 
 	
-	@RequestMapping("/examination/list")
+	@GetMapping("/schedule")
 	public String getExamTypes(Model model)
 	{
 		// The URI for GET order types
@@ -33,16 +33,16 @@ public class ExaminationMenuController {
 		ResponseEntity<Examination[]> response = restTemplate.getForEntity(uri, Examination[].class);
 		
 		// Parse JSON data to array of object
-		Examination examTypes[] = response.getBody();
+		Examination examination[] = response.getBody();
 		
 		// Parse an array to a list object
-		List<Examination> examList = Arrays.asList(examTypes);
+		List<Examination> examList = Arrays.asList(examination);
 		
 		// Attach list to model as attribute
-		model.addAttribute("examTypes", examList);
+		model.addAttribute("Examinations", examList);
 		
 		// return an HTML file, schedule.html, to the browser
-		return "schedule";
+		return "/schedule";
 	}	
 	
 }

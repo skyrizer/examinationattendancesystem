@@ -9,21 +9,26 @@
     <div class="collapse navbar-collapse" id="topNavbar">
       <ul class="navbar-nav">
   
-        <!-- A menu link to add a new order type--> 
+        <!-- A menu link to record attendance--> 
         <li class="nav-item">
           <a class="nav-link" th:href="@{/examinationAttendance}">Record Attendance</a>
         </li>
-        <!--
+      
+      	<!-- A menu link to lists attendance -->
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/schedule}">Examination Schedule</a>
+        </li>
+
+        <!-- A menu link to record attendance by venue -->
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/AttendanceVenue}">Examination Attendance by Venue</a>
+        </li>
+
+       <!--
         <li class="nav-item">
           <a class="nav-link" th:href="@{/examinationattendance/save}">Record Attendance</a>
         </li>
         -->
-      	<!-- A menu link to lists attendance -->
-        <li class="nav-item">
-          <a class="nav-link" th:href="@{/examination/list}">Examination Schedule</a>
-        </li>
-
-       
 
       </ul>
     </div>
