@@ -33,10 +33,10 @@ public class ExaminationMenuController {
 		ResponseEntity<Examination[]> response = restTemplate.getForEntity(uri, Examination[].class);
 		
 		// Parse JSON data to array of object
-		Examination examination[] = response.getBody();
+		Examination examTypes[] = response.getBody();
 		
 		// Parse an array to a list object
-		List<Examination> examsList = Arrays.asList(examination);
+		List<Examination> examsList = Arrays.asList(examTypes);
 		
 		// Attach list to model as attribute
 		model.addAttribute("examTypes", examsList);

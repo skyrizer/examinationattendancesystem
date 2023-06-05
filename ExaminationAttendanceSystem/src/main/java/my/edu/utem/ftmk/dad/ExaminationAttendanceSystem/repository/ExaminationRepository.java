@@ -13,8 +13,6 @@ public interface ExaminationRepository extends JpaRepository<Examination, Long> 
 	 * This method create custom query for retrieve schedule for students
 	 * 
 	 */
-	
-	
 	@Query(value = "select t.SubjectCode, t.SubjectName, e.ExaminationDate, e.ExaminationTime, u.UnitName "
 			+ "from subject t, examination e, examinationunit u WHERE t.SubjectId = e.SubjectId AND e.UnitId = u.UnitId ",
 			nativeQuery = true)
