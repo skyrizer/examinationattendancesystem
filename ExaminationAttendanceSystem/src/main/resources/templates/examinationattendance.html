@@ -4,12 +4,13 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
-    <title>REST Consumer</title>
+    <title>Record Attendance - Examination Attendance System</title>
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/
+6.2.0/css/all.min.css" integrity="sha512-xh6O/
+CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUH
+USCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </head>
@@ -18,11 +19,12 @@
     <div th:replace="fragments/header :: header"></div>
 
     <div class="container-fluid">
-        <h2 class="text-center" th:text="${pageTitle}"></h2>
+        <h2 class="text-center">[[${pageTitle}]]</h2>
 
         <div class="my-3">
             <form th:action="@{/examinationAttendance}" method="post" enctype="multipart/form-data"
                 th:object="${examinationAttendance}" style="max-width: 550px; margin: 0 auto">
+            <form th:action="@{/examinationattendance/save}" method="post" enctype="multipart/form-data" th:object="${examinationAttendance}" style="max-width: 550px; margin: 0 auto">
 
                 <input type="hidden" th:field="*{ExamAttendId}" />
 
@@ -32,14 +34,14 @@
                         <div class="col-sm-9">
                             <input type="number" th:field="*{StudentId}" required minlength="3" maxlength="10"
                                 class="form-control" id="StudentId" />
+                            <input type="text" th:field="*{StudentId}" required minlength="3" maxlength="10" class="form-control" id="StudentId" />
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label" for="Reader">Type of reader</label>
                         <div class="col-sm-9">
-                            <input type="text" th:field="*{InputType}" minlength="2" maxlength="256"
-                                class="form-control" id="InputType" />
+                            <input type="text" th:field="*{InputType}" minlength="2" maxlength="256" class="form-control" id="InputType" />
                         </div>
                     </div>
 
@@ -53,6 +55,7 @@
     </div>
 
     <div th:replace="fragments/footer :: footer"></div>
+
 
     <script type="text/javascript">
         $(document).ready(function() {

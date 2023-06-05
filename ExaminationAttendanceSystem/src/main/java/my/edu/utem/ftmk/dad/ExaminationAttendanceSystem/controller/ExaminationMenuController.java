@@ -22,7 +22,7 @@ public class ExaminationMenuController {
 
 	private String defaultURI; 
 	
-	@GetMapping("/examination/list")
+	@RequestMapping("/examination/list")
 	public String getExamTypes(Model model)
 	{
 		// The URI for GET order types
@@ -43,36 +43,6 @@ public class ExaminationMenuController {
 		
 		// return an HTML file, schedule.html, to the browser
 		return "schedule";
-	}
-	
-	
-	/*
-	 * This returns a list of schedule in a table on the webpage
-	 */
-	/*
-	@RequestMapping("/examschedule/list")
-	public String getExamSchedules(Model model)
-	{
-		// The URI for GET order types
-		String uri = "http://localhost:8080/examinationattendancesystem/api/examination/wrap";
-		
-		//Get a list order types from the web service
-		RestTemplate restTemplate = new RestTemplate();
-		ResponseEntity<Object[]> response = restTemplate.getForEntity(uri, Object[].class);
-		
-		// Parse JSON data to array of object
-		Object objExam[] = response.getBody();
-		
-		// Parse an array to a list object
-		List<Object> objExamList = Arrays.asList(objExam);
-		
-		// Attach list to model as attribute
-		model.addAttribute("examTypes", objExamList);
-		
-		return "examtypes";
-		
-	}
-	*/
-	
+	}	
 	
 }
