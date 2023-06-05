@@ -1,21 +1,28 @@
-<html lang="en">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel = "stylesheet" href = "static/css/schedule.css"> 
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/style.css}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
     <marquee direction = "right" scrollamount = "15"> Examination Attendance System BITP3123 Group 10</marquee>
     <title>Schedule - Examination Attendance System</title>
-    <div class="topnav">
+    <div class="topnav" th:replace="static/css::schedule.css">
         <a class="Home" href="home.html">Home</a>
         <a href="schedule.html">Examination Schedule</a>
         <a href="attendance.html">Attendance Report</a>
         <a href="AttendanceVenue.html">Attendance By Venue</a>
       </div>
     <br>
+
+    <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </head>
 
 <body>
    
-    <br>
+  <br>
   <h1><u>Examination Schedule Generation</u></h1>
   <h4>
       <b id = "type1">Name:</b>
