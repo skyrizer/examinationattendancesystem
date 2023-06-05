@@ -1,17 +1,23 @@
 <header th:fragment="header">
   <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-    <a class="navbar-brand" th:href="@{/examschedule/list}">
-      Master Information
+    <a class="navbar-brand" th:href="@{/exam/list}">
+      Examination Attendance System
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="topNavbar">
       <ul class="navbar-nav">
+      	
+      	 <li class="nav-item">
+          <a class="nav-link" th:href="@{/examinationattendance/save}">Record Attendance</a>
+        </li>
+      	
       	<!-- A menu link to lists attendance -->
         <li class="nav-item">
-          <a class="nav-link" th:href="@{/examschedule/list}">Examination Schedule</a>
+          <a class="nav-link" th:href="@{/exam/list}">Examination Schedule</a>
         </li>
+        
         
         <!-- A menu link to add a new order type 
         <li class="nav-item">

@@ -20,30 +20,58 @@ import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Examination;
 @Controller
 public class ExaminationMenuController {
 
-	private String defaultURI = "http://localhost:8080/examinationattendancesystem/api/examination/schedule"; 
-	/*
-	 * This returns a list of schedule in a table on the webpage
-	 */
-	@GetMapping("/examschedule/list")
-	public String getExamSchedules(Model model)
+	private String defaultURI; 
+	
+	@GetMapping("/exam/list")
+	public String getExamTypes(Model model)
 	{
 		// The URI for GET order types
-		String uri = "http://localhost:8080/examinationattendancesystem/api/examination/schedule";
+		String uri = "http://localhost:8080/examinationattendancesystem/api/examination";
 		
 		//Get a list order types from the web service
 		RestTemplate restTemplate = new RestTemplate();
 		ResponseEntity<Examination[]> response = restTemplate.getForEntity(uri, Examination[].class);
 		
 		// Parse JSON data to array of object
-		Examination objExams[] = response.getBody();
+		Examination examination[] = response.getBody();
 		
 		// Parse an array to a list object
-		List<Examination> objExamList = Arrays.asList(objExams);
+		List<Examination> examsList = Arrays.asList(examination);
 		
 		// Attach list to model as attribute
-		model.addAttribute("ExamsList", objExamList);
+		model.addAttribute("examTypes", examsList);
 		
-		return "examsList";
+		return "schedule";
+	}
+	
+	
+	/*
+	 * This returns a list of schedule in a table on the webpage
+	 */
+	/*
+	@RequestMapping("/examschedule/list")
+	public String getExamSchedules(Model model)
+	{
+		// The URI for GET order types
+		String uri = "http://localhost:8080/examinationattendancesystem/api/examination/wrap";
+		
+		//Get a list order types from the web service
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<Object[]> response = restTemplate.getForEntity(uri, Object[].class);
+		
+		// Parse JSON data to array of object
+		Object objExam[] = response.getBody();
+		
+		// Parse an array to a list object
+		List<Object> objExamList = Arrays.asList(objExam);
+		
+		// Attach list to model as attribute
+		model.addAttribute("examTypes", objExamList);
+		
+		return "examtypes";
 		
 	}
+	*/
+	
+	
 }

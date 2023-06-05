@@ -26,6 +26,14 @@ public class ExaminationRESTController {
 	@Autowired
 	private ExaminationRepository exams;
 	
+	// retrieve all order types detail
+	@GetMapping
+	public List<Examination> getExamination()
+	{
+		return exams.findAll();
+	}
+	
+	
 	/*
 	 * This method demonstrate the invocation of custom query and return the
 	 * result in Object form.
@@ -50,26 +58,25 @@ public class ExaminationRESTController {
 		return objExams;
 	}
 	
-	@GetMapping("/schedule")
+	@GetMapping("/find/schedule/wrap")
 	public List<Object> getWrapPickUpOrderCode() {
 		
 		// Execute query method
-		List<Object[]> objOrderTypes = exams.selectCustomByCode();
+		List<Object[]> objExam = exams.selectCustomByCode();
 		
 		// Wrap result in a list of order type
-		List<Object> orderTypes = new ArrayList<Object>();
-		for (Object[] objOrderType:objOrderTypes) {
+		List<Object> examTypes = new ArrayList<Object>();
+		for (Object[] exam:objExam) {
 			
 			// Wrap in order type
 			Subject subject = new Subject();
 			Examination exams = new Examination();
 			ExaminationUnit units = new ExaminationUnit();
 			
-		
-			subject.setSubjectCode(objOrderType[0].toString());
-			subject.setSubjectName(objOrderType[1].toString());
+			subject.setSubjectCode(exam[0].toString());
+			subject.setSubjectName(exam[1].toString());
 			
-            String strDate = objOrderType[2].toString();
+            String strDate = exam[2].toString();
             System.out.println(strDate);
 			
             Date date = new Date();
@@ -83,16 +90,16 @@ public class ExaminationRESTController {
             }
             
             exams.setExaminationDate(date);
-			exams.setExaminationTime(objOrderType[3].toString());
-			units.setUnitName(objOrderType[4].toString());
+			exams.setExaminationTime(exam[3].toString());
+			units.setUnitName(exam[4].toString());
 			
 			// Add into list
-			orderTypes.add(subject);
-			orderTypes.add(exams);
-			orderTypes.add(units);
+			examTypes.add(subject);
+			examTypes.add(exams);
+			examTypes.add(units);
 		}
 		
-		return orderTypes;
+		return examTypes;
 	}
 	
 }
