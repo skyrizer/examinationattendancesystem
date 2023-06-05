@@ -50,7 +50,7 @@ public class ExaminationRESTController {
 		return objExams;
 	}
 	
-	@GetMapping("/find/schedule/wrap")
+	@GetMapping("/schedule")
 	public List<Object> getWrapPickUpOrderCode() {
 		
 		// Execute query method

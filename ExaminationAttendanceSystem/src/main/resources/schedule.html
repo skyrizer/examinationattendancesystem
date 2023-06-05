@@ -4,24 +4,34 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
     <marquee direction = "right" scrollamount = "15"> Examination Attendance System BITP3123 Group 10</marquee>
     <title>Schedule - Examination Attendance System</title>
-    <div class="topnav">
+    <!---
+        <div class="topnav">
         <a class="Home" href="home.html">Home</a>
         <a href="schedule.html">Examination Schedule</a>
         <a href="attendance.html">Attendance Report</a>
         <a href="AttendanceVenue.html">Attendance By Venue</a>
       </div>
     <br>
-
-    <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
-    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    -->
 </head>
 
 <body>
    <div th:replace="fragment/header::header"></div>
+
+   <div th:if="${message != null}" class="alert alert-success alert-dismissible fade show text-center message"
+   role="alert">
+   [[${message}]]
+   <button type="button" class="close btn-sm" data-dismiss="alert" aria-label="Close">
+     <span aria-hidden="true">&times;</span>
+   </button>
+ </div>
   <br>
   <h1><u>Examination Schedule Generation</u></h1>
   <h4>

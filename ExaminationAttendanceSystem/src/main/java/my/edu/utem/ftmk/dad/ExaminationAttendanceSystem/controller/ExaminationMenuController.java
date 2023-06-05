@@ -20,7 +20,7 @@ import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Examination;
 @Controller
 public class ExaminationMenuController {
 
-	private String defaultURI; 
+	private String defaultURI = "http://localhost:8080/examinationattendancesystem/api/examination/schedule"; 
 	/*
 	 * This returns a list of schedule in a table on the webpage
 	 */
@@ -28,7 +28,7 @@ public class ExaminationMenuController {
 	public String getExamSchedules(Model model)
 	{
 		// The URI for GET order types
-		String uri = "http://localhost:8080/examinationattendancesystem/api/examination/find/schedule/raw";
+		String uri = "http://localhost:8080/examinationattendancesystem/api/examination/schedule";
 		
 		//Get a list order types from the web service
 		RestTemplate restTemplate = new RestTemplate();

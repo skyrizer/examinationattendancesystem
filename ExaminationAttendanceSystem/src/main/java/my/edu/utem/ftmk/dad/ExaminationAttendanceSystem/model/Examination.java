@@ -1,4 +1,5 @@
 package my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model;
+
 import java.util.Date;
 
 import jakarta.persistence.Column;
@@ -35,7 +36,7 @@ public class Examination {
 	
 	@Column(name = "UnitId")
 	private int UnitId;
-
+	
 	public int getExaminationId() {
 		return ExaminationId;
 	}
@@ -50,7 +51,7 @@ public class Examination {
 	}
 
 	public void setExaminationDate(Date examinationDate) {
-		this.ExaminationDate = examinationDate;
+		ExaminationDate = examinationDate;
 	}
 
 	public String getExaminationTime() {
@@ -85,5 +86,5 @@ public class Examination {
 		UnitId = unitId;
 	}
 	 
-	
 }
+	
