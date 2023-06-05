@@ -22,7 +22,7 @@ public class ExaminationMenuController {
 
 	private String defaultURI; 
 	
-	@GetMapping("/exam/list")
+	@GetMapping("/examination/list")
 	public String getExamTypes(Model model)
 	{
 		// The URI for GET order types
@@ -41,6 +41,7 @@ public class ExaminationMenuController {
 		// Attach list to model as attribute
 		model.addAttribute("examTypes", examList);
 		
+		// return an HTML file, schedule.html, to the browser
 		return "schedule";
 	}
 	
