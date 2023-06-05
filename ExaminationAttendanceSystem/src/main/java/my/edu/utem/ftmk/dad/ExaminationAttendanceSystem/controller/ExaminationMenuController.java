@@ -36,10 +36,10 @@ public class ExaminationMenuController {
 		Examination examTypes[] = response.getBody();
 		
 		// Parse an array to a list object
-		List<Examination> examsList = Arrays.asList(examTypes);
+		List<Examination> examList = Arrays.asList(examTypes);
 		
 		// Attach list to model as attribute
-		model.addAttribute("examTypes", examsList);
+		model.addAttribute("examTypes", examList);
 		
 		return "schedule";
 	}
