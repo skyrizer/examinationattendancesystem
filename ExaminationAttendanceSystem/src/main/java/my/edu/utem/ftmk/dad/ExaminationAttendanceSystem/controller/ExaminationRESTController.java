@@ -15,8 +15,8 @@ public class ExaminationRESTController {
 
 	@Autowired
 	private ExaminationRepository exams;
+	
 	/*
-	 * Lab Week 11 Task 8.2
 	 * This method demonstrate the invocation of custom query and return the
 	 * result in Object form.
 	 * 

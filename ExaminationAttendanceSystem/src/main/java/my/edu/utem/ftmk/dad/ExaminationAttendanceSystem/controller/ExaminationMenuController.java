@@ -22,10 +22,10 @@ public class ExaminationMenuController {
 	 * This returns a list of schedule in a table on the webpage
 	 */
 	@GetMapping("/examschedule/list")
-	public String getOrderTypes(Model model)
+	public String getExamSchedules(Model model)
 	{
 		// The URI for GET order types
-		String uri = "http://localhost:8080/orderapp/api/ordertypes";
+		String uri = "http://localhost:8080/examinationattendancesystem/api/examination";
 		
 		//Get a list order types from the web service
 		RestTemplate restTemplate = new RestTemplate();
@@ -40,7 +40,7 @@ public class ExaminationMenuController {
 		// Attach list to model as attribute
 		model.addAttribute("ExamsList", objExamList);
 		
-		return "ExamsList";
+		return "examsList";
 		
 	}
 }

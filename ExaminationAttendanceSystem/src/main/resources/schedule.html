@@ -8,7 +8,7 @@
 
     <marquee direction = "right" scrollamount = "15"> Examination Attendance System BITP3123 Group 10</marquee>
     <title>Schedule - Examination Attendance System</title>
-    <div class="topnav" th:replace="static/css::schedule.css">
+    <div class="topnav">
         <a class="Home" href="home.html">Home</a>
         <a href="schedule.html">Examination Schedule</a>
         <a href="attendance.html">Attendance Report</a>
@@ -21,7 +21,7 @@
 </head>
 
 <body>
-   
+   <div th:replace="fragment/header::header"></div>
   <br>
   <h1><u>Examination Schedule Generation</u></h1>
   <h4>
@@ -45,6 +45,7 @@
       <input type="Input Your Matric Card" style = "width: 25%; height: 5%;">
 
       <br><br>
+      <!--
       <table border="5px" cellpadding="4" cellspacing="4">
           <tr><td colspan = "5" style="text-align: center; font-family: Century Gothic; font-size: 25px; margin-left: 10%;"><b> 
             Examination for Semester 2 Year 2022/2023 </b></td></tr>
@@ -56,8 +57,37 @@
               <th style="width:200px">Venue</th>
           </tr>
       </table>
+    -->
+
+    <div th:if="${ExamsList.size()>0"}>
+      <table class ="table table-hover table-responsive-xl">
+        <thead class = "thead-light">
+          <tr>
+            <th style="width:150px">Subject Code</th>
+            <th style="width:400px">Subject Name</th>
+            <th style="width:150px">Date</th>
+            <th style="width:150px">Time</th>
+            <th style="width:200px">Venue</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="examlist:${ExamsList}">
+              <th scope = "row">[[${examlist.SubjectId}]]</th>
+              <td></td>
+              <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class ="" th:unless=""${orderTypes.size()>0>
+      <span>No record found!</span>
+    </div>}
   </h4>
     <b style ="font-size: 20px;"><button type="button" onclick="window.location.href='home.html'" style ="margin-left: 5%; width: 10%; height: 8%">Back</b></button>
     <b style ="font-size: 20px;"><button type="button" onclick="javascript:window.print()" style ="margin-left: 63%; width: 10%; height: 8%; ">Print</b></button>
-</body>
+
+  <div th:replace="fragment/footer::footer"></div>
+    
+  </body>
 </html>
