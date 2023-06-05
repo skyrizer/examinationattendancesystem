@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Examination;
+import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Subject;
+import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.ExaminationUnit;
 
 @Controller
 public class ExaminationMenuController {
@@ -27,7 +29,7 @@ public class ExaminationMenuController {
 	public String getExamTypes(Model model)
 	{
 		// The URI for GET order types
-		String uri = "http://localhost:8080/examinationattendancesystem/api/examination";
+		String uri = "http://localhost:8080/examinationattendancesystem/api/examination/list";
 		
 		//Get a list order types from the web service
 		RestTemplate restTemplate = new RestTemplate();

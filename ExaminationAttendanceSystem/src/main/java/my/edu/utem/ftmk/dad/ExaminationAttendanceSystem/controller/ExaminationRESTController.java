@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ch.qos.logback.core.model.Model;
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Subject;
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.ExaminationUnit;
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Examination;
@@ -33,7 +34,8 @@ public class ExaminationRESTController {
 		return exams.findAll();
 	}
 	
-	@GetMapping("/find/schedule/wrap")
+	
+	@GetMapping("/list")
 	public List<Object> getWrapPickUpOrderCode() {
 		
 		// Execute query method
@@ -48,10 +50,7 @@ public class ExaminationRESTController {
 			Examination exams = new Examination();
 			ExaminationUnit units = new ExaminationUnit();
 			
-			subject.setSubjectCode(exam[0].toString());
-			subject.setSubjectName(exam[1].toString());
-			
-            String strDate = exam[2].toString();
+            String strDate = exam[0].toString();
             System.out.println(strDate);
 			
             Date date = new Date();
@@ -65,7 +64,9 @@ public class ExaminationRESTController {
             }
             
             exams.setExaminationDate(date);
-			exams.setExaminationTime(exam[3].toString());
+			exams.setExaminationTime(exam[1].toString());
+			subject.setSubjectCode(exam[2].toString());
+			subject.setSubjectName(exam[3].toString());
 			units.setUnitName(exam[4].toString());
 			
 			// Add into list
