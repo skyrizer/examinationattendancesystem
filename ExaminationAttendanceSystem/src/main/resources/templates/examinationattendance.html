@@ -21,7 +21,7 @@
         <h2 class="text-center" th:text="${pageTitle}"></h2>
 
         <div class="my-3">
-            <form th:action="@{/examinationattendance}" method="post" enctype="multipart/form-data"
+            <form th:action="@{/examinationAttendance}" method="post" enctype="multipart/form-data"
                 th:object="${examinationAttendance}" style="max-width: 550px; margin: 0 auto">
 
                 <input type="hidden" th:field="*{ExamAttendId}" />
@@ -30,7 +30,7 @@
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label" for="StudentId">Matric Card</label>
                         <div class="col-sm-9">
-                            <input type="text" th:field="*{StudentId}" required minlength="3" maxlength="10"
+                            <input type="number" th:field="*{StudentId}" required minlength="3" maxlength="10"
                                 class="form-control" id="StudentId" />
                         </div>
                     </div>
