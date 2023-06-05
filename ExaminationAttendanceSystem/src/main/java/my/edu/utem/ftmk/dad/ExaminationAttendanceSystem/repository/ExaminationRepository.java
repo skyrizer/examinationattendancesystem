@@ -8,5 +8,12 @@ import org.springframework.data.jpa.repository.Query;
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Examination;
 
 public interface ExaminationRepository extends JpaRepository<Examination, Long> {
-
+	/*
+	 * This creates a custom query
+	 */
+	@Query(value = "select e.ExaminationDate, s.SubjectCode, s.SubjectName, e.ExaminationTime, u.UnitName"
+			+ " FROM Examination e, Subject s, ExaminationUnit u "
+			+ "WHERE e.SubjectId = s.SubjectId AND e.UnitId = u.UnitId",
+			nativeQuery = true)
+	public List<Object[]> selectCustomByCode();
 }
