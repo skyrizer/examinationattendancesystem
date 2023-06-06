@@ -24,35 +24,20 @@ USCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <div class="my-3">
             <form th:action="@{/examinationAttendance}" method="post" enctype="multipart/form-data"
                 th:object="${examinationAttendance}" style="max-width: 550px; margin: 0 auto">
-            <form th:action="@{/examinationattendance/save}" method="post" enctype="multipart/form-data" th:object="${examinationAttendance}" style="max-width: 550px; margin: 0 auto">
-                <h2><b style = "text-align: center;"> Examination Attendance System </b></h2>
-                <img src="https://www.utem.edu.my/templates/yootheme/cache/36/LogoUTeM-36e05019.webp" alt="Utem Logo" class = "center" style = "margin-left: 25%;">
                 <input type="hidden" th:field="*{ExamAttendId}" />
 
                 <div class="p-3">
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label" for="StudentId">Matric Card</label>
                         <div class="col-sm-9">
-                            <input type="number" th:field="*{StudentId}" required minlength="3" maxlength="10"
-                                class="form-control" id="StudentId" />
-                            <input type="text" th:field="*{StudentId}" required minlength="3" maxlength="10" class="form-control" id="StudentId" />
+                            <input type="text" th:field="*{StudentId.StudentMatricNo}" required minlength="3" maxlength="10" class="form-control" id="StudentId" />
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label" for="Reader" >Reader Input</label>
                         <div class="col-sm-9">
-                            <!--
                             <input type="text" th:field="*{InputType}" minlength="2" maxlength="256" class="form-control" id="InputType" />
-                            -->
-
-                            <select id="reader" name="reader">
-                                <option value="0" selected="selected"> </option>
-                                <option value="74">Matric card reader</option>
-                                <option value="74">Fingerprint reader</option>
-                                <option value="75">QR Code</option>
-                                <option value="76">Self Check In</option>
-                            </select>
                         </div>
                     </div>
 

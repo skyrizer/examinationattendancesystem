@@ -1,6 +1,10 @@
 package my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.http.HttpEntity;
@@ -12,7 +16,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 
+import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Examination;
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.ExaminationAttendance;
+import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.ExaminationUnit;
+import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Subject;
 
 @Controller
 public class AttendanceMenuController {
@@ -49,6 +56,7 @@ public class AttendanceMenuController {
 		//ni nnti tukarrr pegi next
 		//return "redirect:/attendance/list";
 	}
+
 
 	
 	
