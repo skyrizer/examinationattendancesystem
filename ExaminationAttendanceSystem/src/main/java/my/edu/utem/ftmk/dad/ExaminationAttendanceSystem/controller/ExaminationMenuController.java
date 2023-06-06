@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import org.aspectj.weaver.patterns.ThisOrTargetAnnotationPointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
@@ -37,8 +38,21 @@ public class ExaminationMenuController {
 		// Parse JSON data to array of object
 		Examination examination[] = response.getBody();
 		
+		System.out.println(this.getClass().getSimpleName() + " @ 41 length = " + examination.length);
+		System.out.println(this.getClass().getSimpleName() + " @ 42");
+		for (Examination currentExam:examination) {
+			
+			System.out.println("Examination Id  " + currentExam.getExaminationId());
+			System.out.println("Unit name " + currentExam.getUnitName());
+			System.out.println("Subject name" + currentExam.getSubject().getSubjectName());
+		}
+		
+		
 		// Parse an array to a list object
 		List<Examination> examList = Arrays.asList(examination);
+		
+		
+		
 		
 		// Attach list to model as attribute
 		model.addAttribute("Examinations", examList);

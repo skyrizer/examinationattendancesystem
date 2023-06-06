@@ -20,42 +20,38 @@ public class Subject {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "SubjectId")
-	private String SubjectId;
+	private String subjectId;
 
 	@Column(name = "SubjectCode")
-	private String SubjectCode;
+	private String subjectCode;
 
 	@Column(name = "SubjectName")
-	private String SubjectName;
-
-	//private List<Student> students = new ArrayList<Student>();
+	private String subjectName;
 
 	public String getSubjectId() {
-		return SubjectId;
-	}
-	public void setSubjectId(String subjectId) {
-		SubjectId = subjectId;
-	}
-	public String getSubjectName() {
-		return SubjectName;
-	}
-	public void setSubjectName(String subjectName) {
-		SubjectName = subjectName;
-	}
-	/*
-	public List<Student> getStudents() {
-		return students;
-	}
-	public void setStudents(List<Student> students) {
-		this.students = students;
-	}
-	*/
-	public String getSubjectCode() {
-		return SubjectCode;
-	}
-	public void setSubjectCode(String subjectCode) {
-		SubjectCode = subjectCode;
+		return subjectId;
 	}
 
+	public void setSubjectId(String subjectId) {
+		this.subjectId = subjectId;
+	}
+
+	public String getSubjectCode() {
+		return subjectCode;
+	}
+
+	public void setSubjectCode(String subjectCode) {
+		this.subjectCode = subjectCode;
+	}
+
+	public String getSubjectName() {
+		return subjectName;
+	}
+
+	public void setSubjectName(String subjectName) {
+		this.subjectName = subjectName;
+	}
+
+	
 
 }

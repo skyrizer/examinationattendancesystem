@@ -11,7 +11,8 @@ public interface ExaminationRepository extends JpaRepository<Examination, Long> 
 	/*
 	 * This creates a custom query
 	 */
-	@Query(value = "select e.ExaminationDate,  e.ExaminationTime, s.SubjectCode, s.SubjectName, u.UnitName"
+	@Query(value = "select e.ExaminationDate,  e.ExaminationTime, s.SubjectCode, s.SubjectName, u.UnitName, "
+			+ "e.examinationId"
 			+ " FROM Examination e, Subject s, ExaminationUnit u "
 			+ "WHERE e.SubjectId = s.SubjectId AND e.UnitId = u.UnitId",
 			nativeQuery = true)

@@ -62,8 +62,9 @@
         <tbody>
           <tr th:each="examType : ${Examinations}">
                 <th scope="row">[[${examType.ExaminationId}]]</th>
-                <td>[[${examType.ExaminationDate}]]</td>
-                <td>[[${examType.ExaminationTime}]]</td>
+               <!--  <td>[[${examType.ExaminationDate}]]</td>
+                <td>[[${examType.ExaminationTime}]]</td> -->
+                 <td>[[${examType.subject.subjectName}]]</td>
                 <!--
                 <td>
                   A link to edit an order type 

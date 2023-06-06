@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "examination")
@@ -36,6 +37,12 @@ public class Examination {
 	
 	@Column(name = "UnitId")
 	private int UnitId;
+	
+	@Transient
+	private Subject subject;
+	
+	@Transient
+	private String unitName;
 	
 	public int getExaminationId() {
 		return ExaminationId;
@@ -84,6 +91,26 @@ public class Examination {
 
 	public void setUnitId(int unitId) {
 		UnitId = unitId;
+	}
+
+
+	public Subject getSubject() {
+		return subject;
+	}
+
+
+	public void setSubject(Subject subject) {
+		this.subject = subject;
+	}
+
+
+	public String getUnitName() {
+		return unitName;
+	}
+
+
+	public void setUnitName(String unitName) {
+		this.unitName = unitName;
 	}
 	 
 }

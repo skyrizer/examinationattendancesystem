@@ -9,7 +9,9 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import org.aspectj.weaver.patterns.ThisOrTargetAnnotationPointcut;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.EnableLoadTimeWeaving;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,49 +37,68 @@ public class ExaminationRESTController {
 	}
 
 	
-	/*
+	
 	@GetMapping("/list")
-	public List<Object> getWrapPickUpOrderCode() {
+	public List<Examination> getWrapPickUpOrderCode() {
 		
 		// Execute query method
-		List<Object[]> objExam = exams.selectCustomByCode();
+		List<Object[]> objExams = exams.selectCustomByCode();
 		
 		// Wrap result in a list of order type
-		List<Object> examTypes = new ArrayList<Object>();
-		for (Object[] exam:objExam) {
+		List<Examination> examinations = new ArrayList<Examination>();
+		for (Object[] objExam:objExams) {
 			
-			// Wrap in order type
+			// 5 elements in one objExam
+			
+			Examination examination = new Examination();
+			
+			// Wrap date
+			String strDate = objExam[0].toString(); 
+			Date date = new Date();
+			
+			// Wrap time
+			
+			// Wrap subject
 			Subject subject = new Subject();
-			Examination exams = new Examination();
-			ExaminationUnit units = new ExaminationUnit();
+			subject.setSubjectCode(objExam[2].toString());
+			subject.setSubjectName(objExam[3].toString());
+			examination.setSubject(subject);
+			System.out.println(this.getClass().getSimpleName() + " @ 66 " + examination.getSubject().getSubjectName());
 			
-            String strDate = exam[0].toString();
-            System.out.println(strDate);
+			// Wrap unit id
+			//int unitId = Integer.parseInt( objExam[4].toString()); 
+			examination.setUnitName(objExam[4].toString());
+			System.out.println(this.getClass().getSimpleName() + " @ 66 " + examination.getUnitName());
 			
-            Date date = new Date();
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-            try {
-            	date = formatter.parse(strDate);
-            	System.out.println(formatter.format(date));
-            }
-            catch (ParseException e) {
-            	e.printStackTrace();
-            }
-            
-            exams.setExaminationDate(date);
-			exams.setExaminationTime(exam[1].toString());
-			subject.setSubjectCode(exam[2].toString());
-			subject.setSubjectName(exam[3].toString());
-			units.setUnitName(exam[4].toString());
 			
-			// Add into list
-			examTypes.add(subject);
-			examTypes.add(exams);
-			examTypes.add(units);
+			examination.setExaminationId(Integer.parseInt(objExam[5].toString()));
+			
+			examinations.add(examination);
+			
+			
+			  // Wrap in order type 
+			/*Subject subject = new Subject(); 
+				Examination exams = new Examination(); ExaminationUnit units = new ExaminationUnit();
+			  
+			  String strDate = exam[0].toString(); System.out.println(strDate);
+			  
+			   SimpleDateFormat formatter = new
+			  SimpleDateFormat("yyyy-MM-dd"); try { date = formatter.parse(strDate);
+			  System.out.println(formatter.format(date)); } catch (ParseException e) {
+			  e.printStackTrace(); }
+			  
+			  exams.setExaminationDate(date); exams.setExaminationTime(exam[1].toString());
+			  subject.setSubjectCode(exam[2].toString());
+			  subject.setSubjectName(exam[3].toString());
+			 
+			  
+			  // Add into list examTypes.add(subject); examTypes.add(exams);
+			  examTypes.add(units);*/
+			 
 		}
 		
-		return examTypes;
+		return examinations;
 	}
-	*/
+	
 
 }
