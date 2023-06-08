@@ -40,7 +40,7 @@ import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.repository.ExaminationRe
 public class AttendanceRESTController {
 
 	@Autowired
-	private AttendanceRepository attendance;
+	private AttendanceRepository attendanceRepository;
 	
 	/*
 	 * This method will insert the attendance record to the database
@@ -48,19 +48,19 @@ public class AttendanceRESTController {
 	@PostMapping
 	public ExaminationAttendance recordAttendance(@RequestBody ExaminationAttendance examinationattendance)
 	{
-		return attendance.save(examinationattendance);
+		return attendanceRepository.save(examinationattendance);
 	}
 	
 	@GetMapping("/")
 	public List<ExaminationAttendance> generateAttendanceReport()
 	{ 
-		return attendance.findAll();
+		return attendanceRepository.findAll();
 	}
 	
 	@GetMapping("/{id}")
 	public List<ExaminationAttendance> searchRecordAttendId(@PathVariable int id)
 	{
-		return attendance.findById(id);
+		return attendanceRepository.findById(id);
 	}
 
 	
