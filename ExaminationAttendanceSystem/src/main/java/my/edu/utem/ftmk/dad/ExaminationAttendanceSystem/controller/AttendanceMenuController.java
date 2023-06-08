@@ -20,6 +20,7 @@ import org.springframework.web.client.RestTemplate;
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Examination;
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.ExaminationAttendance;
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.ExaminationUnit;
+import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Student;
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Subject;
 
 @Controller
@@ -55,7 +56,7 @@ public class AttendanceMenuController {
 	 * @param examinationAttendance
 	 * @return
 	 */
-	@RequestMapping("/examinationAttendance")
+	/*@RequestMapping("/examinationAttendance")
 	public String recordAttendance(@ModelAttribute ExaminationAttendance examinationAttendance)
 	{
 		// Create a new RestTemplate
@@ -75,13 +76,11 @@ public class AttendanceMenuController {
 		
 		System.out.println(examinationAttendanceResponse);
 		
-		// Redirect request to display a list of order type
-		//ni nnti tukarrr pegi next
-		//return "redirect:/attendance/list";
-		return  "redirect:/examinationAttendance";
+		return "redirect:/attendance/list";
+	
 	}
 
-	
+	*/
 	/**
 	 * This method gets an order type
 	 * 
@@ -116,5 +115,44 @@ public class AttendanceMenuController {
 		return "examinationAttendance";
 			
 	}
+	
+	
+	/**
+	 * This method will add an attendance
+	 * Author : Hafiz Suhaizal
+	 * @param examinationAttendance
+	 * @return
+	 */
+	@RequestMapping("/examinationAttendance")
+	public String recordAttendance(@ModelAttribute ExaminationAttendance examinationAttendance)
+	{
+	    // Create a new RestTemplate
+	    RestTemplate restTemplate = new RestTemplate();
+
+	    // Assuming you have a method in your AttendanceRESTController to retrieve a student by matric number
+	    // Create the URI for retrieving the student by matric number
+	    String studentURI = "http://localhost:8080/examinationattendancesystem/api/students/" + examinationAttendance.getStudentId().getStudentMatricNo();
+
+	    // Get the student from the web service
+	    Student student = restTemplate.getForObject(studentURI, Student.class);
+
+	    // Set the StudentId in the ExaminationAttendance object with the retrieved student
+	    examinationAttendance.setStudentId(student);
+
+	    // Create request body
+	    HttpEntity<ExaminationAttendance> request = new HttpEntity<ExaminationAttendance>(examinationAttendance);
+
+	    String examinationAttendanceResponse = "";
+
+	    // This block adds a new order type
+	    // send request as POST
+	    examinationAttendanceResponse = restTemplate.postForObject(defaultURI, request, String.class);
+
+	    System.out.println(examinationAttendanceResponse);
+
+	    // Redirect request to display a list of order type
+	    return "redirect:/attendance/list";
+	}
+
 
 }
