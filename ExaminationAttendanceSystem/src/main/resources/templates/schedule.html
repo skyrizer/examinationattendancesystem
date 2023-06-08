@@ -52,7 +52,7 @@
         <thead class="thead-light">
           <tr>
             <th scope="col">Id</th>
-            <th scope="col">Date</th>
+            <th scope="col" >Date</th>
             <th scope="col">Time</th>
             <th scope="col">Subject Code</th>
             <th scope="col">Subject Name</th>
@@ -61,27 +61,17 @@
         </thead>
         <tbody>
           <tr th:each="examType : ${Examinations}">
-                <th scope="row">[[${examType.ExaminationId}]]</th>
-               <!--  <td>[[${examType.ExaminationDate}]]</td>
-                <td>[[${examType.ExaminationTime}]]</td> -->
+                <td scope="row">[[${examType.ExaminationId}]]</td>
+                
+                <td  th:text="${#dates.format(examType.ExaminationDate, 'dd-MM-yyyy')}" ></td>
+                
+                
+                <td>[[${examType.ExaminationTime}]]</td>
+                 <td>[[${examType.subject.subjectCode}]]</td>
                  <td>[[${examType.subject.subjectName}]]</td>
-                <!--
-                <td>
-                  A link to edit an order type 
-                  <a th:href="@{'/ordertype/' + ${orderType.orderTypeId}}" 
-                    title="Edit this order type"
-                    class="fa-regular fa-pen-to-square icon-dark"></a>
-                  &nbsp;
-                  -->
-                  
-                  <!-- A link to delete an order type 
-                  <a th:href="@{'/ordertype/delete/' + ${orderType.orderTypeId}}" 
-                  th:orderTypeCode="${orderType.code}" id="btnDelete"
-                    title="Delete this order type" 
-                    class="fa-regular fa-trash-can icon-dark btn-delete"></a>
-                  
-                </td> 
-                -->
+                
+                <td>[[${examType.unit.unitName}]]</td> 
+                
                   </tr>
               </tr>
           </tr>

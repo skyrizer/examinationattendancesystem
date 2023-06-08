@@ -3,7 +3,9 @@ package my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.controller;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
+import org.apache.logging.log4j.util.Strings;
 import org.aspectj.weaver.patterns.ThisOrTargetAnnotationPointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Examination;
@@ -24,12 +27,32 @@ public class ExaminationMenuController {
 
 	private String defaultURI; 
 	
-	
+	// schedule/unit1
+	// schedule/subject1
+	// shcedule/
+	// schedule/?filter=subj&id=1
 	@GetMapping("/schedule")
-	public String getExamTypes(Model model)
-	{
-		// The URI for GET order types
+	public String getExamTypes(Model model,@RequestParam(name = "filter",required=false) String filterBy,@RequestParam(name = "id",required = false) String id)
+	{ 
 		String uri = "http://localhost:8080/examinationattendancesystem/api/examination";
+		System.out.println(id);
+		if(!Strings.isBlank(filterBy) && ! Strings.isBlank(id)) {
+			
+			try {
+				int intId = Integer.parseInt(id);
+
+				if(filterBy.equals("unit")) { 
+					uri = "http://localhost:8080/examinationattendancesystem/api/examination";
+					//pakai yg int
+				}
+				else if(filterBy.equals("subj")) {
+					
+				}
+			}catch (Exception e) { 
+				
+			}
+		}
+		// The URI for GET order types
 		
 		//Get a list order types from the web service
 		RestTemplate restTemplate = new RestTemplate();
@@ -38,14 +61,16 @@ public class ExaminationMenuController {
 		// Parse JSON data to array of object
 		Examination examination[] = response.getBody();
 		
-		System.out.println(this.getClass().getSimpleName() + " @ 41 length = " + examination.length);
-		System.out.println(this.getClass().getSimpleName() + " @ 42");
-		for (Examination currentExam:examination) {
-			
-			System.out.println("Examination Id  " + currentExam.getExaminationId());
-			System.out.println("Unit name " + currentExam.getUnitName());
-			System.out.println("Subject name" + currentExam.getSubject().getSubjectName());
-		}
+		/*
+		 * System.out.println(this.getClass().getSimpleName() + " @ 41 length = " +
+		 * examination.length); System.out.println(this.getClass().getSimpleName() +
+		 * " @ 42"); for (Examination currentExam:examination) {
+		 * 
+		 * System.out.println("Examination Id  " + currentExam.getExaminationId());
+		 * System.out.println("Unit name " + currentExam.getUnit().getUnitName());
+		 * System.out.println("Subject name" +
+		 * currentExam.getSubject().getSubjectName()); }
+		 */
 		
 		
 		// Parse an array to a list object

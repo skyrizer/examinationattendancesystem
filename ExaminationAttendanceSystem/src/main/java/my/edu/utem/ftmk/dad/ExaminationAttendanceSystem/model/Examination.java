@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -28,21 +30,21 @@ public class Examination {
 	
 	@Column(name = "ExaminationTime")
 	private String ExaminationTime;
+	 
+	 
 	
-	@Column(name = "SubjectId")
-	private int SubjectId;
-	
-	@Column(name = "LecturerId")
-	private int LecturerId;
-	
-	@Column(name = "UnitId")
-	private int UnitId;
-	
-	@Transient
+	@ManyToOne
+	@JoinColumn(name = "LecturerId")
+	private Lecturer lecturer;
+	 
+
+	@ManyToOne
+	@JoinColumn(name = "SubjectId")
 	private Subject subject;
 	
-	@Transient
-	private String unitName;
+	@ManyToOne
+	@JoinColumn(name = "UnitId")
+	private ExaminationUnit unit;
 	
 	public int getExaminationId() {
 		return ExaminationId;
@@ -68,29 +70,17 @@ public class Examination {
 	public void setExaminationTime(String examinationTime) {
 		ExaminationTime = examinationTime;
 	}
+ 
+ 
 
-	public int getSubjectId() {
-		return SubjectId;
+
+	public Lecturer getLecturer() {
+		return lecturer;
 	}
 
-	public void setSubjectId(int subjectId) {
-		SubjectId = subjectId;
-	}
 
-	public int getLecturerId() {
-		return LecturerId;
-	}
-
-	public void setLecturerId(int lecturerId) {
-		LecturerId = lecturerId;
-	}
-
-	public int getUnitId() {
-		return UnitId;
-	}
-
-	public void setUnitId(int unitId) {
-		UnitId = unitId;
+	public void setLecturer(Lecturer lecturer) {
+		this.lecturer = lecturer;
 	}
 
 
@@ -104,14 +94,21 @@ public class Examination {
 	}
 
 
-	public String getUnitName() {
-		return unitName;
+	public ExaminationUnit getUnit() {
+		return unit;
 	}
 
 
-	public void setUnitName(String unitName) {
-		this.unitName = unitName;
+	public void setUnit(ExaminationUnit unit) {
+		this.unit = unit;
 	}
+
+	/*
+	 * public String getUnitName() { return unitName; }
+	 * 
+	 * 
+	 * public void setUnitName(String unitName) { this.unitName = unitName; }
+	 */
 	 
 }
 	

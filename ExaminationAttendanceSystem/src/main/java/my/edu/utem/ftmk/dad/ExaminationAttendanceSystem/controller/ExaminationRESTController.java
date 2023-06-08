@@ -13,14 +13,19 @@ import org.aspectj.weaver.patterns.ThisOrTargetAnnotationPointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.EnableLoadTimeWeaving;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.fasterxml.jackson.databind.jsontype.impl.LaissezFaireSubTypeValidator;
 
 import ch.qos.logback.core.model.Model;
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Subject;
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.ExaminationUnit;
+import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Lecturer;
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Examination;
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.repository.ExaminationRepository;
+import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.repository.LecturerRepository;
 
 @RestController
 @RequestMapping("/api/examination")
@@ -29,14 +34,26 @@ public class ExaminationRESTController {
 	@Autowired
 	private ExaminationRepository exams;
 	
+	@Autowired
+	private LecturerRepository lecturerRepository;
+	
 	// retrieve all order types detail
 	@GetMapping
 	public List<Examination> getExamination()
 	{
 		return exams.findAll();
 	}
-
+	 
 	
+	
+
+	//test
+	@GetMapping("/test/{lid}")
+	public Lecturer testfunc(@PathVariable long lid){
+		return lecturerRepository.findById(lid).get();
+	}
+	
+	/*
 	
 	@GetMapping("/list")
 	public List<Examination> getWrapPickUpOrderCode() {
@@ -67,8 +84,8 @@ public class ExaminationRESTController {
 			
 			// Wrap unit id
 			//int unitId = Integer.parseInt( objExam[4].toString()); 
-			examination.setUnitName(objExam[4].toString());
-			System.out.println(this.getClass().getSimpleName() + " @ 66 " + examination.getUnitName());
+		//	examination.setUnitName(objExam[4].toString());
+		//	System.out.println(this.getClass().getSimpleName() + " @ 66 " + examination.getUnitName());
 			
 			
 			examination.setExaminationId(Integer.parseInt(objExam[5].toString()));
@@ -93,12 +110,12 @@ public class ExaminationRESTController {
 			 
 			  
 			  // Add into list examTypes.add(subject); examTypes.add(exams);
-			  examTypes.add(units);*/
+			  examTypes.add(units);
 			 
 		}
 		
 		return examinations;
-	}
+	}*/
 	
 
 }

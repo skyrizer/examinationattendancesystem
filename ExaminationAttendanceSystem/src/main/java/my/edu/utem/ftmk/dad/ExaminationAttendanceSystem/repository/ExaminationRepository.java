@@ -16,5 +16,6 @@ public interface ExaminationRepository extends JpaRepository<Examination, Long> 
 			+ " FROM Examination e, Subject s, ExaminationUnit u "
 			+ "WHERE e.SubjectId = s.SubjectId AND e.UnitId = u.UnitId",
 			nativeQuery = true)
-	public List<Object[]> selectCustomByCode();
+	public List<Object[]> selectCustomByCode(); 
+	
 }

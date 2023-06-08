@@ -27,13 +27,11 @@ public class Lecturer {
 	private Subject SubjectId;
 	
 	@Column(name = "LecturerContact")
-	private int LecturerContact;
+	private String LecturerContact;
 	
 	@Column(name = "LecturerEmail")
 	private String LecturerEmail;
-	
-	public Lecturer()
-	{}
+	 
 
 	public int getLecturerId() {
 		return LecturerId;
@@ -59,11 +57,11 @@ public class Lecturer {
 		SubjectId = subjectId;
 	}
 
-	public int getLecturerContact() {
+	public String getLecturerContact() {
 		return LecturerContact;
 	}
 
-	public void setLecturerContact(int lecturerContact) {
+	public void setLecturerContact(String lecturerContact) {
 		LecturerContact = lecturerContact;
 	}
 
