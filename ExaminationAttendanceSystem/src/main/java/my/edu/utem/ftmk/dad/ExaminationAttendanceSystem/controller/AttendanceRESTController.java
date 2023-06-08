@@ -44,7 +44,7 @@ public class AttendanceRESTController {
 	private AttendanceRepository attendanceRepository;
 	
 	@Autowired 
-	StudentRepository studentRepository;
+	private StudentRepository studentRepository;
 	/*
 	 * This method will insert the attendance record to the database
 	*/ 
@@ -67,11 +67,11 @@ public class AttendanceRESTController {
 	}
 
 	
-	@GetMapping("/students/{matricNo}")
-	public Student getStudentByMatricNo(@PathVariable String StudentMatricNo) {
-	    return studentRepository.findByStudentMatricNo(StudentMatricNo);
-	}
-
+	/*
+	 * @GetMapping("/students/{matricNo}") public Student
+	 * getStudentByMatricNo(@PathVariable String StudentMatricNo) { return
+	 * studentRepository.findByStudentMatricNo(StudentMatricNo); }
+	 */
 	
 	
 	/*//ignore this for a while

@@ -10,7 +10,7 @@ import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Student;
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Long> {
 
-	public Student findByStudentMatricNo(String StudentMatricNo);
+	//public Student findByStudentMatricNo(String StudentMatricNo);
 
-	public abstract List<Student> findByStudentByMatric(String StudentMatricNo);
+	//public abstract List<Student> findByStudentByMatric(String StudentMatricNo);
 }
