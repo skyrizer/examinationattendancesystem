@@ -16,16 +16,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.ModelAndView;
 
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Examination;
 
 @Controller
 public class ExaminationMenuController {
 
-	private String defaultURI; 
+	private String defaultURI = "http://localhost:8080/examinationattendancesystem/api/examination/schedule"; 
 	
 	// schedule/unit1
 	// schedule/subject1
@@ -76,9 +78,6 @@ public class ExaminationMenuController {
 		// Parse an array to a list object
 		List<Examination> examList = Arrays.asList(examination);
 		
-		
-		
-		
 		// Attach list to model as attribute
 		model.addAttribute("Examinations", examList);
 		
@@ -86,8 +85,67 @@ public class ExaminationMenuController {
 		return "/schedule";
 	}
 	
+	@RequestMapping("/schedule/save")
+	public String updateExamination(@ModelAttribute Examination examType)
+	{
+		// Create a new RestTemplate
+		RestTemplate restTemplate = new RestTemplate();
+		
+		// Create request body
+		HttpEntity<Examination> request =new HttpEntity<Examination>(examType);
+		
+		String examTypeResponse = " ";
+		
+		if (examType.getExaminationId() > 0)
+		{
+			// This block update an new order type and
+			
+			// Send request as PUT
+			restTemplate.put(defaultURI, request, Examination.class);
+		}
+		else
+		{
+			// This block add a new order type
+			
+			// send request as POST
+			examTypeResponse = restTemplate.postForObject(defaultURI, request, String.class);
+		}
+		
+		System.out.println(examTypeResponse);
+		
+		// Redirect request to display a list of order type
+		return "redirect:/schedule";
+	}
 	
+	@GetMapping("/schedule/{ExaminationId}")
+	public String getExamType (@PathVariable Integer ExaminationId, Model model) {
+		
+		String pageTitle = "New Schedule";
+		Examination examType = new Examination();
+		
+		// This block get an order type to be updated
+		if (ExaminationId > 0) {
 
+			// Generate new URI and append orderTypeId to it
+			String uri = defaultURI + "/" + ExaminationId;
+			
+			// Get an order type from the web service
+			RestTemplate restTemplate = new RestTemplate();
+			examType = restTemplate.getForObject(uri, Examination.class);
+			
+			//Give a new title to the page
+			pageTitle = "Edit Schedule";
+		}
+		
+		// Attach value to pass to front end
+		model.addAttribute("examType", examType);
+		model.addAttribute("pageTitle", pageTitle);
+		
+		return "scheduleinfo";
+			
+	}
+
+	
 	
 	/*
 	@GetMapping("/schedule")

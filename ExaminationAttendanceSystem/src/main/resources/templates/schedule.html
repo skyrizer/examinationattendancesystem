@@ -18,9 +18,10 @@
 <body>
   <div th:replace="fragments/header :: header"></div>
 
-  <div class="container-fluid" style="max-width: 900px; margin: 0 auto;">
+  <div id = "SCHEDULE" class="container-fluid" style="max-width: 900px; margin: 0 auto;">
     <h2 class="text-center"><b style = "font-family: 'Rockwell';">Examination Schedule</b></h2>
-
+  </div>
+  
     <div th:if="${message != null}" class="alert alert-success alert-dismissible fade show text-center message"
       role="alert">
       [[${message}]]
@@ -47,30 +48,48 @@
       </form>
     </div> -->
 
-    <div th:if="${Examinations.size() > 0}">
-      <table class="table table-hover table-responsive-xl">
+	 <input type="button" value="Add Schedule" id="btnAdd" class="btn btn-secondary btn-sm" />
+	 <br><br>
+
+
+	<script type="text/javascript">
+    $(document).ready(function () {
+      $("#btnAdd").on("click", function () {
+        window.location = "[[@{/schedule/0}]]";
+      });
+    });
+  	</script>
+
+    <div id = "TABLES" th:if="${Examinations.size() > 0}">
+      <table class="table table-bordered table-l  table-hover " style = "position: auto">
         <thead class="thead-light">
           <tr>
             <th scope="col">Id</th>
             <th scope="col" >Date</th>
             <th scope="col">Time</th>
-            <th scope="col">Subject Code</th>
-            <th scope="col">Subject Name</th>
+            <th scope="col" >Subject Code</th>
+            <th scope="col" >Subject Name</th>
             <th scope="col">Venue</th>
+            <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
           <tr th:each="examType : ${Examinations}">
-                <td scope="row">[[${examType.ExaminationId}]]</td>
+                <td scope="row" >[[${examType.ExaminationId}]]</td>
                 
                 <td  th:text="${#dates.format(examType.ExaminationDate, 'dd-MM-yyyy')}" ></td>
-                
-                
+               
                 <td>[[${examType.ExaminationTime}]]</td>
                  <td>[[${examType.subject.subjectCode}]]</td>
                  <td>[[${examType.subject.subjectName}]]</td>
-                
-                <td>[[${examType.unit.unitName}]]</td> 
+                 <td>[[${examType.unit.unitName}]]</td> 
+                 <td>
+		              <!-- A link to edit an order type -->
+		              <a th:href="@{'/schedule/' + ${examType.ExaminationId}}" 
+		              	title="Edit this Examination Schedule"
+		                class="fa-regular fa-pen-to-square icon-dark"></a>
+		              &nbsp;
+                 </td>
                 
                   </tr>
               </tr>
@@ -78,7 +97,22 @@
         </tbody>
       </table>
     </div>
-
+    
+    <input type="button" value="Print" class="btn btn-secondary btn-sm" onclick = "printDivContent()">
+     
+    <script>
+     function printDivContent() {
+            var contentOfDiv = document.getElementById("SCHEDULE").innerHTML;
+            var contentOfDiv2 = document.getElementById("TABLES").innerHTML;
+            var newWin = window.open('', '', 'height=650, width=1250');
+ 			newWin.document.write(contentOfDiv);
+ 			newWin.document.write(contentOfDiv2);
+ 			newWin.document.close();
+            newWin.print();
+	}
+    </script>
+     
+     
     <div class="" th:unless="${Examinations.size() > 0}">
       <span>No record found!</span>
     </div>
@@ -113,3 +147,4 @@
 </body>
 
 </html>
+
