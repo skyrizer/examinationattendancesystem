@@ -28,7 +28,7 @@ public class Examination {
 	
 	@Column(name = "ExaminationDate")
 	@Temporal(TemporalType.DATE)
-	//@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date ExaminationDate;
 	
 	@Column(name = "ExaminationTime")

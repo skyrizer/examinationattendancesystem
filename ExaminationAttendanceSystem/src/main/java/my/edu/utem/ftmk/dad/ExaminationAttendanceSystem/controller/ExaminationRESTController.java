@@ -14,6 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.EnableLoadTimeWeaving;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -42,6 +45,17 @@ public class ExaminationRESTController {
 	public List<Examination> getExamination()
 	{
 		return exams.findAll();
+	}
+	
+	@GetMapping("{examId}")
+	public Examination getSpecific(@PathVariable Long examId) {
+		return exams.findById(examId).get();
+	}
+	
+	@PostMapping
+	@PutMapping
+	public Examination insertUpdate(@RequestBody Examination examination) {
+		return exams.save(examination);
 	}
 	 
 	

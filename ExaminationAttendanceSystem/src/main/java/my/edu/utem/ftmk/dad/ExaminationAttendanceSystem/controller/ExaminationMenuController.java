@@ -88,8 +88,11 @@ public class ExaminationMenuController {
 	@RequestMapping("/schedule/save")
 	public String updateExamination(@ModelAttribute Examination examType)
 	{
+		System.out.println("test");
 		// Create a new RestTemplate
 		RestTemplate restTemplate = new RestTemplate();
+		
+		System.out.println(examType.getExaminationDate());
 		
 		// Create request body
 		HttpEntity<Examination> request =new HttpEntity<Examination>(examType);
@@ -101,14 +104,14 @@ public class ExaminationMenuController {
 			// This block update an new order type and
 			
 			// Send request as PUT
-			restTemplate.put(defaultURI, request, Examination.class);
+			restTemplate.put("http://localhost:8080/examinationattendancesystem/api/examination", request, Examination.class);
 		}
 		else
 		{
 			// This block add a new order type
 			
 			// send request as POST
-			examTypeResponse = restTemplate.postForObject(defaultURI, request, String.class);
+			examTypeResponse = restTemplate.postForObject("http://localhost:8080/examinationattendancesystem/api/examination", request, String.class);
 		}
 		
 		System.out.println(examTypeResponse);
@@ -120,6 +123,7 @@ public class ExaminationMenuController {
 	@GetMapping("/schedule/{ExaminationId}")
 	public String getExamType (@PathVariable Integer ExaminationId, Model model) {
 		
+		System.out.println(ExaminationId);
 		String pageTitle = "New Schedule";
 		Examination examType = new Examination();
 		
@@ -127,7 +131,8 @@ public class ExaminationMenuController {
 		if (ExaminationId > 0) {
 
 			// Generate new URI and append orderTypeId to it
-			String uri = defaultURI + "/" + ExaminationId;
+			String uri = "http://localhost:8080/examinationattendancesystem/api/examination/" + ExaminationId;
+			System.out.println(uri);
 			
 			// Get an order type from the web service
 			RestTemplate restTemplate = new RestTemplate();
