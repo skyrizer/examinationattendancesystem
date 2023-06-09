@@ -123,7 +123,7 @@ public class ExaminationMenuController {
 		String pageTitle = "New Schedule";
 		Examination examType = new Examination();
 		
-		// This block get an order type to be updated
+		// This block get an examination to be updated
 		if (ExaminationId > 0) {
 
 			// Generate new URI and append orderTypeId to it

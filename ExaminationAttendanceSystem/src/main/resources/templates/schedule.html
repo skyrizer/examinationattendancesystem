@@ -77,7 +77,7 @@
           <tr th:each="examType : ${Examinations}">
                 <td scope="row" >[[${examType.ExaminationId}]]</td>
                 
-                <td  th:text="${#dates.format(examType.ExaminationDate, 'dd-MM-yyyy')}" ></td>
+                <td  th:text="${#dates.format(examType.ExaminationDate, 'yyyy-MM-dd')}" ></td>
                
                 <td>[[${examType.ExaminationTime}]]</td>
                  <td>[[${examType.subject.subjectCode}]]</td>
