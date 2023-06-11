@@ -24,7 +24,7 @@ public class ExaminationAttendance {
 	
 	@Column(name = "InputType")		
 	private String InputType;
-	 
+	
 	@ManyToOne
 	@JoinColumn(name = "ExaminationId")
 	private Examination ExaminationId; 
@@ -32,7 +32,7 @@ public class ExaminationAttendance {
 	@ManyToOne
 	@JoinColumn(name = "StudentId")	
 	private Student StudentId;
-	 
+	
 	public int getExamAttendId() {
 		return ExamAttendId;
 	}

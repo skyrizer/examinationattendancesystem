@@ -16,7 +16,8 @@ USCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
-    <div th:replace="fragments/header :: header"></div>
+    <div th:replace="~{fragments/header :: header}"></div>
+
 
     <div class="container-fluid">
         <h2 class="text-center">[[${pageTitle}]]</h2>
@@ -30,7 +31,7 @@ USCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label" for="StudentId">Matric Card</label>
                         <div class="col-sm-9">
-                            <input type="text" th:field="*{StudentId.StudentMatricNo}" required minlength="3" maxlength="10" class="form-control" id="StudentId" />
+                            <input type="text" th:field="*{StudentId}" required minlength="3" maxlength="10" class="form-control" id="StudentId" />
                         </div>
                     </div>
 
@@ -50,7 +51,8 @@ USCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         </div>
     </div>
 
-    <div th:replace="fragments/footer :: footer"></div>
+   <div th:replace="~{fragments/footer :: footer}"></div>
+
 
 
     <script type="text/javascript">

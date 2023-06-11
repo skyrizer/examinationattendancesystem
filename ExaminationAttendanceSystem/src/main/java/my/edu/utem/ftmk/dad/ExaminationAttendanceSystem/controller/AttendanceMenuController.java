@@ -56,7 +56,7 @@ public class AttendanceMenuController {
 	 * @param examinationAttendance
 	 * @return
 	 */
-	/*@RequestMapping("/examinationAttendance")
+	@RequestMapping("/examinationAttendance")
 	public String recordAttendance(@ModelAttribute ExaminationAttendance examinationAttendance)
 	{
 		// Create a new RestTemplate
@@ -80,7 +80,7 @@ public class AttendanceMenuController {
 	
 	}
 
-	*/
+	
 	/**
 	 * This method gets an order type
 	 * 
@@ -123,6 +123,7 @@ public class AttendanceMenuController {
 	 * @param examinationAttendance
 	 * @return
 	 */
+	/*
 	@RequestMapping("/examinationAttendance")
 	public String recordAttendance(@ModelAttribute ExaminationAttendance examinationAttendance)
 	{
@@ -154,5 +155,5 @@ public class AttendanceMenuController {
 	    return "redirect:/attendance/list";
 	}
 
-
+*/
 }
