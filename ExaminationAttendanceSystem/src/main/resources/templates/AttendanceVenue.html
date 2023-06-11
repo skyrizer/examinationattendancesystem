@@ -1,94 +1,76 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <link rel = "stylesheet" href = "static/css/venue.css"> 
-    <script type = "text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
-    <script type = "text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-    <marquee direction = "right" scrollamount = "15"> Examination Attendance System BITP3123 Group 10</marquee>
-    <title>Schedule - Examination Attendance System</title>
-    <div class="topnav">
-        <a class="Home" href="home.html">Home</a>
-        <a href="schedule.html">Examination Schedule</a>
-        <a href="attendance.html">Attendance Report</a>
-        <a href="AttendanceVenue.html">Attendance By Venue</a>
-      </div>
-    <br>
-
-
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
+  <title>Attendance By Venue - Examination Attendance System</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+  <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+  <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </head>
 
 <body>
-      <h1><u>Examination Attendance by Venue</u></h1>
-      <b id = "type1" style="margin-left: 5%">Venue: </b>
-      <select name="Reader" id="Reader" style = "width: 10%; height: 30px; font-size: 15px;">
-        <option value="MatricCard">FTMK</option>
-        <option value="Fingerprint">FKP</option>
-        <option value="Fingerprint">FKE</option>
-        <option value="Fingerprint">FKEKK</option>
-      </select>
-
-      <b id = "type1" style="margin-left: 5%">Date: </b>
-      <input type="date" id="date" name="date" style = "height: 5%; font-size: 15px;">
-
-      <br><br>
-      <b id = "type1" style="margin-left: 5%">Input method: </b>
-      <select name="Reader" id="Reader" style = "width: 10%; height: 30px; font-size: 15px;">
-        <option value="MatricCard">Matric Card</option>
-        <option value="Fingerprint">Fingerprint</option>
-        <option value="QrCode">QR Code</option>
-        <option value="SelfCheck-In">Self Check-In</option>
-      </select>
-
-      <b style ="font-size: 20px;"><button type="button" style ="margin-left: 5%; width: 10%; height: 8%">Search</b></button>
-      <br>
-
-
-      <!---
-      <table border="5px" cellpadding="5" cellspacing="5" style = "margin-left:5%;">
-        <tr><td colspan = "7" style="text-align: center; font-family: Century Gothic; font-size: 25px;"><b> 
-          Examination Attendance in FTMK </b></td></tr>
+	  <div th:replace="fragments/header :: header"></div>
+	
+	  <div id = "AttendanceVenue" class="container-fluid" style="max-width: 900px; margin: 0 auto;">
+	    <h2 class="text-center"><b style = "font-family: 'Rockwell';">Attendance By Venue</b></h2>
+	  </div>
+	  
+	  <label>Search Venue: </label>
+	  <select name="cars" id="cars">
+		  <option value = "FTMK"> FTMK </option>
+		  <option value = "FKP"> FKP </option>
+	  </select>
+	  
+	  <div id = "TABLES" th:if="${attendVenue.size() > 0}">
+      <table class="table table-bordered table-l  table-hover " style = "position: auto">
+        <thead class="thead-light">
           <tr>
-            <th style="width:150px" scope="col">Matric No</th>
-            <th style="width:200px" scope="col">Student Name</th>
+            <th scope="col">Attendance Id</th>
+            <th scope="col">Student Matric Number</th>
+            <th scope="col">Date</th>
+            <th scope="col">Time</th>
             <th scope="col">Subject Code</th>
-            <th style = "width: 350px;" scope="col">Subject</th>
-            <th scope="col">Attendance Time</th>
-            <th scope="col">Input Method</th>
-        </tr>
+            <th scope="col">Subject Name</th>
+            <th scope="col">Status</th>
+            <th scope="col">Input Type</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="attendVenue : ${attendVenue}">
+                <td scope="row" >[[${attendVenue.ExamAttendId}]]</td>
+               	<td>[[${attendVenue.getStudentId().getStudentMatricNo()}]]</td>
+               	<td></td>
+               	<td>[[${attendVenue.getExamination().getExaminationTime()}]]</td>
+               	<td>[[${attendVenue.getExamination().getSubject().getSubjectCode()}]]</td>
+               	<td>[[${attendVenue.getExamination().getSubject().getSubjectName()}]]</td>
+                <td>[[${attendVenue.ExamAttendStatus}]]</td>
+                <td>[[${attendVenue.InputType}]]</td> 
+                <td>
+		              <!-- A link to edit an order type 
+		              <a th:href="@{'/AttendanceVenue/' + ${attendVenueType.ExamAttendId}}" 
+		              	title="Edit this Attendance"
+		                class="fa-regular fa-pen-to-square icon-dark"></a>
+		              &nbsp;
+		              -->
+                 </td>
+          </tr>
+        </tbody>
       </table>
-      -->
+    </div>
+	  
+	<div class="" th:unless="${attendVenue.size() > 0}">
+      <span>No record found!</span>
+    </div>
 
-      <br><br>
-      <div th:if="${students.size() > 0}">
-        <table class="table table-hover table-responsive-xl" border="5px" cellpadding="5" cellspacing="5" style = "margin-left:5%;">
-          <thead class="thead-light">
-            <tr><td colspan = "6" style="text-align: center; font-family: Century Gothic; font-size: 25px; margin-left: 10%;"><b> 
-            Attendance List in FTMK </b></td></tr>
-            <tr>
-              <th scope="col">Matric No</th>
-              <th scope="col">Student Name</th>
-              <th scope="col">Subject Code</th>
-              <th scope="col">Subject</th>
-              <th scope="col">Attendance Time</th>
-              <th scope="col">Input Method</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr th:each="attend: ${examinationattendance}">
-              <th scope="row">[[${attend.StudentMatricNo}]]</th>
-              <td>[[${attend.StudentMatricNo}]]</td>
-              <td>[[${attend.StudentName}]]</td>
-              <td>[[${attend.InputType}]]</td>
-              <td></td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
-        </div>
-      <br><br>
-      <b style ="font-size: 20px;"><button type="button" onclick="window.location.href='home.html'" style ="margin-left: 5%; width: 10%; height: 8%">Back</b></button>
-      <b style ="font-size: 20px;"><button type="button" onclick="javascript:window.print()" style ="margin-left: 61%; width: 10%; height: 8%; ">Print</b></button>
- 
-    </body>
+    <div th:replace="fragments/footer :: footer"></div>
+  </body>
 </html>
+
+				
