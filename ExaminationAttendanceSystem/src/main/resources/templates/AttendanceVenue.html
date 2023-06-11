@@ -22,9 +22,11 @@
 	  </div>
 	  
 	  <label>Search Venue: </label>
-	  <select name="cars" id="cars">
-		  <option value = "FTMK"> FTMK </option>
-		  <option value = "FKP"> FKP </option>
+	  <select name="venue" id="venue">
+		<option th:each="Venue : ${attendVenue}" 
+					th:value="${Venue.getExamination().getUnit().getUnitId()}"
+					th:text="${Venue.getExamination().getUnit().getUnitName()}"		
+		/>
 	  </select>
 	  
 	  <div id = "TABLES" th:if="${attendVenue.size() > 0}">
