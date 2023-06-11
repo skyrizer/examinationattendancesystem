@@ -16,23 +16,23 @@ public class ExaminationAttendance {
 	//Primary Key
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ExamAttendId")		
+	@Column(name = "ExamAttendId")
 	private int ExamAttendId;
-	
-	@Column(name = "ExamAttendStatus")		
+
+	@Column(name = "ExamAttendStatus")
 	private String ExamAttendStatus;
-	
-	@Column(name = "InputType")		
+
+	@Column(name = "InputType")
 	private String InputType;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "ExaminationId")
-	private Examination examination; 
-	
+	private Examination examination;
+
 	@ManyToOne
-	@JoinColumn(name = "StudentId")	
+	@JoinColumn(name = "StudentId")
 	private Student student;
-	
+
 	public int getExamAttendId() {
 		return ExamAttendId;
 	}
@@ -45,27 +45,27 @@ public class ExaminationAttendance {
 	public void setExamAttendStatus(String examAttendStatus) {
 		ExamAttendStatus = examAttendStatus;
 	}
-	
+
 	public String getInputType() {
 		return InputType;
 	}
 	public void setInputType(String inputType) {
 		InputType = inputType;
 	}
-	
+
 	public Examination getExamination() {
 		return examination;
 	}
 	public void setExamination(Examination examination) {
 		this.examination = examination;
 	}
-	
+
 	public Student getStudentId() {
 		return student;
 	}
 	public void setStudentId(Student student) {
 		this.student = student;
-	} 
-	
-	
+	}
+
+
 }

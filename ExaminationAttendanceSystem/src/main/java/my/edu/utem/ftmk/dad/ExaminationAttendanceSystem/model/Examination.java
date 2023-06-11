@@ -72,9 +72,6 @@ public class Examination {
 		ExaminationTime = examinationTime;
 	}
  
- 
-
-
 	public Lecturer getLecturer() {
 		return lecturer;
 	}
