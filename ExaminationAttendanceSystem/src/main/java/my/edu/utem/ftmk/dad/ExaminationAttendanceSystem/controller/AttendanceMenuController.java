@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Examination;
@@ -150,4 +152,65 @@ public class AttendanceMenuController {
 		return "redirect:/ordertype/list";
 	}
 	*/
+	
+	/*
+	 * For attendance by Venue
+	 * 
+	 */
+	@GetMapping("/AttendanceVenue")
+	public String getAttendanceVenueTypes(Model model,@RequestParam(name = "filter",required=false) String filterBy,@RequestParam(name = "id",required = false) String id)
+	{ 
+		String uri = "http://localhost:8080/examinationattendancesystem/api/attend";
+		System.out.println(id);
+		if(!Strings.isBlank(filterBy) && ! Strings.isBlank(id)) {
+			
+			try {
+				int intId = Integer.parseInt(id);
+
+				if(filterBy.equals("Stud")) { 
+					uri = "http://localhost:8080/examinationattendancesystem/api/attend";
+					//pakai yg int
+				}
+				else if(filterBy.equals("Exam")) {
+					
+				}
+			}catch (Exception e) { 
+				
+			}
+		}
+		// The URI for GET order types
+		
+		//Get a list order types from the web service
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<ExaminationAttendance[]> response = restTemplate.getForEntity(uri, ExaminationAttendance[].class);
+		
+		// Parse JSON data to array of object
+		ExaminationAttendance attendanceVenue[] = response.getBody();
+		
+		/*
+		 * System.out.println(this.getClass().getSimpleName() + " @ 41 length = " +
+		 * examination.length); System.out.println(this.getClass().getSimpleName() +
+		 * " @ 42"); for (Examination currentExam:examination) {
+		 * 
+		 * System.out.println("Examination Id  " + currentExam.getExaminationId());
+		 * System.out.println("Unit name " + currentExam.getUnit().getUnitName());
+		 * System.out.println("Subject name" +
+		 * currentExam.getSubject().getSubjectName()); }
+		 */
+		System.out.println();
+		
+		// Parse an array to a list object
+		List<ExaminationAttendance> attendVenueList = Arrays.asList(attendanceVenue);
+		
+		for(ExaminationAttendance attend: attendanceVenue)
+		{
+			System.out.println(attend.getExamination().getExaminationTime());
+		}
+		
+		// Attach list to model as attribute
+		model.addAttribute("attendVenue", attendVenueList);
+		
+		// return an HTML file, Attendance.html, to the browser
+		return "AttendanceVenue";
+	}
 }
