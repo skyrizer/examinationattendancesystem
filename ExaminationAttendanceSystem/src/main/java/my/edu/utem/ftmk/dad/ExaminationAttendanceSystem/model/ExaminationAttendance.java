@@ -27,11 +27,11 @@ public class ExaminationAttendance {
 	
 	@ManyToOne
 	@JoinColumn(name = "ExaminationId")
-	private Examination ExaminationId; 
+	private Examination examination; 
 	
 	@ManyToOne
 	@JoinColumn(name = "StudentId")	
-	private Student StudentId;
+	private Student student;
 	
 	public int getExamAttendId() {
 		return ExamAttendId;
@@ -53,18 +53,19 @@ public class ExaminationAttendance {
 		InputType = inputType;
 	}
 	
-	public Examination getExaminationId() {
-		return ExaminationId;
+	public Examination getExamination() {
+		return examination;
 	}
-	public void setExaminationId(Examination examinationId) {
-		ExaminationId = examinationId;
+	public void setExamination(Examination examination) {
+		this.examination = examination;
 	}
 	
 	public Student getStudentId() {
-		return StudentId;
+		return student;
 	}
-	public void setStudentId(Student studentId) {
-		StudentId = studentId;
+	public void setStudentId(Student student) {
+		this.student = student;
 	} 
+	
 	
 }

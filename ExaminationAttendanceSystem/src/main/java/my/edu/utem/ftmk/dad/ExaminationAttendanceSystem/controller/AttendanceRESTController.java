@@ -54,17 +54,19 @@ public class AttendanceRESTController {
 		return attendanceRepository.save(examinationattendance);
 	}
 	
-	@GetMapping("/")
+	@GetMapping()
 	public List<ExaminationAttendance> generateAttendanceReport()
 	{ 
 		return attendanceRepository.findAll();
 	}
 	
+	/*
 	@GetMapping("/{id}")
 	public List<ExaminationAttendance> searchRecordAttendId(@PathVariable int id)
 	{
 		return attendanceRepository.findById(id);
 	}
+	*/
 
 	
 	/*
