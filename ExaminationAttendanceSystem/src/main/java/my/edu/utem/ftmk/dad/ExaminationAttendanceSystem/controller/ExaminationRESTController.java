@@ -12,6 +12,9 @@ import java.text.SimpleDateFormat;
 import org.aspectj.weaver.patterns.ThisOrTargetAnnotationPointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.EnableLoadTimeWeaving;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -53,12 +56,23 @@ public class ExaminationRESTController {
 	}
 	
 	@PostMapping
+	public Examination insertSchedule(@RequestBody Examination examination) {
+		return exams.save(examination);
+	}
+	
 	@PutMapping
-	public Examination insertUpdate(@RequestBody Examination examination) {
+	public Examination UpdateSchedule(@RequestBody Examination examination) {
 		return exams.save(examination);
 	}
 	 
-	
+	// delete order type record based on Id
+	@DeleteMapping("{examId}")
+	public ResponseEntity<HttpStatus> deleteOrderType(@PathVariable long examId)
+	{
+		exams.deleteById(examId);
+		
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
 	
 
 	//test

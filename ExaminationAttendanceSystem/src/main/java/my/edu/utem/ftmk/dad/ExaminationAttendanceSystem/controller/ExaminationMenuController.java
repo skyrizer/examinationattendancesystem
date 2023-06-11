@@ -150,6 +150,24 @@ public class ExaminationMenuController {
 			
 	}
 
+	/**
+	 * This method deletes an schedule
+	 * 
+	 * @param orderTypeId
+	 * @return
+	 */
+	@RequestMapping("/schedule/delete/{examId}")
+	public String deleteExamType(@PathVariable Integer examId)
+	{
+		// Generate new URI, similar to the mapping in OrderTypeRESTController
+		String uri = "http://localhost:8080/examinationattendancesystem/api/examination/" + "{examId}";
+		
+		// Send a DELETE request and attach the value of orderTypeId into URI
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.delete(uri, Map.of("examId", Integer.toString(examId)));
+		
+		return "redirect:/schedule";
+	}
 	
 	
 	/*

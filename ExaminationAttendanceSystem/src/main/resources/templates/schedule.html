@@ -79,7 +79,7 @@
                 
                 <td  th:text="${#dates.format(examType.ExaminationDate, 'yyyy-MM-dd')}" ></td>
                
-                 <td>[[${examType.ExaminationTime}]]</td>
+                <td>[[${examType.ExaminationTime}]]</td>
                  <td>[[${examType.subject.subjectCode}]]</td>
                  <td>[[${examType.subject.subjectName}]]</td>
                  <td>[[${examType.unit.unitName}]]</td> 
@@ -89,7 +89,14 @@
 		              	title="Edit this Examination Schedule"
 		                class="fa-regular fa-pen-to-square icon-dark"></a>
 		              &nbsp;
+                 	
+                 	 <!-- A link to delete an order type -->
+		              <a th:href="@{'/schedule/delete/' + ${examType.ExaminationId}}" 
+		              th:examTypeCode="${examType.ExaminationId}" id="btnDelete"
+		                title="Delete this schedule" 
+		                class="fa-regular fa-trash-can icon-dark btn-delete"></a>
                  </td>
+                 
                 
                   </tr>
               </tr>
@@ -118,7 +125,6 @@
     </div>
   </div>
   
-<!--
   <div class="modal fade text-center" id="confirmModal">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -139,11 +145,33 @@
         </div>
       </div>
     </div>
-  </div> 
--->
-
+  </div>
+  
+  
+  
   <div th:replace="fragments/footer :: footer"></div>
 
+
+	<script type="text/javascript">
+    $(document).ready(function () {
+      $(".btn-delete").on("click", function (e) {
+        e.preventDefault();
+        link = $(this);
+
+        examTypeCode = link.attr("examTypeCode");
+        $("#yesBtn").attr("href", link.attr("href"));
+        $("#confirmText").html("Do you want to delete the  \<strong\>" + examTypeCode + "\<\/strong\>?");
+        $("#confirmModal").modal();
+      });
+
+      $("#btnClear").on("click", function (e) {
+        e.preventDefault();
+        $("#keyword").text("");
+        window.location = "[[@{/ordertype/list}]]";
+      });
+    });
+  </script>
+	
 </body>
 
 </html>
