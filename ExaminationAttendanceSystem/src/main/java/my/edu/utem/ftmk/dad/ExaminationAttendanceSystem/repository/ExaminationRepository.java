@@ -1,4 +1,4 @@
-/*package my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.repository;
+package my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.repository;
 
 import java.util.List;
 
@@ -23,4 +23,3 @@ public interface ExaminationRepository extends JpaRepository<Examination, Long> 
 }
 
 
-*/

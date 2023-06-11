@@ -7,10 +7,12 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,6 +25,7 @@ import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.repository.AttendanceRep
 
 import org.springframework.ui.Model;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,57 +36,80 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 
-//import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.repository.ExaminationRepository;
+
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.repository.StudentRepository;
 
 @RestController
 @RequestMapping("/api/attend")
 public class AttendanceRESTController {
 
+	//////test
 	@Autowired
 	private AttendanceRepository attendanceRepository;
 	
-	@Autowired 
+	@Autowired
 	private StudentRepository studentRepository;
-	/*
-	 * This method will insert the attendance record to the database
-	*/ 
-	@PostMapping
-	public ExaminationAttendance recordAttendance(@RequestBody ExaminationAttendance examinationattendance)
+	
+	@DeleteMapping("{orderTypeId}")
+	public ResponseEntity<HttpStatus> deleteOrderType(@PathVariable long orderTypeId)
 	{
-		return attendanceRepository.save(examinationattendance);
+		attendanceRepository.deleteById(orderTypeId);
+		
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
-	@GetMapping()
-	public List<ExaminationAttendance> generateAttendanceReport()
-	{ 
+	
+	//For class OrderType
+	
+	//retrieve all order types detail
+	@GetMapping
+	public List<ExaminationAttendance> getExaminationAttendance()
+	{
 		return attendanceRepository.findAll();
+		
+	}
+	
+	//retrieve product detail based on product ID
+	@GetMapping("{examinationAttendanceId}")
+	public ExaminationAttendance getExamAttendId(@PathVariable long ExamAttendId)
+	{
+		ExaminationAttendance examinationAttendance = attendanceRepository.findById(ExamAttendId).get();
+		
+		return examinationAttendance;
+	}
+	
+	//insert records for order type
+	@PostMapping
+	public ExaminationAttendance insertExaminationAttendance(@RequestBody ExaminationAttendance examinationAttendance)
+	{
+		return attendanceRepository.save(examinationAttendance);
 	}
 	
 	/*
-	@GetMapping("/{id}")
-	public List<ExaminationAttendance> searchRecordAttendId(@PathVariable int id)
+	 * @PostMapping
+	public ExaminationAttendance insertExaminationAttendance(@RequestBody ExaminationAttendance examinationAttendance)
 	{
-		return attendanceRepository.findById(id);
-	}
-	*/
-
-	
-	/*
-	 * @GetMapping("/students/{matricNo}") public Student
-	 * getStudentByMatricNo(@PathVariable String StudentMatricNo) { return
-	 * studentRepository.findByStudentMatricNo(StudentMatricNo); }
-	 */
-	
-	
-	/*//ignore this for a while
-	@GetMapping("/students/new")
-	public String createStudentAttendance(Model model)
-	{
-		//create student object to hold student form data
 		Student student=new Student();
-		model.addAttribute("student",student);
-		return "create_student";
+		String matricNo = student.getStudentMatricNo();
+	    String studentIdString = studentRepository.findStudentIdByMatricNo(matricNo);
+	    int studentId=Integer.parseInt(studentIdString);
+	    examinationAttendance.setStudentId(studentId);
+	    
+		Student student = studentRepository.findStudentIdByMatricNo(examinationAttendance.getStudentId().getStudentMatricNo());
+		    examinationAttendance.setStudentId(student);
+	    return attendanceRepository.save(examinationAttendance);*/
+	
+	
+	 
+	/*
+	
+	
+
+	//update records for order type
+	@PutMapping
+	public ExaminationAttendance updateExaminationAttendance(@RequestBody ExaminationAttendance examinationAttendance)
+	{
+		return attendanceRepository.save(examinationAttendance);
 	}*/
 	
 }

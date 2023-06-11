@@ -11,17 +11,19 @@ import org.springframework.stereotype.Repository;
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.ExaminationAttendance;
 
 @Repository
-public interface AttendanceRepository extends JpaRepository<ExaminationAttendance, Integer> {
+public interface AttendanceRepository extends JpaRepository<ExaminationAttendance, Long> {
 
-	public List<ExaminationAttendance> findById(int id);
+	//public List<ExaminationAttendance> findById(int ExamAttendId);
 	//public List<ExaminationAttendance> findByStudentId_StudentMatricNo(String studentMatricNo);
 	
-	 @Modifying
+	
+	
+}
+
+/* @Modifying
 	    @Query(value = "INSERT INTO examinationattendance (attendance_status, input_type, examination_id, student_id) " +
 	            "SELECT 'hadir', e.inputType, 1, s.studentId " +
 	            "FROM student s " +
 	            "CROSS JOIN examination e " +
 	            "WHERE s.studentMatricNo = :matricNo", nativeQuery = true)
-	    ExaminationAttendance insertAttendance(@Param("matricNo") String matricNo);
-	
-}
+	    ExaminationAttendance insertAttendance(@Param("matricNo") String matricNo);*/
