@@ -33,7 +33,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 
-import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.repository.ExaminationRepository;
+//import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.repository.ExaminationRepository;
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.repository.StudentRepository;
 
 @RestController
