@@ -50,18 +50,18 @@ public class AttendanceRESTController {
 	@Autowired
 	private StudentRepository studentRepository;
 	
-	@DeleteMapping("{orderTypeId}")
-	public ResponseEntity<HttpStatus> deleteOrderType(@PathVariable long orderTypeId)
-	{
-		attendanceRepository.deleteById(orderTypeId);
-		
-		return new ResponseEntity<>(HttpStatus.OK);
-	}
+	/*
+	 * @DeleteMapping("{orderTypeId}") public ResponseEntity<HttpStatus>
+	 * deleteOrderType(@PathVariable long orderTypeId) {
+	 * attendanceRepository.deleteById(orderTypeId);
+	 * 
+	 * return new ResponseEntity<>(HttpStatus.OK); }
+	 */
 	
 	
-	//For class OrderType
+	//For class ExaminationAttendace
 	
-	//retrieve all order types detail
+	//retrieve all examination detail
 	@GetMapping
 	public List<ExaminationAttendance> getExaminationAttendance()
 	{
@@ -69,7 +69,7 @@ public class AttendanceRESTController {
 		
 	}
 	
-	//retrieve product detail based on product ID
+	//retrieve examination attendance based on examination ID
 	@GetMapping("{examinationAttendanceId}")
 	public ExaminationAttendance getExamAttendId(@PathVariable long ExamAttendId)
 	{
@@ -78,7 +78,7 @@ public class AttendanceRESTController {
 		return examinationAttendance;
 	}
 	
-	//insert records for order type
+	//insert records for examination attendance
 	@PostMapping
 	public ExaminationAttendance insertExaminationAttendance(@RequestBody ExaminationAttendance examinationAttendance)
 	{
@@ -86,7 +86,7 @@ public class AttendanceRESTController {
 	}
 	
 	/*
-	 * @PostMapping
+	@PostMapping
 	public ExaminationAttendance insertExaminationAttendance(@RequestBody ExaminationAttendance examinationAttendance)
 	{
 		Student student=new Student();
@@ -97,11 +97,11 @@ public class AttendanceRESTController {
 	    
 		Student student = studentRepository.findStudentIdByMatricNo(examinationAttendance.getStudentId().getStudentMatricNo());
 		    examinationAttendance.setStudentId(student);
-	    return attendanceRepository.save(examinationAttendance);*/
+	    return attendanceRepository.save(examinationAttendance);
 	
 	
-	 
-	/*
+	}*/
+	
 	
 	
 
@@ -110,6 +110,6 @@ public class AttendanceRESTController {
 	public ExaminationAttendance updateExaminationAttendance(@RequestBody ExaminationAttendance examinationAttendance)
 	{
 		return attendanceRepository.save(examinationAttendance);
-	}*/
+	}
 	
 }

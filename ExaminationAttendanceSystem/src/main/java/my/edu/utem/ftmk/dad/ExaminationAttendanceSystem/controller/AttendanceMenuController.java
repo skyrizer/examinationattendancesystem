@@ -37,27 +37,27 @@ public class AttendanceMenuController {
 	{
 		// The URI for GET order types
 		String uri = "http://localhost:8080/examinationattendancesystem/api/attend";
-		
+
 		//Get a list order types from the web service
 		RestTemplate restTemplate = new RestTemplate();
 		ResponseEntity<ExaminationAttendance[]> response = restTemplate.getForEntity(uri, ExaminationAttendance[].class);
-		
+
 		// Parse JSON data to array of object
 		ExaminationAttendance examinationAttendance[] = response.getBody();
-		
+
 		// Parse an array to a list object
 		List<ExaminationAttendance> examinationAttendanceList = Arrays.asList(examinationAttendance);
-		
+
 		// Attach list to model as attribute
 		model.addAttribute("examinationAttendance", examinationAttendanceList);
-		
-		
+
+
 		//link to html file
 		return "attendancelist";
-		
-		
+
+
 	}
-	
+
 	/**
 	 * This method will update or add an order type.
 	 * tadi bawah ni  pakai orderType
@@ -69,30 +69,24 @@ public class AttendanceMenuController {
 	{
 		// Create a new RestTemplate
 		RestTemplate restTemplate = new RestTemplate();
-		
+
+		System.out.println(examinationAttendance.getInputType());
+		System.out.println(examinationAttendance.getExamination().getExaminationId());
+		System.out.println(examinationAttendance.getStudentId().getStudentId());
+		System.out.println(examinationAttendance.getExamAttendStatus());
 		// Create request body
 		HttpEntity<ExaminationAttendance> request =new HttpEntity<ExaminationAttendance>(examinationAttendance);
-		
+
 		String orderTypeResponse = " ";
-		
-		if (examinationAttendance.getExamAttendId() > 0)
-		{
-			// This block update an new order type and
-			
-			// Send request as PUT
-			restTemplate.put(defaultURI, request, ExaminationAttendance.class);
-		}
-		else
-		{
+
 			// This block add a new order type
-			
 			// send request as POST
 			orderTypeResponse = restTemplate.postForObject(
 					defaultURI, request, String.class);
-		}
 		
+
 		System.out.println(orderTypeResponse);
-		
+
 		// Redirect request to display a list of order type
 		return "redirect:/attendance/list";
 	}
@@ -104,55 +98,38 @@ public class AttendanceMenuController {
 	 * @param model
 	 * @return
 	 */
-	@GetMapping("/examinationattendance/{examinationAttendanceId}")
-	public String getExaminationAttendance (@PathVariable Integer examinationAttendanceId, Model model) {
-		
-		String pageTitle = "New Order Type";
-		ExaminationAttendance examinationAttendance = new ExaminationAttendance();
-		
-		// This block get an order type to be updated
-		if (examinationAttendanceId > 0) {
+	@GetMapping("/examinationattendance/{examinationId}")
+	public String getExaminationAttendance (@PathVariable Integer examinationId, Model model,
+			@RequestParam(name = "matricNo",required=false) String matricNo) {
 
-			// Generate new URI and append orderTypeId to it
-			String uri = defaultURI + "/" + examinationAttendanceId;
-			
-			// Get an order type from the web service
-			RestTemplate restTemplate = new RestTemplate();
-			examinationAttendance = restTemplate.getForObject(uri, ExaminationAttendance.class);
-			
-			//Give a new title to the page
-			pageTitle = "Edit Order Type";
-		}
+		String pageTitle = "New Attendance";
+		ExaminationAttendance examinationAttendance = new ExaminationAttendance();
+		examinationAttendance.getExamination().setExaminationId(examinationId);
 		
+		System.out.println(examinationId);
+		System.out.println(examinationAttendance.getExamination().getExaminationId());
+
+		Student currentStudent = new Student();
+		if(!Strings.isBlank(matricNo)) {
+
+			RestTemplate studentREST = new RestTemplate();
+			currentStudent = studentREST.getForObject("http://localhost:8080/examinationattendancesystem/api/student/matric/"+matricNo, Student.class);
+			examinationAttendance.setStudentId(currentStudent);
+		} 
+
+ 
+
 		// Attach value to pass to front end
 		model.addAttribute("examinationAttendance", examinationAttendance);
 		model.addAttribute("pageTitle", pageTitle);
+		model.addAttribute("studId", currentStudent);
 		//htmlfile
-		
+
 		return "examinationattendance";
-			
+
 	}
-	
-	/**
-	 * This method deletes an order type
-	 * 
-	 * @param examinationAttendanceId
-	 * @return
-	 */
-	/*@RequestMapping("/examinationattendance/delete/{examinationAttendanceId}")
-	public String deleteOrderType(@PathVariable Integer orderTypeId)
-	{
-		// Generate new URI, similar to the mapping in OrderTypeRESTController
-		String uri = defaultURI + "/{examinationAttendanceId}";
-		
-		// Send a DELETE request and attach the value of orderTypeId into URI
-		RestTemplate restTemplate = new RestTemplate();
-		restTemplate.delete(uri, Map.of("examinationAttendanceId", Integer.toString(examinationAttendanceId)));
-		
-		return "redirect:/ordertype/list";
-	}
-	*/
-	
+
+
 	/*
 	 * For attendance by Venue
 	 * 
@@ -163,7 +140,7 @@ public class AttendanceMenuController {
 		String uri = "http://localhost:8080/examinationattendancesystem/api/attend";
 		System.out.println(id);
 		if(!Strings.isBlank(filterBy) && ! Strings.isBlank(id)) {
-			
+
 			try {
 				int intId = Integer.parseInt(id);
 
@@ -172,44 +149,45 @@ public class AttendanceMenuController {
 					//pakai yg int
 				}
 				else if(filterBy.equals("Exam")) {
-					
+
 				}
 			}catch (Exception e) { 
-				
+
 			}
 		}
-		// The URI for GET order types
-		
+
+		// The URI for GET Examination Attendance
+
 		//Get a list order types from the web service
 		RestTemplate restTemplate = new RestTemplate();
 		ResponseEntity<ExaminationAttendance[]> response = restTemplate.getForEntity(uri, ExaminationAttendance[].class);
-		
+
 		// Parse JSON data to array of object
 		ExaminationAttendance attendanceVenue[] = response.getBody();
-		
-		/*
-		 * System.out.println(this.getClass().getSimpleName() + " @ 41 length = " +
-		 * examination.length); System.out.println(this.getClass().getSimpleName() +
-		 * " @ 42"); for (Examination currentExam:examination) {
-		 * 
-		 * System.out.println("Examination Id  " + currentExam.getExaminationId());
-		 * System.out.println("Unit name " + currentExam.getUnit().getUnitName());
-		 * System.out.println("Subject name" +
-		 * currentExam.getSubject().getSubjectName()); }
-		 */
-		System.out.println();
-		
+
 		// Parse an array to a list object
 		List<ExaminationAttendance> attendVenueList = Arrays.asList(attendanceVenue);
-		
-		for(ExaminationAttendance attend: attendanceVenue)
-		{
-			System.out.println(attend.getExamination().getExaminationTime());
-		}
-		
+
+		/*
+		 *  The URI for GET Examination Unit.
+		 *
+		 * 		
+		 */
+
+		RestTemplate restTemplateUnit = new RestTemplate();
+		ResponseEntity<ExaminationUnit[]> responseUnit = restTemplateUnit.getForEntity("http://localhost:8080/examinationattendancesystem/api/venue",
+				ExaminationUnit[].class);
+
+		ExaminationUnit unitArray[] = responseUnit.getBody();
+
+		// Parse an array to a list object
+		List<ExaminationUnit> unitList = Arrays.asList(unitArray);
+
+
 		// Attach list to model as attribute
 		model.addAttribute("attendVenue", attendVenueList);
-		
+		model.addAttribute("examUnit",unitList );
+
 		// return an HTML file, Attendance.html, to the browser
 		return "AttendanceVenue";
 	}

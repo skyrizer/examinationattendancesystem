@@ -23,9 +23,9 @@
 	  
 	  <label>Search Venue: </label>
 	  <select name="venue" id="venue">
-		<option th:each="Venue : ${attendVenue}" 
-					th:value="${Venue.getExamination().getUnit().getUnitId()}"
-					th:text="${Venue.getExamination().getUnit().getUnitName()}"		
+		<option th:each="Unit : ${examUnit}" 
+					th:value="${Unit.getUnitId()}"
+					th:text="${Unit.getUnitName()}"		
 		/>
 	  </select>
 	  
@@ -48,7 +48,7 @@
           <tr th:each="attendVenue : ${attendVenue}">
                 <td scope="row" >[[${attendVenue.ExamAttendId}]]</td>
                	<td>[[${attendVenue.getStudentId().getStudentMatricNo()}]]</td>
-               	<td></td>
+               	<td th:text="${#dates.format(attendVenue.getExamination().getExaminationDate(), 'yyyy-MM-dd')}"></td>
                	<td>[[${attendVenue.getExamination().getExaminationTime()}]]</td>
                	<td>[[${attendVenue.getExamination().getSubject().getSubjectCode()}]]</td>
                	<td>[[${attendVenue.getExamination().getSubject().getSubjectName()}]]</td>

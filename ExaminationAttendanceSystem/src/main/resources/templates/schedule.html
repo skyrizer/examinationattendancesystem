@@ -13,6 +13,18 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
   <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+  <script>
+  function rowClick(event){
+		if(event.target.tagName != 'A'){
+			console.log(event.target.parentElement.children[0].innerHTML)
+			console.log(window.location)
+			window.location.href = window.location.origin + "/examinationattendancesystem/examinationattendance/" 
+		    + event.target.parentElement.children[0].innerHTML
+			
+			
+		} 
+  }
+  </script>
 </head>
 
 <body>
@@ -74,7 +86,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr th:each="examType : ${Examinations}">
+          <tr th:each="examType : ${Examinations}" onclick="rowClick(event)">
                 <td scope="row" >[[${examType.ExaminationId}]]</td>
                 
                 <td  th:text="${#dates.format(examType.ExaminationDate, 'yyyy-MM-dd')}" ></td>

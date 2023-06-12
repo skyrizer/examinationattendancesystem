@@ -13,10 +13,11 @@ import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Student;
 public interface StudentRepository extends JpaRepository<Student, Long> {
 
 	//public Student findByStudentMatricNo(String StudentMatricNo);
-	@Query(value="SELECT s.studentId "
-			+"FROM Student s"
-					+ " WHERE s.studentMatricNo = :StudentMatricNo",nativeQuery=true)
-    public String findStudentIdByMatricNo(@Param("StudentMatricNo") String StudentMatricNo);
+	@Query(value="SELECT * FROM Student "
+			+ " WHERE StudentMatricNo = :StudentMatricNo", nativeQuery = true)
+	
+    public Student findStudentIdByMatricNo(@Param("StudentMatricNo") String StudentMatricNo);
 	//public abstract List<Student> findByStudentByMatric(String StudentMatricNo);
+	 
 }
 
