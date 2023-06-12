@@ -32,6 +32,10 @@ public class AttendanceMenuController {
 
 	private String defaultURI = "http://localhost:8080/examinationattendancesystem/api/attend";
 
+	/**
+	 *This method is to get an attendance list
+	 *Author: Hafiz Suhaizal
+	 */
 	@GetMapping("/attendance/list")
 	public String getAttendance(Model model)
 	{
@@ -59,7 +63,7 @@ public class AttendanceMenuController {
 	}
 
 	/**
-	 * This method will update or add an order type.
+	 * This method will update or add an attendance.
 	 * Author :Hafiz Suhaizal 
 	 * @param examinationAttendance
 	 * @return
@@ -79,7 +83,7 @@ public class AttendanceMenuController {
 
 		String orderTypeResponse = " ";
 
-			// This block add a new order type
+			// This block add a new attendance
 			// send request as POST
 			orderTypeResponse = restTemplate.postForObject(
 					defaultURI, request, String.class);
@@ -87,12 +91,12 @@ public class AttendanceMenuController {
 
 		System.out.println(orderTypeResponse);
 
-		// Redirect request to display a list of order type
+		// Redirect request to display a list of attendance
 		return "redirect:/attendance/list";
 	}
 
 	/**
-	 * This method gets an order type
+	 * This method gets an examination attendance id
 	 * Author :Hafiz Suhaizal
 	 * @param examinationAttendanceId
 	 * @param model

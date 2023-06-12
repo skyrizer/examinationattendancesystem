@@ -47,9 +47,6 @@ public class AttendanceRESTController {
 	@Autowired
 	private AttendanceRepository attendanceRepository;
 	
-	@Autowired
-	private StudentRepository studentRepository;
-	
 	/*
 	 * @DeleteMapping("{orderTypeId}") public ResponseEntity<HttpStatus>
 	 * deleteOrderType(@PathVariable long orderTypeId) {
