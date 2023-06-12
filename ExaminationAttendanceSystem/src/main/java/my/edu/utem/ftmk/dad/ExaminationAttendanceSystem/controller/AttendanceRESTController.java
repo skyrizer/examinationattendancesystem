@@ -44,7 +44,7 @@ import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.repository.StudentReposi
 @RequestMapping("/api/attend")
 public class AttendanceRESTController {
 
-	//////test
+	//
 	@Autowired
 	private AttendanceRepository attendanceRepository;
 	
@@ -85,25 +85,6 @@ public class AttendanceRESTController {
 	{
 		return attendanceRepository.save(examinationAttendance);
 	}
-	
-	/*
-	@PostMapping
-	public ExaminationAttendance insertExaminationAttendance(@RequestBody ExaminationAttendance examinationAttendance)
-	{
-		Student student=new Student();
-		String matricNo = student.getStudentMatricNo();
-	    String studentIdString = studentRepository.findStudentIdByMatricNo(matricNo);
-	    int studentId=Integer.parseInt(studentIdString);
-	    examinationAttendance.setStudentId(studentId);
-	    
-		Student student = studentRepository.findStudentIdByMatricNo(examinationAttendance.getStudentId().getStudentMatricNo());
-		    examinationAttendance.setStudentId(student);
-	    return attendanceRepository.save(examinationAttendance);
-	
-	
-	}*/
-	
-	
 	
 
 	//update records for order type

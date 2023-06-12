@@ -60,7 +60,7 @@ public class AttendanceMenuController {
 
 	/**
 	 * This method will update or add an order type.
-	 * tadi bawah ni  pakai orderType
+	 * Author :Hafiz Suhaizal 
 	 * @param examinationAttendance
 	 * @return
 	 */
@@ -93,7 +93,7 @@ public class AttendanceMenuController {
 
 	/**
 	 * This method gets an order type
-	 * 
+	 * Author :Hafiz Suhaizal
 	 * @param examinationAttendanceId
 	 * @param model
 	 * @return

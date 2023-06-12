@@ -85,7 +85,7 @@ public class ExaminationMenuController {
 		model.addAttribute("Examinations", examList);
 		
 		// return an HTML file, schedule.html, to the browser
-		return "/schedule";
+		return "schedule";
 	}
 	
 	@RequestMapping("/schedule/save")
