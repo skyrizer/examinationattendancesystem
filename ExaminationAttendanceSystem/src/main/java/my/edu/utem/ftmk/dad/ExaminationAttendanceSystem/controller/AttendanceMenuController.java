@@ -39,10 +39,10 @@ public class AttendanceMenuController {
 	@GetMapping("/attendance/list")
 	public String getAttendance(Model model)
 	{
-		// The URI for GET order types
+		// The URI for GET attendance
 		String uri = "http://localhost:8080/examinationattendancesystem/api/attend";
 
-		//Get a list order types from the web service
+		//Get a list of attendance from the web service
 		RestTemplate restTemplate = new RestTemplate();
 		ResponseEntity<ExaminationAttendance[]> response = restTemplate.getForEntity(uri, ExaminationAttendance[].class);
 
