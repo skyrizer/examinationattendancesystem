@@ -131,8 +131,13 @@ public class AttendanceMenuController {
 
 
 	/*
-	 * For attendance by Venue
+	 * This method display the following examination attendance information
+	 * based on venue.
 	 * 
+	 * @author Ng Wei Hen
+	 * @param filterBy
+	 * @param id
+	 * @return
 	 */
 	@GetMapping("/AttendanceVenue")
 	public String getAttendanceVenueTypes(Model model,@RequestParam(name = "filter",required=false) String filterBy,@RequestParam(name = "id",required = false) String id)
@@ -158,37 +163,37 @@ public class AttendanceMenuController {
 
 		// The URI for GET Examination Attendance
 
-		//Get a list order types from the web service
+		//Get a list Examination Attendance from the web service
 		RestTemplate restTemplate = new RestTemplate();
 		ResponseEntity<ExaminationAttendance[]> response = restTemplate.getForEntity(uri, ExaminationAttendance[].class);
 
-		// Parse JSON data to array of object
+		// Parse JSON data to array of examination attendance
 		ExaminationAttendance attendanceVenue[] = response.getBody();
 
-		// Parse an array to a list object
+		// Parse an array to a list object for attendance 
 		List<ExaminationAttendance> attendVenueList = Arrays.asList(attendanceVenue);
 
 		/*
-		 *  The URI for GET Examination Unit.
-		 *
-		 * 		
+		 *  The URI for GET Examination Unit for drop down menu display for examination venue
+		 *	
 		 */
-
+		//Get a list Examination Unit from the web service
 		RestTemplate restTemplateUnit = new RestTemplate();
 		ResponseEntity<ExaminationUnit[]> responseUnit = restTemplateUnit.getForEntity("http://localhost:8080/examinationattendancesystem/api/venue",
 				ExaminationUnit[].class);
-
+		
+		// Parse JSON data to array of examination unit
 		ExaminationUnit unitArray[] = responseUnit.getBody();
 
-		// Parse an array to a list object
+		// Parse an array to a list examination unit
 		List<ExaminationUnit> unitList = Arrays.asList(unitArray);
 
 
-		// Attach list to model as attribute
+		// Attach list of attendance venue and examination unit to model as attribute
 		model.addAttribute("attendVenue", attendVenueList);
 		model.addAttribute("examUnit",unitList );
 
-		// return an HTML file, Attendance.html, to the browser
+		// return an HTML file, AttendanceVenue.html, to the browser
 		return "AttendanceVenue";
 	}
 }

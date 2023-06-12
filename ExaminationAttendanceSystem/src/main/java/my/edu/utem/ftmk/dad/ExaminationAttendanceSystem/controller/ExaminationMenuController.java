@@ -36,6 +36,16 @@ public class ExaminationMenuController {
 	// schedule/subject1
 	// shcedule/
 	// schedule/?filter=subj&id=1
+	/*
+	 * This method enables to display a list of examination schedule 
+	 * which is retrieved based on cross joining table
+	 * 
+	 * @author Ng Wei Hen
+	 * @param filterBy
+	 * @param id
+	 * 
+	 * @return
+	 */
 	@GetMapping("/schedule")
 	public String getExamTypes(Model model,@RequestParam(name = "filter",required=false) String filterBy,@RequestParam(name = "id",required = false) String id)
 	{ 
@@ -76,14 +86,19 @@ public class ExaminationMenuController {
 		return "schedule";
 	}
 	
+	/*
+	 * This method will update or insert an examination schedule
+	 * 
+	 * @author Ng Wei Hen
+	 * @param examType
+	 * 
+	 * @return
+	 */
 	@RequestMapping("/schedule/save")
-	public String updateExamination(@ModelAttribute Examination examType)
+	public String updateInsertExamination(@ModelAttribute Examination examType)
 	{
-		System.out.println("test");
 		// Create a new RestTemplate
 		RestTemplate restTemplate = new RestTemplate();
-		
-		System.out.println(examType.getExaminationDate());
 		
 		// Create request body
 		HttpEntity<Examination> request =new HttpEntity<Examination>(examType);
@@ -92,14 +107,14 @@ public class ExaminationMenuController {
 		
 		if (examType.getExaminationId() > 0)
 		{
-			// This block update an new order type and
+			// This block update an new examination schedule and
 			
 			// Send request as PUT
 			restTemplate.put("http://localhost:8080/examinationattendancesystem/api/examination", request, Examination.class);
 		}
 		else
 		{
-			// This block add a new order type
+			// This block add a new examination schedule
 			
 			// send request as POST
 			examTypeResponse = restTemplate.postForObject("http://localhost:8080/examinationattendancesystem/api/examination", request, String.class);
@@ -107,25 +122,33 @@ public class ExaminationMenuController {
 		
 		System.out.println(examTypeResponse);
 		
-		// Redirect request to display a list of order type
+		// Redirect request to display a list of examination schedule
 		return "redirect:/schedule";
 	}
 	
+	/**
+	 * This method gets an examination schedule
+	 * 
+	 * @author Ng Wei Hen
+	 * 
+	 * @param ExaminationId
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/schedule/{ExaminationId}")
 	public String getExamType (@PathVariable Integer ExaminationId, Model model) {
 		
-		System.out.println(ExaminationId);
 		String pageTitle = "New Examination Schedule";
 		Examination examType = new Examination();
 		
-		// This block get an examination to be updated
+		// This block get an examination schedule to be updated
 		if (ExaminationId > 0) {
 
-			// Generate new URI and append orderTypeId to it
+			// Generate new URI and append ExaminationId to it
 			String uri = "http://localhost:8080/examinationattendancesystem/api/examination/" + ExaminationId;
 			System.out.println(uri);
 			
-			// Get an order type from the web service
+			// Get an examination schedule from the web service
 			RestTemplate restTemplate = new RestTemplate();
 			examType = restTemplate.getForObject(uri, Examination.class);
 			
@@ -135,7 +158,7 @@ public class ExaminationMenuController {
 		
 		/*
 		 *  The URI for GET Examination Subject.
-		 *	List of Subject Available
+		 *	List of All subjects for drop down list menu
 		 * 		
 		 */
 
@@ -150,7 +173,7 @@ public class ExaminationMenuController {
 		
 		/*
 		 *  The URI for GET Examination Unit.
-		 *	List of Examination Unit Available
+		 *	List of All examination units for drop down list menu
 		 * 		
 		 */
 		RestTemplate restTemplateUnit = new RestTemplate();
@@ -164,8 +187,8 @@ public class ExaminationMenuController {
 		
 		
 		/*
-		 *  The URI for GET Examination Unit.
-		 *	List of Examination Unit Available
+		 *  The URI for GET lecturers.
+		 *	List of All lecturers for drop down list menu
 		 * 		
 		 */
 		RestTemplate restTemplateLect = new RestTemplate();
@@ -174,7 +197,7 @@ public class ExaminationMenuController {
 
 		Lecturer lectArray[] = responseLect.getBody();
 
-		// Parse an array to a list object
+		// Parse an array to a list lecturer list
 		List<Lecturer> LectList = Arrays.asList(lectArray);
 		
 		
@@ -185,6 +208,7 @@ public class ExaminationMenuController {
 		model.addAttribute("Lecturers", LectList);
 		model.addAttribute("examUnit",unitList );
 		
+		// return an HTML file, scheduleinfo.html, to the browser
 		return "scheduleinfo";
 			
 	}
@@ -192,16 +216,18 @@ public class ExaminationMenuController {
 	/**
 	 * This method deletes an schedule
 	 * 
-	 * @param orderTypeId
+	 * @author Ng Wei Hen
+	 * 
+	 * @param examId
 	 * @return
 	 */
 	@RequestMapping("/schedule/delete/{examId}")
 	public String deleteExamType(@PathVariable Integer examId)
 	{
-		// Generate new URI, similar to the mapping in OrderTypeRESTController
+		// Generate new URI, similar to the mapping in ExaminationRESTController
 		String uri = "http://localhost:8080/examinationattendancesystem/api/examination/" + "{examId}";
 		
-		// Send a DELETE request and attach the value of orderTypeId into URI
+		// Send a DELETE request and attach the value of examId into URI
 		RestTemplate restTemplate = new RestTemplate();
 		restTemplate.delete(uri, Map.of("examId", Integer.toString(examId)));
 		

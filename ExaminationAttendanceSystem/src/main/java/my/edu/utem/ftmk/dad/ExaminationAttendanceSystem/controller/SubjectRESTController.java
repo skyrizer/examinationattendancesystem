@@ -9,6 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Subject;
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.repository.SubjectRepository;
 
+/*
+ * This class mainly used to display all subject in dropdown list.
+ * 
+ * @author Ng Wei Hen
+ */
+
 @RestController
 @RequestMapping("/api/subjects")
 public class SubjectRESTController {
@@ -16,6 +22,11 @@ public class SubjectRESTController {
 	@Autowired
 	private SubjectRepository subjects;
 	
+	/* retrieve all subjects' information
+	 * @author Ng Wei Hen
+	 * 
+	 * @return a list of all subjects' information
+	 */
 	@GetMapping
 	public List<Subject> getSubject()
 	{

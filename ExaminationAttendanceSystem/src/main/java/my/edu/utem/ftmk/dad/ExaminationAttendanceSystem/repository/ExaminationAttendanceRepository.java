@@ -8,10 +8,14 @@ import org.springframework.stereotype.Repository;
 
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.ExaminationAttendance;
 
+/*
+ * This repository enable AttendanceRESTController to invoke it for web service.
+ * 
+ * @author Ng Wei Hen
+ * @author Hafiz Suhaizal Bin Ismail
+ */
 @Repository
 public interface ExaminationAttendanceRepository extends JpaRepository<ExaminationAttendance, Long> {
-
-	//public List<ExaminationAttendance> findById(int id);
 	
 }
 

@@ -44,7 +44,6 @@ import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.repository.StudentReposi
 @RequestMapping("/api/attend")
 public class AttendanceRESTController {
 
-	//
 	@Autowired
 	private AttendanceRepository attendanceRepository;
 	
@@ -87,7 +86,7 @@ public class AttendanceRESTController {
 	}
 	
 
-	//update records for order type
+	//update records for examination attendance
 	@PutMapping
 	public ExaminationAttendance updateExaminationAttendance(@RequestBody ExaminationAttendance examinationAttendance)
 	{
