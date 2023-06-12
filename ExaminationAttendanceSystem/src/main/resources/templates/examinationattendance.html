@@ -35,12 +35,20 @@ USCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <div class="container-fluid">
         <h2 class="text-center">[[${pageTitle}]]</h2>
-
+        <style>
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
+        
+ <img src="https://www.utem.edu.my/templates/yootheme/cache/36/LogoUTeM-36e05019.webp" alt="Utem Logo" class="center">
         <div class="my-3">
             <form th:action="@{/examinationattendance/save}" method="post" enctype="multipart/form-data"
                 th:object="${examinationAttendance}" style="max-width: 550px; margin: 0 auto">
                 <input type="hidden" th:field="*{ExamAttendId}" />
-
+				
                 <div class="p-3">
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label" for="StudentId">Matric Card</label>
@@ -62,7 +70,19 @@ USCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label" for="Reader" >Reader Input</label>
                         <div class="col-sm-9">
-                            <input type="text" th:field="*{InputType}" minlength="2" maxlength="256" class="form-control" id="InputType" />
+                
+                        
+                         <select name="Reader" id="Reader" th:field="*{InputType}">
+        <option  th:value="MatricCard" th:text="MatricCard"></option>
+        <option  th:value="Fingerprint" th:text="Fingerprint"></option>
+        <option  th:value="QrCode" th:text="QRCode"></option>
+        <option  th:value="SelfCheck-In" th:text="SelfCheck-In"></option>
+        </select>
+                        <br>
+                        <label>
+  <input type="radio" name="attendance" value="hadir" th:field="*{ExamAttendStatus}" th:checked="${ExamAttendStatus == 'hadir'}">
+  Hadir
+</label>
                         </div>
                     </div>
 
