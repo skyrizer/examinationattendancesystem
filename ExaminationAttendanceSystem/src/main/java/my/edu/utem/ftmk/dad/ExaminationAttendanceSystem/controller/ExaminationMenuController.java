@@ -23,6 +23,9 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Examination;
+import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.ExaminationUnit;
+import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Subject;
+import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Lecturer;
 
 @Controller
 public class ExaminationMenuController {
@@ -124,7 +127,7 @@ public class ExaminationMenuController {
 	public String getExamType (@PathVariable Integer ExaminationId, Model model) {
 		
 		System.out.println(ExaminationId);
-		String pageTitle = "New Schedule";
+		String pageTitle = "New Examination Schedule";
 		Examination examType = new Examination();
 		
 		// This block get an examination to be updated
@@ -139,12 +142,60 @@ public class ExaminationMenuController {
 			examType = restTemplate.getForObject(uri, Examination.class);
 			
 			//Give a new title to the page
-			pageTitle = "Edit Schedule";
+			pageTitle = "Edit Examination Schedule";
 		}
+		
+		/*
+		 *  The URI for GET Examination Subject.
+		 *	List of Subject Available
+		 * 		
+		 */
+
+		RestTemplate restTemplateSubj = new RestTemplate();
+		ResponseEntity<Subject[]> responseSubj = restTemplateSubj.getForEntity("http://localhost:8080/examinationattendancesystem/api/subjects",
+				Subject[].class);
+
+		Subject subjArray[] = responseSubj.getBody();
+		
+		// Parse an array to a list object
+		List<Subject> subjList = Arrays.asList(subjArray);
+		
+		/*
+		 *  The URI for GET Examination Unit.
+		 *	List of Examination Unit Available
+		 * 		
+		 */
+		RestTemplate restTemplateUnit = new RestTemplate();
+		ResponseEntity<ExaminationUnit[]> responseUnit = restTemplateUnit.getForEntity("http://localhost:8080/examinationattendancesystem/api/venue",
+				ExaminationUnit[].class);
+
+		ExaminationUnit unitArray[] = responseUnit.getBody();
+
+		// Parse an array to a list object
+		List<ExaminationUnit> unitList = Arrays.asList(unitArray);
+		
+		
+		/*
+		 *  The URI for GET Examination Unit.
+		 *	List of Examination Unit Available
+		 * 		
+		 */
+		RestTemplate restTemplateLect = new RestTemplate();
+		ResponseEntity<Lecturer[]> responseLect = restTemplateLect.getForEntity("http://localhost:8080/examinationattendancesystem/api/lectures",
+				Lecturer[].class);
+
+		Lecturer lectArray[] = responseLect.getBody();
+
+		// Parse an array to a list object
+		List<Lecturer> LectList = Arrays.asList(lectArray);
+		
 		
 		// Attach value to pass to front end
 		model.addAttribute("examType", examType);
 		model.addAttribute("pageTitle", pageTitle);
+		model.addAttribute("Subjects", subjList);
+		model.addAttribute("Lecturers", LectList);
+		model.addAttribute("examUnit",unitList );
 		
 		return "scheduleinfo";
 			

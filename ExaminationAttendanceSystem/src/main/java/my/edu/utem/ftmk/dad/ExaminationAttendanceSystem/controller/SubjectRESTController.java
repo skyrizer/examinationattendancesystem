@@ -6,21 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Lecturer;
-import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.repository.LecturerRepository;
+import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Subject;
+import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.repository.SubjectRepository;
 
 @RestController
-@RequestMapping("/api/lectures")
-public class LecturerRESTController{
+@RequestMapping("/api/subjects")
+public class SubjectRESTController {
 
 	@Autowired
-	private LecturerRepository lecturerRepos;
+	private SubjectRepository subjects;
 	
 	@GetMapping
-	public List<Lecturer> getExamination()
+	public List<Subject> getSubject()
 	{
-		return lecturerRepos.findAll();
+		return subjects.findAll();
 	}
-	
 }
