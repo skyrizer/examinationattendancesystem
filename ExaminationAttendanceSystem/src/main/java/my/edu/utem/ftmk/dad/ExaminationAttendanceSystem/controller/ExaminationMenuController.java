@@ -57,7 +57,7 @@ public class ExaminationMenuController {
 				
 			}
 		}
-		// The URI for GET order types
+		// The URI for GET examination schedule
 		
 		//Get a list order types from the web service
 		RestTemplate restTemplate = new RestTemplate();
@@ -65,18 +65,6 @@ public class ExaminationMenuController {
 		
 		// Parse JSON data to array of object
 		Examination examination[] = response.getBody();
-		
-		/*
-		 * System.out.println(this.getClass().getSimpleName() + " @ 41 length = " +
-		 * examination.length); System.out.println(this.getClass().getSimpleName() +
-		 * " @ 42"); for (Examination currentExam:examination) {
-		 * 
-		 * System.out.println("Examination Id  " + currentExam.getExaminationId());
-		 * System.out.println("Unit name " + currentExam.getUnit().getUnitName());
-		 * System.out.println("Subject name" +
-		 * currentExam.getSubject().getSubjectName()); }
-		 */
-		
 		
 		// Parse an array to a list object
 		List<Examination> examList = Arrays.asList(examination);
@@ -221,29 +209,29 @@ public class ExaminationMenuController {
 	}
 	
 	
-	/*
-	@GetMapping("/schedule")
+	
+	@GetMapping("/report")
 	public String getExamTypes(Model model)
 	{
 		// The URI for GET order types
 		String uri = "http://localhost:8080/examinationattendancesystem/api/examination";
 		
 		//Get a list order types from the web service
-		RestTemplate restTemplate = new RestTemplate();
-		ResponseEntity<Object[]> response = restTemplate.getForEntity(uri, Object[].class);
+		RestTemplate restReport = new RestTemplate();
+		ResponseEntity<Examination[]> response = restReport.getForEntity(uri, Examination[].class);
 		
 		// Parse JSON data to array of object
-		Object examination[] = response.getBody();
+		Examination examination[] = response.getBody();
 		
 		// Parse an array to a list object
-		List<Object> examList = Arrays.asList(examination);
+		List<Examination> examList = Arrays.asList(examination);
 		
 		// Attach list to model as attribute
-		model.addAttribute("Examinations", examList);
+		model.addAttribute("ExaminationsReport", examList);
 		
 		// return an HTML file, schedule.html, to the browser
-		return "schedule";
+		return "/AttendanceReport";
 	}
-	*/
+	
 	
 }
