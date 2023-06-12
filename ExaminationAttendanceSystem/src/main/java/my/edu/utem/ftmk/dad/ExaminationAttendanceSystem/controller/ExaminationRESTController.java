@@ -27,64 +27,29 @@ public class ExaminationRESTController {
 	@Autowired
 	private LecturerRepository lecturerRepository;
 	
-	/*
-	 * This method retrieve all examination schedule information
-	 * based on venue.
-	 * 
-	 * @author Ng Wei Hen
-	 * @return A list of examination schedule
-	 */
+	// retrieve all examination detail
 	@GetMapping
 	public List<Examination> getExamination()
 	{
 		return exams.findAll();
 	}
 	
-	/*
-	 * This method retrieve all examination schedule by Examination Id
-	 * 
-	 * @author Ng Wei Hen
-	 * @param examId
-	 * @return A list of examination schedule based on ExamId
-	 * 
-	 */
 	@GetMapping("{examId}")
 	public Examination getSpecific(@PathVariable Long examId) {
 		return exams.findById(examId).get();
 	}
 	
-	/*
-	 * This method inserts a new Examination schedule
-	 * 
-	 * @author Ng Wei Hen
-	 * @param examination
-	 * 
-	 */
 	@PostMapping
 	public Examination insertSchedule(@RequestBody Examination examination) {
 		return exams.save(examination);
 	}
 	
-	/*
-	 * This method updates a current Examination schedule
-	 * 
-	 * @author Ng Wei Hen
-	 * @param examination
-	 * 
-	 */
 	@PutMapping
 	public Examination UpdateSchedule(@RequestBody Examination examination) {
 		return exams.save(examination);
 	}
 	 
-	/*
-	 * This method deletes a current Examination schedule
-	 * based on ExaminationId
-	 * 
-	 * @author Ng Wei Hen
-	 * @param examId
-	 * 
-	 */
+	// delete examination record based on Id
 	@DeleteMapping("{examId}")
 	public ResponseEntity<HttpStatus> deleteOrderType(@PathVariable long examId)
 	{
@@ -92,6 +57,7 @@ public class ExaminationRESTController {
 		
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
+	
 	
 }
 

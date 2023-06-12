@@ -235,6 +235,12 @@ public class ExaminationMenuController {
 	}
 	
 	
+	/**
+	 * This method will GET list of subject.
+	 * Author :Wafir Dzihni
+	 * @param Examination
+	 * @return
+	 */
 	
 	@GetMapping("/report")
 	public String getExamTypes(Model model)
