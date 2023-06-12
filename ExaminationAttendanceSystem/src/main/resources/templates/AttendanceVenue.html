@@ -25,7 +25,7 @@
 	  <select name="venue" id="venue">
 		<option th:each="Unit : ${examUnit}" 
 					th:value="${Unit.getUnitId()}"
-					th:text="${Unit.getUnitName()}"		
+					th:text="${Unit.getUnitId()} + '-' + ${Unit.getUnitName()}"		
 		/>
 	  </select>
 	  
@@ -41,7 +41,6 @@
             <th scope="col">Subject Name</th>
             <th scope="col">Status</th>
             <th scope="col">Input Type</th>
-            <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -54,14 +53,7 @@
                	<td>[[${attendVenue.getExamination().getSubject().getSubjectName()}]]</td>
                 <td>[[${attendVenue.ExamAttendStatus}]]</td>
                 <td>[[${attendVenue.InputType}]]</td> 
-                <td>
-		              <!-- A link to edit an order type 
-		              <a th:href="@{'/AttendanceVenue/' + ${attendVenueType.ExamAttendId}}" 
-		              	title="Edit this Attendance"
-		                class="fa-regular fa-pen-to-square icon-dark"></a>
-		              &nbsp;
-		              -->
-                 </td>
+               
           </tr>
         </tbody>
       </table>
