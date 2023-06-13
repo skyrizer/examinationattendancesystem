@@ -50,14 +50,6 @@ public class AttendanceRESTController {
 		return attendanceRepository.save(examinationAttendance);
 	}
 	
-
-	//update records for examination attendance
-	@PutMapping
-	public ExaminationAttendance updateExaminationAttendance(@RequestBody ExaminationAttendance examinationAttendance)
-	{
-		return attendanceRepository.save(examinationAttendance);
-	}
-	
 	//retrieve examination attendance based on examination ID
 	@GetMapping("/report/{examinationId}")
 	public List<ExaminationAttendance> findExaminationId(@PathVariable Long examinationId)
