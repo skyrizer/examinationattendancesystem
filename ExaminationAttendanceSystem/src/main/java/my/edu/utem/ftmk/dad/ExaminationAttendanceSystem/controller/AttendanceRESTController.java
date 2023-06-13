@@ -23,6 +23,7 @@ import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.ExaminationAttenda
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Student;
 
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.repository.AttendanceRepository;
+import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.repository.ExaminationAttendanceRepository;
 
 import org.springframework.ui.Model;
 import org.springframework.http.HttpEntity;
@@ -94,6 +95,14 @@ public class AttendanceRESTController {
 	public ExaminationAttendance updateExaminationAttendance(@RequestBody ExaminationAttendance examinationAttendance)
 	{
 		return attendanceRepository.save(examinationAttendance);
+	}
+	
+	//retrieve examination attendance based on examination ID
+	@GetMapping("/report/{examinationId}")
+	public List<ExaminationAttendance> findExaminationId(@PathVariable Long examinationId)
+	{ 
+		
+		return attendanceRepository.findExaminationId(examinationId);
 	}
 	
 	

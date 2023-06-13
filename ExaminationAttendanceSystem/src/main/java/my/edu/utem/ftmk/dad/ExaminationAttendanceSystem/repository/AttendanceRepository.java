@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.ExaminationAttendance;
+import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Student;
 
 @Repository
 public interface AttendanceRepository extends JpaRepository<ExaminationAttendance, Long> {
@@ -24,7 +25,9 @@ public interface AttendanceRepository extends JpaRepository<ExaminationAttendanc
 	//public List<ExaminationAttendance> findById(int ExamAttendId);
 	//public List<ExaminationAttendance> findByStudentId_StudentMatricNo(String studentMatricNo);
 	
-	
+	 @Query(value = "SELECT * from examinationAttendance WHERE ExaminationId = :ExaminationId", nativeQuery = true)
+	 
+	 public List<ExaminationAttendance> findExaminationId(@Param("ExaminationId") Long ExaminationId);
 	
 }
 

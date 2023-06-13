@@ -207,4 +207,31 @@ public class AttendanceMenuController {
 		// return an HTML file, AttendanceVenue.html, to the browser
 		return "AttendanceVenue";
 	}
+	
+	@GetMapping("/report/{examinationId}")
+	public String getExamination (@PathVariable Integer examinationId, Model model,
+			@RequestParam(name = "matricNo",required=false) String matricNo) {
+
+		String pageTitle = "Report Attendance";
+		
+
+		RestTemplate restTemplateStudent = new RestTemplate();
+		ResponseEntity<ExaminationAttendance[]> responseStudent = restTemplateStudent.getForEntity("http://localhost:8080/examinationattendancesystem/api/attend/report/"+ examinationId,
+				ExaminationAttendance[].class);
+		
+		// Parse JSON data to array of examination unit
+		ExaminationAttendance studentsAttendance[] = responseStudent.getBody();
+
+		// Parse an array to a list examination unit
+		List<ExaminationAttendance> studentAttendance = Arrays.asList(studentsAttendance);
+
+		// Attach value to pass to front end
+		model.addAttribute("studentAttendance", studentAttendance);
+		model.addAttribute("pageTitle", pageTitle);
+	
+		//htmlfile
+
+		return "Report";
+
+	}
 }
