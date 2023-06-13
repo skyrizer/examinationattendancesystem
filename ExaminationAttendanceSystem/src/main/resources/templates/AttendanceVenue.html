@@ -12,6 +12,15 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
   <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+  <script>
+  function filterAttendance(event){
+  	console.log(event.target.value)
+  	console.log(window.location)
+  	var searchParam = new URLSearchParams(window.location.search)
+  	searchParam.set('unitid', event.target.value) 
+	window.location.href = window.location.origin + window.location.pathname + '?' + searchParam.toString()
+  }
+  </script>
 </head>
 
 <body>
@@ -22,12 +31,16 @@
 	  </div>
 	  
 	  <label>Search Venue: </label>
-	  <select name="venue" id="venue">
+	  <select name="venue" id="venue" onchange="filterAttendance(event)">
+	  	<option value="0">all</option>
 		<option th:each="Unit : ${examUnit}" 
 					th:value="${Unit.getUnitId()}"
-					th:text="${Unit.getUnitId()} + '-' + ${Unit.getUnitName()}"		
+					th:text="${Unit.getUnitId()} + '-' + ${Unit.getUnitName()}"	 
+					th:selected="${selectedUnit == Unit.getUnitId()}"
 		/>
 	  </select>
+	  <input type="button" value="Add Schedule" id="btnAdd" class="btn btn-primary btn-sm" />
+	 <br><br>
 	  
 	  <div id = "TABLES" th:if="${attendVenue.size() > 0}">
       <table class="table table-bordered table-l  table-hover " style = "position: auto">

@@ -13,6 +13,11 @@ import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.ExaminationAttenda
 @Repository
 public interface AttendanceRepository extends JpaRepository<ExaminationAttendance, Long> {
 
+	@Query(value = "SELECT a.* FROM ExaminationAttendance a "
+			+ " JOIN Examination e ON a.ExaminationId = e.ExaminationId"
+			+ " JOIN ExaminationUnit u ON u.UnitId = e.UnitId WHERE "
+			+ " u.UnitId = :UnitId", nativeQuery = true)
+	public List<ExaminationAttendance> getAttendanceByVenue(@Param("UnitId") long UnitId);
 	//public List<ExaminationAttendance> findById(int ExamAttendId);
 	//public List<ExaminationAttendance> findByStudentId_StudentMatricNo(String studentMatricNo);
 	

@@ -83,11 +83,11 @@ public class AttendanceMenuController {
 
 		String orderTypeResponse = " ";
 
-			// This block add a new attendance
-			// send request as POST
-			orderTypeResponse = restTemplate.postForObject(
-					defaultURI, request, String.class);
-		
+		// This block add a new attendance
+		// send request as POST
+		orderTypeResponse = restTemplate.postForObject(
+				defaultURI, request, String.class);
+
 
 		System.out.println(orderTypeResponse);
 
@@ -109,7 +109,7 @@ public class AttendanceMenuController {
 		String pageTitle = "New Attendance";
 		ExaminationAttendance examinationAttendance = new ExaminationAttendance();
 		examinationAttendance.getExamination().setExaminationId(examinationId);
-		
+
 		System.out.println(examinationId);
 		System.out.println(examinationAttendance.getExamination().getExaminationId());
 
@@ -121,7 +121,7 @@ public class AttendanceMenuController {
 			examinationAttendance.setStudentId(currentStudent);
 		} 
 
- 
+
 
 		// Attach value to pass to front end
 		model.addAttribute("examinationAttendance", examinationAttendance);
@@ -144,25 +144,29 @@ public class AttendanceMenuController {
 	 * @return
 	 */
 	@GetMapping("/AttendanceVenue")
-	public String getAttendanceVenueTypes(Model model,@RequestParam(name = "filter",required=false) String filterBy,@RequestParam(name = "id",required = false) String id)
+	public String getAttendanceVenueTypes(Model model,@RequestParam(name = "unitid",required = false) String unitId)
 	{ 
 		String uri = "http://localhost:8080/examinationattendancesystem/api/attend";
-		System.out.println(id);
-		if(!Strings.isBlank(filterBy) && ! Strings.isBlank(id)) {
+		System.out.println(unitId);
+		if(!Strings.isBlank(unitId)) {
 
 			try {
-				int intId = Integer.parseInt(id);
-
-				if(filterBy.equals("Stud")) { 
-					uri = "http://localhost:8080/examinationattendancesystem/api/attend";
-					//pakai yg int
+				int intId = Integer.parseInt(unitId); 
+				if(intId == 0) {
+					 uri = "http://localhost:8080/examinationattendancesystem/api/attend";
 				}
-				else if(filterBy.equals("Exam")) {
+				else {
 
+					uri = "http://localhost:8080/examinationattendancesystem/api/attend/Venue/" + unitId;	
 				}
+				//pakai yg int 
 			}catch (Exception e) { 
 
 			}
+		}
+		else {
+			//unit id blank
+			unitId = "0";
 		}
 
 		// The URI for GET Examination Attendance
@@ -185,7 +189,7 @@ public class AttendanceMenuController {
 		RestTemplate restTemplateUnit = new RestTemplate();
 		ResponseEntity<ExaminationUnit[]> responseUnit = restTemplateUnit.getForEntity("http://localhost:8080/examinationattendancesystem/api/venue",
 				ExaminationUnit[].class);
-		
+
 		// Parse JSON data to array of examination unit
 		ExaminationUnit unitArray[] = responseUnit.getBody();
 
@@ -196,6 +200,7 @@ public class AttendanceMenuController {
 		// Attach list of attendance venue and examination unit to model as attribute
 		model.addAttribute("attendVenue", attendVenueList);
 		model.addAttribute("examUnit",unitList );
+		model.addAttribute("selectedUnit", Integer.parseInt( unitId));
 
 		// return an HTML file, AttendanceVenue.html, to the browser
 		return "AttendanceVenue";

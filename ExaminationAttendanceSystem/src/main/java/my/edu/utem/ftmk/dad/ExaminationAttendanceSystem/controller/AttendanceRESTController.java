@@ -75,6 +75,12 @@ public class AttendanceRESTController {
 		return examinationAttendance;
 	}
 	
+	@GetMapping("/Venue/{UnitId}")
+	public List<ExaminationAttendance> getAttendanceByUnit (@PathVariable long UnitId)
+	{
+		return attendanceRepository.getAttendanceByVenue(UnitId);
+	}
+	
 	//insert records for examination attendance
 	@PostMapping
 	public ExaminationAttendance insertExaminationAttendance(@RequestBody ExaminationAttendance examinationAttendance)
