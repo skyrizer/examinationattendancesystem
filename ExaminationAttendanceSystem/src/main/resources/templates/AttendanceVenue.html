@@ -12,6 +12,8 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
   <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+  
+  <!-- A script function for enable filter table in front-end -->
   <script>
   function filterAttendance(event){
   	console.log(event.target.value)
@@ -21,6 +23,7 @@
 	window.location.href = window.location.origin + window.location.pathname + '?' + searchParam.toString()
   }
   </script>
+  
 </head>
 
 <body>
@@ -32,14 +35,13 @@
 	  
 	  <label>Search Venue: </label>
 	  <select name="venue" id="venue" onchange="filterAttendance(event)">
-	  	<option value="0">all</option>
+	  	<option value="0">All</option>
 		<option th:each="Unit : ${examUnit}" 
 					th:value="${Unit.getUnitId()}"
 					th:text="${Unit.getUnitId()} + '-' + ${Unit.getUnitName()}"	 
 					th:selected="${selectedUnit == Unit.getUnitId()}"
 		/>
 	  </select>
-	  <input type="button" value="Add Schedule" id="btnAdd" class="btn btn-primary btn-sm" />
 	 <br><br>
 	  
 	  <div id = "TABLES" th:if="${attendVenue.size() > 0}">

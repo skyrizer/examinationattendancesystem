@@ -147,25 +147,27 @@ public class AttendanceMenuController {
 	public String getAttendanceVenueTypes(Model model,@RequestParam(name = "unitid",required = false) String unitId)
 	{ 
 		String uri = "http://localhost:8080/examinationattendancesystem/api/attend";
+		
+		// filter table based on Unit Id (Examination Unit)
 		System.out.println(unitId);
 		if(!Strings.isBlank(unitId)) {
 
 			try {
 				int intId = Integer.parseInt(unitId); 
+				
 				if(intId == 0) {
 					 uri = "http://localhost:8080/examinationattendancesystem/api/attend";
 				}
 				else {
 
 					uri = "http://localhost:8080/examinationattendancesystem/api/attend/Venue/" + unitId;	
-				}
-				//pakai yg int 
+				} 
 			}catch (Exception e) { 
 
 			}
 		}
 		else {
-			//unit id blank
+			// default Unit Id to display all attendance based on venue
 			unitId = "0";
 		}
 
