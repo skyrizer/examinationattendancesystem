@@ -74,6 +74,7 @@
       </table>
     </div>
 	  
+	  <input type="button" value="Print" class="btn btn-secondary btn-sm" onclick = "printDivContent()">
 	<div class="" th:unless="${attendVenue.size() > 0}">
       <span>No record found!</span>
     </div>
@@ -81,5 +82,17 @@
     <div th:replace="fragments/footer :: footer"></div>
   </body>
 </html>
+
+<script>
+     function printDivContent() {
+            var contentOfDiv = document.getElementById("AttendanceVenue").innerHTML;
+            var contentOfDiv2 = document.getElementById("TABLES").innerHTML;
+            var newWin = window.open('', '', 'height=650, width=1250');
+ 			newWin.document.write(contentOfDiv);
+ 			newWin.document.write(contentOfDiv2);
+ 			newWin.document.close();
+            newWin.print();
+	}
+    </script>
 
 				

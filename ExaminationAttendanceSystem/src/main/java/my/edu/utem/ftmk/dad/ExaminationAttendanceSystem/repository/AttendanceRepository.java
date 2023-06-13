@@ -12,7 +12,10 @@ import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.ExaminationAttenda
 
 @Repository
 public interface AttendanceRepository extends JpaRepository<ExaminationAttendance, Long> {
-
+	
+	/*
+	 * Create custom query for filter attendance table based on Venue, which is UnitId
+	 */
 	@Query(value = "SELECT a.* FROM ExaminationAttendance a "
 			+ " JOIN Examination e ON a.ExaminationId = e.ExaminationId"
 			+ " JOIN ExaminationUnit u ON u.UnitId = e.UnitId WHERE "

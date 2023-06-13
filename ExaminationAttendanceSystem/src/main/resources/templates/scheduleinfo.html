@@ -27,19 +27,13 @@
           <div class="form-group row">
             <label class="col-sm-3 col-form-label" for="ExaminationDate">Date</label>
             
-            <!--
-            <div class="col-sm-9">
-              <input type="text" th:field="*{ExaminationDate}" required minlength="3" maxlength="15" class="form-control"
-                id="ExaminationDate" />
-            </div>
-            -->
-	          <input type="date" style = "margin-left:3%" th:field="*{ExaminationDate}" id="ExaminationDate" class="form"/>
+	          <input type="date" required style = "margin-left:3%" th:field="*{ExaminationDate}" id="ExaminationDate" class="form"/>
           </div>
 
           <div class="form-group row">
             <label class="col-sm-3 col-form-label" for="ExaminationTime">Time</label>
             <div class="col-sm-9">
-              <input type="text" th:field="*{ExaminationTime}" minlength="2" maxlength="256" class="form-control"
+              <input type="text" required th:field="*{ExaminationTime}" minlength="2" maxlength="256" class="form-control"
                 id="ExaminationTime" />
                 
             </div>
@@ -50,7 +44,7 @@
             <div class="col-sm-9">
              
               
-              <select name="subject" id="subject" th:field="*{subject.SubjectId}">
+              <select name="subject" id="subject" th:field="*{subject.SubjectId}" required>
 				<option th:each="subj : ${Subjects}" 
 							th:value="${subj.getSubjectId()}"
 							th:text="${subj.getSubjectCode()}+ '-' +${subj.getSubjectName()}"	
@@ -62,12 +56,7 @@
            <div class="form-group row"> 
             <label class="col-sm-3 col-form-label" for="LecturerId">Lecturer Id</label>
             <div class="col-sm-9">
-              <!--
-              <input type="text" th:field="*{lecturer.LecturerId}" minlength="1" maxlength="256" class="form-control"
-                 />
-                 -->
-                 
-                 <select name="lecturer" id="lecturer" th:field="*{lecturer.LecturerId}">
+                 <select name="lecturer" id="lecturer" th:field="*{lecturer.LecturerId}" required>
 				<option th:each="lect : ${Lecturers}" 
 							th:value="${lect.getLecturerId()}"
 							th:text="${lect.getLecturerId()}+ '-' +${lect.getLecturerName()}"	
@@ -81,12 +70,7 @@
             <label class="col-sm-3 col-form-label" for="UnitId">Unit Id</label>
             <div class="col-sm-9">
               
-              <!--
-              <input type="text" th:field="*{unit.UnitId}" minlength="1" maxlength="256" class="form-control"
-              />
-              -->
-              
-              <select name="venue" id="venue" th:field="*{unit.UnitId}">
+              <select name="venue" id="venue" th:field="*{unit.UnitId}" required>
 				<option th:each="Unit : ${examUnit}" 
 							th:value="${Unit.getUnitId()}"
 							th:text="${Unit.getUnitId()}+ '-' +${Unit.getUnitName()}"		
