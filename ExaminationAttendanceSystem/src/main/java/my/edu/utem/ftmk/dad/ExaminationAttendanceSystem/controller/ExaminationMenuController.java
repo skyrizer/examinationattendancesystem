@@ -3,11 +3,8 @@ package my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.controller;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 import org.apache.logging.log4j.util.Strings;
-import org.aspectj.weaver.patterns.ThisOrTargetAnnotationPointcut;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -16,11 +13,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.servlet.ModelAndView;
 
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Examination;
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.ExaminationUnit;
@@ -32,10 +27,6 @@ public class ExaminationMenuController {
 
 	private String defaultURI = "http://localhost:8080/examinationattendancesystem/api/examination/schedule"; 
 	
-	// schedule/unit1
-	// schedule/subject1
-	// shcedule/
-	// schedule/?filter=subj&id=1
 	/*
 	 * This method enables to display a list of examination schedule 
 	 * which is retrieved based on cross joining table
@@ -58,7 +49,6 @@ public class ExaminationMenuController {
 
 				if(filterBy.equals("unit")) { 
 					uri = "http://localhost:8080/examinationattendancesystem/api/examination";
-					//pakai yg int
 				}
 				else if(filterBy.equals("subj")) {
 					

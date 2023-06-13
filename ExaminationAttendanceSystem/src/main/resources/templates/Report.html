@@ -17,7 +17,7 @@
 <body>
 	  <div th:replace="fragments/header :: header"></div>
 	
-	  <div id = "AttendanceVenue" class="container-fluid" style="max-width: 900px; margin: 0 auto;">
+	  <div id = "Attendance" class="container-fluid" style="max-width: 900px; margin: 0 auto;">
 	    <h2 class="text-center"><b style = "font-family: 'Rockwell';">Attendance Report</b></h2>
 	  </div>
 	  
@@ -53,6 +53,21 @@
       <span>No record found!</span>
     </div>
 
+
+	 <input type="button" value="Print" class="btn btn-secondary btn-sm" onclick = "printDivContent()">
+	 
+	 <script>
+     function printDivContent() {
+            var contentOfDiv = document.getElementById("Attendance").innerHTML;
+            var contentOfDiv2 = document.getElementById("TABLES").innerHTML;
+            var newWin = window.open('', '', 'height=650, width=1250');
+ 			newWin.document.write(contentOfDiv);
+ 			newWin.document.write(contentOfDiv2);
+ 			newWin.document.close();
+            newWin.print();
+	}
+    </script>
+     
     <div th:replace="fragments/footer :: footer"></div>
   </body>
 </html>

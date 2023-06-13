@@ -1,12 +1,7 @@
 package my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.controller;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.http.HttpEntity;
@@ -20,11 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
-import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Examination;
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.ExaminationAttendance;
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.ExaminationUnit;
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Student;
-import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Subject;
 
 
 @Controller
@@ -35,6 +28,7 @@ public class AttendanceMenuController {
 	/**
 	 *This method is to get an attendance list
 	 *Author: Hafiz Suhaizal
+	 *
 	 */
 	@GetMapping("/attendance/list")
 	public String getAttendance(Model model)
@@ -56,7 +50,7 @@ public class AttendanceMenuController {
 		model.addAttribute("examinationAttendance", examinationAttendanceList);
 
 
-		//link to html file
+		//return an HTML file, attendancelist.html, to the browser
 		return "attendancelist";
 
 
@@ -73,23 +67,16 @@ public class AttendanceMenuController {
 	{
 		// Create a new RestTemplate
 		RestTemplate restTemplate = new RestTemplate();
-
-		System.out.println(examinationAttendance.getInputType());
-		System.out.println(examinationAttendance.getExamination().getExaminationId());
-		System.out.println(examinationAttendance.getStudentId().getStudentId());
-		System.out.println(examinationAttendance.getExamAttendStatus());
 		// Create request body
 		HttpEntity<ExaminationAttendance> request =new HttpEntity<ExaminationAttendance>(examinationAttendance);
 
-		String orderTypeResponse = " ";
+		String attendanceResponse = " ";
 
 		// This block add a new attendance
 		// send request as POST
-		orderTypeResponse = restTemplate.postForObject(
+		attendanceResponse = restTemplate.postForObject(
 				defaultURI, request, String.class);
 
-
-		System.out.println(orderTypeResponse);
 
 		// Redirect request to display a list of attendance
 		return "redirect:/attendance/list";
@@ -98,7 +85,7 @@ public class AttendanceMenuController {
 	/**
 	 * This method gets an examination attendance id
 	 * Author :Hafiz Suhaizal
-	 * @param examinationAttendanceId
+	 * @param examinationId
 	 * @param model
 	 * @return
 	 */
@@ -109,9 +96,6 @@ public class AttendanceMenuController {
 		String pageTitle = "New Attendance";
 		ExaminationAttendance examinationAttendance = new ExaminationAttendance();
 		examinationAttendance.getExamination().setExaminationId(examinationId);
-
-		System.out.println(examinationId);
-		System.out.println(examinationAttendance.getExamination().getExaminationId());
 
 		Student currentStudent = new Student();
 		if(!Strings.isBlank(matricNo)) {
@@ -127,7 +111,7 @@ public class AttendanceMenuController {
 		model.addAttribute("examinationAttendance", examinationAttendance);
 		model.addAttribute("pageTitle", pageTitle);
 		model.addAttribute("studId", currentStudent);
-		//htmlfile
+		//return an HTML file, examinationattendance.html, to the browser
 
 		return "examinationattendance";
 
@@ -149,7 +133,6 @@ public class AttendanceMenuController {
 		String uri = "http://localhost:8080/examinationattendancesystem/api/attend";
 		
 		// filter table based on Unit Id (Examination Unit)
-		System.out.println(unitId);
 		if(!Strings.isBlank(unitId)) {
 
 			try {
@@ -207,10 +190,17 @@ public class AttendanceMenuController {
 		// return an HTML file, AttendanceVenue.html, to the browser
 		return "AttendanceVenue";
 	}
+	/*
+	 * This method display report of attendance based on subject
+	 * 
+	 * @author Wafir
+	 * @param examinationId
+	 * @param model
+	 * @return
+	 */
 	
 	@GetMapping("/report/{examinationId}")
-	public String getExamination (@PathVariable Integer examinationId, Model model,
-			@RequestParam(name = "matricNo",required=false) String matricNo) {
+	public String getExamination (@PathVariable Integer examinationId, Model model) {
 
 		String pageTitle = "Report Attendance";
 		
@@ -229,7 +219,7 @@ public class AttendanceMenuController {
 		model.addAttribute("studentAttendance", studentAttendance);
 		model.addAttribute("pageTitle", pageTitle);
 	
-		//htmlfile
+		//return an HTML file, Report.html, to the browser
 
 		return "Report";
 

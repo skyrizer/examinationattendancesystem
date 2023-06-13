@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Lecturer;
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Examination;
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.repository.ExaminationRepository;
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.repository.LecturerRepository;

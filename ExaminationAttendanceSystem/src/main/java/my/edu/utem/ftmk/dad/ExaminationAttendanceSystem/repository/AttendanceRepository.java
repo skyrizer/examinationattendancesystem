@@ -16,6 +16,7 @@ public interface AttendanceRepository extends JpaRepository<ExaminationAttendanc
 	
 	/*
 	 * Create custom query for filter attendance table based on Venue, which is UnitId
+	 * Author : Ng wei hen
 	 */
 	@Query(value = "SELECT a.* FROM ExaminationAttendance a "
 			+ " JOIN Examination e ON a.ExaminationId = e.ExaminationId"
@@ -25,16 +26,13 @@ public interface AttendanceRepository extends JpaRepository<ExaminationAttendanc
 	//public List<ExaminationAttendance> findById(int ExamAttendId);
 	//public List<ExaminationAttendance> findByStudentId_StudentMatricNo(String studentMatricNo);
 	
+	
+	/*
+	 * Create custom query for selecting ExaminationId based on StudentMatricNo entered by user
+	 * Author : Hafiz Suhaizal
+	 */
 	 @Query(value = "SELECT * from examinationAttendance WHERE ExaminationId = :ExaminationId", nativeQuery = true)
 	 
 	 public List<ExaminationAttendance> findExaminationId(@Param("ExaminationId") Long ExaminationId);
 	
 }
-
-/* @Modifying
-	    @Query(value = "INSERT INTO examinationattendance (attendance_status, input_type, examination_id, student_id) " +
-	            "SELECT 'hadir', e.inputType, 1, s.studentId " +
-	            "FROM student s " +
-	            "CROSS JOIN examination e " +
-	            "WHERE s.studentMatricNo = :matricNo", nativeQuery = true)
-	    ExaminationAttendance insertAttendance(@Param("matricNo") String matricNo);*/
