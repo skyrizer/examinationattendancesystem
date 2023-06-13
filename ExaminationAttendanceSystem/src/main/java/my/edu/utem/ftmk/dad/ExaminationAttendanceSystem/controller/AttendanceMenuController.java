@@ -63,7 +63,7 @@ public class AttendanceMenuController {
 	 * @return
 	 */
 	@RequestMapping("/examinationattendance/save")
-	public String updateExaminationAttendance(@ModelAttribute ExaminationAttendance examinationAttendance)
+	public String insertExaminationAttendance(@ModelAttribute ExaminationAttendance examinationAttendance)
 	{
 		// Create a new RestTemplate
 		RestTemplate restTemplate = new RestTemplate();
