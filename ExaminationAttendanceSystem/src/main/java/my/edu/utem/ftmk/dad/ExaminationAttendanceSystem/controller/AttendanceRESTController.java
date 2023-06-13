@@ -23,7 +23,7 @@ import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.ExaminationAttenda
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Student;
 
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.repository.AttendanceRepository;
-import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.repository.ExaminationAttendanceRepository;
+
 
 import org.springframework.ui.Model;
 import org.springframework.http.HttpEntity;
