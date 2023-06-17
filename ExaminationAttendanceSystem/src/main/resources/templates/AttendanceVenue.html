@@ -73,8 +73,12 @@
         </tbody>
       </table>
     </div>
-	  
-	  <input type="button" value="Print" class="btn btn-secondary btn-sm" onclick = "printDivContent()">
+    
+    <label> Total records: </label>
+    <span th:text= "${attendVenue.size()}"></span>
+	
+	<br>
+	<input type="button" value="Print" class="btn btn-secondary btn-sm" onclick = "printDivContent()">
 	<div class="" th:unless="${attendVenue.size() > 0}">
       <span>No record found!</span>
     </div>
@@ -93,6 +97,6 @@
  			newWin.document.close();
             newWin.print();
 	}
-    </script>
+</script>
 
 				
