@@ -1,10 +1,12 @@
 package my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.controller;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.logging.log4j.util.Strings;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -20,11 +22,16 @@ import org.springframework.web.client.RestTemplate;
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Examination;
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.ExaminationUnit;
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Subject;
+import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.repository.AttendanceRepository;
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Lecturer;
+import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Student;
 
 @Controller
 public class ExaminationMenuController {
 
+	@Autowired
+	private AttendanceRepository attendanceRepository;
+	
 	private String defaultURI = "http://localhost:8080/examinationattendancesystem/api/examination/schedule"; 
 	
 	/*
@@ -254,6 +261,5 @@ public class ExaminationMenuController {
 		// return an HTML file, schedule.html, to the browser
 		return "/AttendanceReport";
 	}
-	
 	
 }
