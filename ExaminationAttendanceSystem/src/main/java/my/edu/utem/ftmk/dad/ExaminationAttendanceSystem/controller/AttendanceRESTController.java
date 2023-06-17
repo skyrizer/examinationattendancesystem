@@ -1,4 +1,5 @@
 package my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.controller;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.ExaminationAttendance;
+import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Student;
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.repository.AttendanceRepository;
 
 @RestController
@@ -59,13 +61,54 @@ public class AttendanceRESTController {
 	}
 	
 	
-	//Author : Hafiz Suhaizal
+	/*//Author : Hafiz Suhaizal
 	//Testing code for listing absent student
 	@GetMapping("/absent/{ExaminationId}")
 	public List<ExaminationAttendance> getAttendanceForAbsent(@PathVariable long ExaminationId)
 	{
 		return attendanceRepository.getAttendanceByStatus(ExaminationId);
 	}
+	*/
+	//NI DAPAT SUDAH TAPI X COMPLETE
+	/*
+	@GetMapping("/students/absent/{ExaminationId}")
+	public List<Student> getStudentsWithNullAttendStatusAndExaminationId(@PathVariable int ExaminationId) {
+	    List<Object[]> queryResult = attendanceRepository.getStudentsWithNullAttendStatusAndExaminationId(ExaminationId);
+	    List<Student> studentList = new ArrayList<>();
+
+	    for (Object[] row : queryResult) {
+	        String studentName = (String) row[0];
+	        String studentMatricNo = (String) row[1];
+
+	        Student student = new Student();
+	        student.setStudentName(studentName);
+	        student.setStudentMatricNo(studentMatricNo);
+
+	        studentList.add(student);
+	    }
+
+	    return studentList;
+	}
+*/
+	@GetMapping("/students/absent/{ExaminationId}")
+	public List<Student> getStudentsWithNullAttendStatusAndExaminationId(@PathVariable int ExaminationId) {
+	    List<Object[]> queryResult = attendanceRepository.getStudentsWithNullAttendStatusAndExaminationId(ExaminationId);
+	    List<Student> studentList = new ArrayList<>();
+
+	    for (Object[] row : queryResult) {
+	        String studentName = (String) row[0];
+	        String studentMatricNo = (String) row[1];
+
+	        Student student = new Student();
+	        student.setStudentName(studentName);
+	        student.setStudentMatricNo(studentMatricNo);
+
+	        studentList.add(student);
+	    }
+
+	    return studentList;
+	}
+
 	
 	
 }
