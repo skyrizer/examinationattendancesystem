@@ -34,5 +34,20 @@ public interface AttendanceRepository extends JpaRepository<ExaminationAttendanc
 	 @Query(value = "SELECT * from examinationAttendance WHERE ExaminationId = :ExaminationId", nativeQuery = true)
 	 
 	 public List<ExaminationAttendance> findExaminationId(@Param("ExaminationId") Long ExaminationId);
+	 
+	 /*
+	  * Still in testing phase
+	  * Create custom query for filter attendance table that shows the list of absent student
+	  * Author : Hafiz Suhaizal
+	  */
+	 @Query(value="SELECT e.ExamAttendId,e.ExamAttendStatus,e.InputType,e.ExaminationId,e.StudentId,s.StudentName, s.StudentMatricNo "
+	 		+ "FROM student s LEFT JOIN examinationattendance e ON s.StudentId = e.StudentId AND e.ExaminationId= :ExaminationId"
+	 		+ " WHERE ExamAttendId is NULL",nativeQuery=true)
+	 
+	 public List<ExaminationAttendance> getAttendanceByStatus(@Param("ExaminationId")long ExaminationId);
+	 
+	 
+	
+	 
 	
 }

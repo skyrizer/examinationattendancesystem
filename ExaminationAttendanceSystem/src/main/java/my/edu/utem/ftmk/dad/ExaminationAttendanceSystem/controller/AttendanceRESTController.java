@@ -59,4 +59,13 @@ public class AttendanceRESTController {
 	}
 	
 	
+	//Author : Hafiz Suhaizal
+	//Testing code for listing absent student
+	@GetMapping("/absent/{ExaminationId}")
+	public List<ExaminationAttendance> getAttendanceForAbsent(@PathVariable long ExaminationId)
+	{
+		return attendanceRepository.getAttendanceByStatus(ExaminationId);
+	}
+	
+	
 }

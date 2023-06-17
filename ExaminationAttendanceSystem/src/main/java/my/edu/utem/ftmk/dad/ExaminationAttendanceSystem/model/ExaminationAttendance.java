@@ -15,7 +15,7 @@ public class ExaminationAttendance {
 	//Primary Key
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ExamAttendId")
+	@Column(name="ExamAttendId")
 	private int ExamAttendId;
 
 	@Column(name = "ExamAttendStatus")

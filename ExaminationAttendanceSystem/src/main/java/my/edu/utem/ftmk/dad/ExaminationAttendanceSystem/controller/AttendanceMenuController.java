@@ -224,4 +224,80 @@ public class AttendanceMenuController {
 		return "Report";
 
 	}
+	
+	
+	//This is just for testing code
+	//Author : Hafiz Suhaizal 
+	/*
+	 * This method display the following examination attendance information
+	 * based on student absent
+	 * 
+	 * @author Hafiz Suhaizal
+	 * @param filterBy
+	 * @param id
+	 * @return
+	 */
+	@GetMapping("/AttendanceStatus")
+	public void getAttendanceStatus(Model model,@RequestParam(name = "ExaminationId",required = false) String ExaminationId)
+	{ 
+		String uri = "http://localhost:8080/examinationattendancesystem/api/attend";
+		
+		// filter table based on Unit Id (Examination Unit)
+		if(!Strings.isBlank(ExaminationId)) {
+
+			try {
+				int intId = Integer.parseInt(ExaminationId); 
+				
+				if(intId == 0) {
+					 uri = "http://localhost:8080/examinationattendancesystem/api/attend";
+				}
+				else {
+
+					uri = "http://localhost:8080/examinationattendancesystem/api/attend/absent/" + ExaminationId;	
+				} 
+			}catch (Exception e) { 
+
+			}
+		}
+		else {
+			// default Unit Id to display all attendance based on venue
+			ExaminationId = "0";
+		}
+
+		// The URI for GET Examination Attendance
+
+		//Get a list Examination Attendance from the web service
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<ExaminationAttendance[]> response = restTemplate.getForEntity(uri, ExaminationAttendance[].class);
+
+		// Parse JSON data to array of examination attendance
+		ExaminationAttendance attendanceStatus[] = response.getBody();
+
+		// Parse an array to a list object for attendance 
+		List<ExaminationAttendance> attendStatusList = Arrays.asList(attendanceStatus);
+
+		/*
+		 *  The URI for GET Examination Unit for drop down menu display for examination venue
+		 *	
+		 */
+		//Get a list Examination Unit from the web service
+		RestTemplate restTemplateUnit = new RestTemplate();
+		ResponseEntity<ExaminationUnit[]> responseUnit = restTemplateUnit.getForEntity("http://localhost:8080/examinationattendancesystem/api/absent",
+				ExaminationUnit[].class);
+
+		// Parse JSON data to array of examination unit
+		ExaminationUnit unitArray[] = responseUnit.getBody();
+
+		// Parse an array to a list examination unit
+		List<ExaminationUnit> unitList = Arrays.asList(unitArray);
+
+
+		// Attach list of attendance venue and examination unit to model as attribute
+		model.addAttribute("attendVenue", attendStatusList);
+		model.addAttribute("examUnit",unitList );
+		model.addAttribute("selectedUnit", Integer.parseInt( ExaminationId));
+
+		// return an HTML file, AttendanceVenue.html, to the browser
+		//return "AttendanceVenue";
+	}
 }
