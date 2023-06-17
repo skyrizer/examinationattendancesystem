@@ -271,10 +271,10 @@ public class AttendanceMenuController {
 		ResponseEntity<ExaminationAttendance[]> response = restTemplate.getForEntity(uri, ExaminationAttendance[].class);
 
 		// Parse JSON data to array of examination attendance
-		ExaminationAttendance attendanceStatus[] = response.getBody();
+		ExaminationAttendance ExamAttendStatus[] = response.getBody();
 
 		// Parse an array to a list object for attendance 
-		List<ExaminationAttendance> attendStatusList = Arrays.asList(attendanceStatus);
+		List<ExaminationAttendance> attendStatusList = Arrays.asList(ExamAttendStatus);
 
 		/*
 		 *  The URI for GET Examination Unit for drop down menu display for examination venue

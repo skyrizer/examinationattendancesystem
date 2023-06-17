@@ -42,7 +42,7 @@ public interface AttendanceRepository extends JpaRepository<ExaminationAttendanc
 	  */
 	 @Query(value="SELECT e.ExamAttendId,e.ExamAttendStatus,e.InputType,e.ExaminationId,e.StudentId,s.StudentName, s.StudentMatricNo "
 	 		+ "FROM student s LEFT JOIN examinationattendance e ON s.StudentId = e.StudentId AND e.ExaminationId= :ExaminationId"
-	 		+ " WHERE ExamAttendId is NULL",nativeQuery=true)
+	 		+ " WHERE e.ExamAttendId is NULL",nativeQuery=true)
 	 
 	 public List<ExaminationAttendance> getAttendanceByStatus(@Param("ExaminationId")long ExaminationId);
 	 

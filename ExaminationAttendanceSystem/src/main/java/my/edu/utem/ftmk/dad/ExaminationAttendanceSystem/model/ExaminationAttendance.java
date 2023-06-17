@@ -65,14 +65,14 @@ public class ExaminationAttendance {
 	public void setStudentId(Student student) {
 		this.student = student;
 	}
-	public ExaminationAttendance() {
+	/*public ExaminationAttendance() {
 		super();
 		ExamAttendId = -1;
 		ExamAttendStatus = "";
 		InputType = "";
 		this.examination = new Examination();
 		this.student = new Student();
-	}
+	}*/
 
 
 }
