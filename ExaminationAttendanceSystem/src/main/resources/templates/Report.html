@@ -18,11 +18,11 @@
 	  <div th:replace="fragments/header :: header"></div>
 	
 	  <div id = "Attendance" class="container-fluid" style="max-width: 900px; margin: 0 auto;">
-	    <h2 class="text-center"><b style = "font-family: 'Rockwell';">Absent Report</b></h2>
+	    <h2 class="text-center"><b style = "font-family: 'Rockwell';">Attendance Report</b></h2>
 	  </div>
 	  
 	  
-	  <div id = "TABLES" th:if="${studentAbsent.size() > 0}">
+	  <div id = "TABLES" th:if="${studentAttendance.size() > 0}">
       <table class="table table-bordered table-l  table-hover " style = "position: auto">
         <thead class="thead-light">
           <tr>
@@ -33,8 +33,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr th:each="student : ${studentAbsent}">
-              
+          <tr th:each="student : ${studentAttendance}">
+            	<th scope="col">Subject Code</th>
+            	<th scope="col">Subject Name</th>
                	<td>[[${student.getStudentId().getStudentMatricNo()}]]</td>
                	<td>[[${student.getStudentId().getStudentName()}]]</td>
        
@@ -43,7 +44,7 @@
       </table>
     </div>
 	  
-	<div class="" th:unless="${studentAbsent.size() > 0}">
+	<div class="" th:unless="${studentAttendance.size() > 0}">
       <span>No record found!</span>
     </div>
 
