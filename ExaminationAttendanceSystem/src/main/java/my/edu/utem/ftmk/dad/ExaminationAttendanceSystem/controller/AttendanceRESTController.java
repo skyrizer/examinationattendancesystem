@@ -106,16 +106,19 @@ public class AttendanceRESTController {
 	    List<Student> studentList = new ArrayList<>();
 
 	    for (Object[] row : queryResult) {
-	        String studentName = (String) row[0];
-	        String studentMatricNo = (String) row[1];
+	        String studentName = (String) row[1];
+	        String studentMatricNo = (String) row[2];
+	        String studentCourse = (String) row[3];
 
 	        Student student = new Student();
 	        student.setStudentName(studentName);
 	        student.setStudentMatricNo(studentMatricNo);
+	        student.setStudentCourse(studentCourse);
 
 	        studentList.add(student);
 	    }
-
+	    
+	    
 	    return studentList;
 	}
 	

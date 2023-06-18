@@ -20,15 +20,35 @@
 	  <div id = "Attendance" class="container-fluid" style="max-width: 900px; margin: 0 auto;">
 	    <h2 class="text-center"><b style = "font-family: 'Rockwell';">Attendance Report</b></h2>
 	  </div>
-	  
+			  
+	    <style>
+		  .table-spacing td {
+		    padding: 10px; /* Adjust the value as per your preference */
+		  }
+		</style>
+		
+		<div style="text-align: center;">
+		  <table class="table-spacing">
+		    <tbody>
+		      <tr th:each="student, iteration : ${studentAttendance}" th:if="${iteration.index == 0}">
+		        <td><p>Subject Code:</p><b>[[${student.getExamination().getSubject().getSubjectCode}]]</b></td>
+		        <td><p>Subject Name:</p><b>[[${student.getExamination().getSubject().getSubjectName}]]</b></td>
+		      </tr>
+		    </tbody>
+		  </table>
+		</div>
+		
+	  <div style="text-align: center;">
+	 	 <p><b>Student Attend</b></p>
+	  </div>
 	  
 	  <div id = "TABLES" th:if="${studentAttendance.size() > 0}">
       <table class="table table-bordered table-l  table-hover " style = "position: auto">
         <thead class="thead-light">
           <tr>
            
-            <th scope="col">Subject Code</th>
-            <th scope="col">Subject Name</th>
+<!--             <th scope="col">Subject Code</th> -->
+<!--             <th scope="col">Subject Name</th> -->
             <th scope="col">Student Matric Number</th>
             <th scope="col">Student Name</th>
             <th scope="col">Student Course</th>
@@ -36,8 +56,8 @@
         </thead>
         <tbody>
           <tr th:each="student : ${studentAttendance}">
-              	<td>[[${student.getExamination().getSubject().getSubjectCode}]]</td>
-              	<td>[[${student.getExamination().getSubject().getSubjectName}]]</td>
+<!--               	<td>[[${student.getExamination().getSubject().getSubjectCode}]]</td> -->
+<!--               	<td>[[${student.getExamination().getSubject().getSubjectName}]]</td> -->
                	<td>[[${student.getStudentId().getStudentMatricNo()}]]</td>
                	<td>[[${student.getStudentId().getStudentName()}]]</td>
                	<td>[[${student.getStudentId().getStudentCourse()}]]</td>
@@ -45,8 +65,29 @@
         </tbody>
       </table>
     </div>
+    <div style="text-align: center;">
+	 	 <p><b>Student Absent</b></p>
+	  </div>
+      <div id = "TABLES" th:if="${studentAbsent.size() > 0}">
+      <table class="table table-bordered table-l  table-hover " style = "position: auto">
+        <thead class="thead-light">
+          <tr>
+	            <th scope="col">Student Matric Number</th>
+	            <th scope="col">Student Name</th>
+	            <th scope="col">Student Course</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="absent : ${studentAbsent}">
+               	<td>[[${absent.StudentMatricNo}]]</td>
+               	<td>[[${absent.StudentName}]]</td>
+               	<td>[[${absent.StudentCourse}]]</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 	  
-	<div class="" th:unless="${studentAttendance.size() > 0}">
+	<div class="" th:unless="${studentAbsent.size() > 0}">
       <span>No record found!</span>
     </div>
 

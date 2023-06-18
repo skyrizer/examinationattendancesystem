@@ -205,6 +205,9 @@ public class AttendanceMenuController {
 		String pageTitle = "Report Attendance";
 		
 
+		/*
+		 * to get the attendance report for each examination
+		 */
 		RestTemplate restTemplateStudent = new RestTemplate();
 		ResponseEntity<ExaminationAttendance[]> responseStudent = restTemplateStudent.getForEntity("http://localhost:8080/examinationattendancesystem/api/attend/report/"+ examinationId,
 				ExaminationAttendance[].class);
@@ -214,8 +217,22 @@ public class AttendanceMenuController {
 
 		// Parse an array to a list examination unit
 		List<ExaminationAttendance> studentAttendance = Arrays.asList(studentsAttendance);
+		
+		/*
+		 * to get the attendance absent report for each examination
+		 */
+		RestTemplate studentAbsent = new RestTemplate();
+		ResponseEntity<Student[]> absentStudent = studentAbsent.getForEntity("http://localhost:8080/examinationattendancesystem/api/attend/students/absent/"+ examinationId,
+				Student[].class);
+		
+		// Parse JSON data to array of examination unit
+		Student studentsAbsent[] = absentStudent.getBody();
+
+		// Parse an array to a list examination unit
+		List<Student> absents = Arrays.asList(studentsAbsent);
 
 		// Attach value to pass to front end
+		model.addAttribute("studentAbsent", absents);
 		model.addAttribute("studentAttendance", studentAttendance);
 		model.addAttribute("pageTitle", pageTitle);
 	

@@ -46,7 +46,7 @@ public interface AttendanceRepository extends JpaRepository<ExaminationAttendanc
 	 public List<ExaminationAttendance> findExaminationI(@Param("ExaminationId") Long ExaminationId);
 	 
 	 
-	   @Query(value="SELECT s.StudentName, s.StudentMatricNo " 
+	   @Query(value="SELECT *" 
 	          + "FROM Student s " 
 	          + "LEFT JOIN ExaminationAttendance e ON s.StudentId = e.StudentId AND e.ExaminationId = :ExaminationId " 
 	          + "WHERE e.ExamAttendStatus IS NULL OR e.ExamAttendStatus = ''",nativeQuery=true)
