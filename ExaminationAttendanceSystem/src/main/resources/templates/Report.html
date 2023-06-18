@@ -27,18 +27,20 @@
         <thead class="thead-light">
           <tr>
            
+            <th scope="col">Subject Code</th>
+            <th scope="col">Subject Name</th>
             <th scope="col">Student Matric Number</th>
             <th scope="col">Student Name</th>
-           
+            <th scope="col">Student Course</th>
           </tr>
         </thead>
         <tbody>
           <tr th:each="student : ${studentAttendance}">
-            	<th scope="col">Subject Code</th>
-            	<th scope="col">Subject Name</th>
+              	<td>[[${student.getExamination().getSubject().getSubjectCode}]]</td>
+              	<td>[[${student.getExamination().getSubject().getSubjectName}]]</td>
                	<td>[[${student.getStudentId().getStudentMatricNo()}]]</td>
                	<td>[[${student.getStudentId().getStudentName()}]]</td>
-       
+               	<td>[[${student.getStudentId().getStudentCourse()}]]</td>
           </tr>
         </tbody>
       </table>
