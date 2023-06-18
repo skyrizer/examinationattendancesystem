@@ -245,7 +245,7 @@ public class ExaminationMenuController {
 		// The URI for GET order types
 		String uri = "http://localhost:8080/examinationattendancesystem/api/examination";
 		
-		//Get a list order types from the web service
+		//Get a list of examination from the web service
 		RestTemplate restReport = new RestTemplate();
 		ResponseEntity<Examination[]> response = restReport.getForEntity(uri, Examination[].class);
 		
@@ -258,8 +258,39 @@ public class ExaminationMenuController {
 		// Attach list to model as attribute
 		model.addAttribute("ExaminationsReport", examList);
 		
-		// return an HTML file, schedule.html, to the browser
+		// return an HTML file, AttendanceReport.html, to the browser
 		return "/AttendanceReport";
+	}
+	
+	/*
+	 * This method retrieves the list of examinations and prepares the model for the AttendanceExaminationSchedule view.
+	 * 
+	 * @param model The model object used to pass data to the view
+	 * @return The name of the view file, AttendanceExaminationSchedule.html, to be rendered by the browser
+	 * @author : Hafiz Suhaizal
+	 */
+	@GetMapping("/ExaminationList")
+	public String getExamList(Model model)
+	{
+		// The URI for GET examination list
+		String uri = "http://localhost:8080/examinationattendancesystem/api/examination";
+		String pageTitle = "Report For Absent Student";
+		
+		// Get the list of examinations from the web service
+		RestTemplate restReport = new RestTemplate();
+		ResponseEntity<Examination[]> response = restReport.getForEntity(uri, Examination[].class);
+		
+		// Parse JSON data to array of object
+		Examination examination[] = response.getBody();
+		
+		// Parse an array to a list object
+		List<Examination> examList = Arrays.asList(examination);
+		
+		// Attach list to model as attribute
+		model.addAttribute("ExaminationsReport", examList);
+		model.addAttribute("pageTitle", pageTitle);
+		// return an HTML file, AttendanceExaminationSchedule.html, to the browser
+		return "/AttendanceExaminationSchedule";
 	}
 	
 }

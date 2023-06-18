@@ -226,8 +226,6 @@ public class AttendanceMenuController {
 	}
 	
 	
-	//This is just for testing code
-	//Author : Hafiz Suhaizal 
 	/*
 	 * This method display the following examination attendance information
 	 * based on student absent
@@ -260,6 +258,42 @@ public class AttendanceMenuController {
 		//return an HTML file, Report.html, to the browser
 
 		return "attendanceabsent";
+
+	}
+	
+
+		/*
+		 * This method display the following examination attendance information
+		 * based on student absent
+		 * 
+		 * @author Hafiz Suhaizal
+		 * @param filterBy
+		 * @param id
+		 * @return
+		 */
+	@GetMapping("/examination/{examinationId}")
+	public String getExaminationId (@PathVariable Integer examinationId, Model model) {
+
+		String pageTitle = "Report Attendance";
+		
+
+		RestTemplate restTemplateStudent = new RestTemplate();
+		ResponseEntity<ExaminationAttendance[]> responseStudent = restTemplateStudent.getForEntity("http://localhost:8080/examinationattendancesystem/api/attend/examination/"+ examinationId,
+				ExaminationAttendance[].class);
+		
+		// Parse JSON data to array of examination unit
+		ExaminationAttendance studentsAttendance[] = responseStudent.getBody();
+
+		// Parse an array to a list examination unit
+		List<ExaminationAttendance> studentAttendance = Arrays.asList(studentsAttendance);
+
+		// Attach value to pass to front end
+		model.addAttribute("studentAttendance", studentAttendance);
+		model.addAttribute("pageTitle", pageTitle);
+	
+		//return an HTML file, Report.html, to the browser
+
+		return "AttendanceMenu";
 
 	}
 }

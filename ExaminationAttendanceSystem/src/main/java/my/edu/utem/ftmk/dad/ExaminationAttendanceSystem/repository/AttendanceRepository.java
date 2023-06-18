@@ -34,21 +34,21 @@ public interface AttendanceRepository extends JpaRepository<ExaminationAttendanc
 	 @Query(value = "SELECT * from examinationAttendance WHERE ExaminationId = :ExaminationId", nativeQuery = true)
 	 
 	 public List<ExaminationAttendance> findExaminationId(@Param("ExaminationId") Long ExaminationId);
-	 //ni dapat sudah
+	 
+	 /*
+	  * This method retrieves the list of ExaminationAttendance entities for a specific examination.
+	  * 
+	  * @param ExaminationId The ID of the examination to retrieve attendance data for
+	  * @return The list of ExaminationAttendance entities for the given ExaminationId
+	  * @author :Hafiz Suhaizal
+	  */
+	 @Query(value = "SELECT * from examinationAttendance WHERE ExaminationId = :ExaminationId", nativeQuery = true)
+	 public List<ExaminationAttendance> findExaminationI(@Param("ExaminationId") Long ExaminationId);
+	 
 	 
 	   @Query(value="SELECT s.StudentName, s.StudentMatricNo " 
 	          + "FROM Student s " 
 	          + "LEFT JOIN ExaminationAttendance e ON s.StudentId = e.StudentId AND e.ExaminationId = :ExaminationId " 
 	          + "WHERE e.ExamAttendStatus IS NULL OR e.ExamAttendStatus = ''",nativeQuery=true)
 	    public List<Object[]> getStudentsWithNullAttendStatusAndExaminationId(@Param("ExaminationId") int ExaminationId);
-	 
-	 /*
-	 @Query(value="SELECT s.StudentName, s.StudentMatricNo "
-	 		+ "FROM Student s "
-	 		+ "LEFT JOIN ExaminationAttendance e ON s.StudentId = e.StudentId AND e.ExaminationId = :ExaminationId "
-	 		+ "LEFT JOIN Examination ex ON e.ExaminationId = ex.ExaminationId "
-	 		+ "LEFT JOIN subjectt su ON ex.SubjectId = su.SubjectId AND su.SubjectId = 2 "
-	 		+ "WHERE e.ExamAttendStatus IS NULL OR e.ExamAttendStatus = ''",nativeQuery=true)
-	  public List<Object[]> getStudentsWithNullAttendStatusAndExaminationId(@Param("ExaminationId") int ExaminationId);
-	  */
 }

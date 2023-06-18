@@ -4,7 +4,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
-  <title>Attendance List</title>
+  <title>Attendance Report - Examination Attendance System</title>
 
   <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
   <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
@@ -13,14 +13,28 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
   <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+  <script>
+  function rowClick(event){
+		if(event.target.tagName != 'A'){
+			console.log(event.target.parentElement.children[0].innerHTML)
+			console.log(window.location)
+			console.log(event.target.parentElement.dataset.examid)
+			window.location.href = window.location.origin + "/examinationattendancesystem/absent/" 
+		    + event.target.parentElement.dataset.examid
+			
+			
+		} 
+  }
+  </script>
 </head>
 
 <body>
   <div th:replace="fragments/header :: header"></div>
 
-  <div class="container-fluid" style="max-width: 900px; margin: 0 auto;">
-    <h2 class="text-center">List of Attendance</h2>
-
+  <div id = "SCHEDULE" class="container-fluid" style="max-width: 900px; margin: 0 auto;">
+    <h2 class="text-center"><b style = "font-family: 'Rockwell';">Absent Attendance Report</b></h2>
+  </div>
+  
     <div th:if="${message != null}" class="alert alert-success alert-dismissible fade show text-center message"
       role="alert">
       [[${message}]]
@@ -47,37 +61,40 @@
       </form>
     </div> -->
 
-    <div th:if="${examinationAttendance.size() > 0}">
-      <table class="table table-hover table-responsive-xl">
+    <div id = "TABLES" th:if="${ExaminationsReport.size() > 0}">
+      <table class="table table-bordered table-l  table-hover " style = "position: auto">
         <thead class="thead-light">
           <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Status</th>
-            <th scope="col">Input Type</th>
-            <th scope="col">Examination Id</th>
-            <th scope="col">Student Id</th>
-            <!-- <th scope="col">Action</th>  -->
+            <th scope="col" >Date</th>
+            <th scope="col">Time</th>
+            <th scope="col" >Subject Code</th>
+            <th scope="col" >Subject Name</th>
+            <th scope="col">Venue</th>
           </tr>
         </thead>
         <tbody>
-          <tr th:each="examinationAttendance : ${examinationAttendance}">
-            <th scope="row">[[${examinationAttendance.ExamAttendId}]]</th>
-            <td>[[${examinationAttendance.ExamAttendStatus}]]</td>
-            <td>[[${examinationAttendance.InputType}]]</td>
-            <td>[[${examinationAttendance.getExamination().getExaminationId()}]]</td>
- 			<td>[[${examinationAttendance.getStudentId().getStudentId()}]]</td>
-          
+          <tr th:each="examType : ${ExaminationsReport}" onclick="rowClick(event)" th:attr="data-examid=${examType.ExaminationId}">
+                
+                <td  th:text="${#dates.format(examType.ExaminationDate, 'yyyy-MM-dd')}" ></td>
+               
+                 <td>[[${examType.ExaminationTime}]]</td>
+                 <td>[[${examType.subject.subjectCode}]]</td>
+                 <td>[[${examType.subject.subjectName}]]</td>
+                 <td>[[${examType.unit.unitName}]]</td> 
+                
           </tr>
+       
         </tbody>
       </table>
     </div>
- 	<label> Total records: </label>
-    <span th:text= "${examinationAttendance.size()}"></span>
-    <div class="" th:unless="${examinationAttendance.size() > 0}">
+      <label> Total records: </label>
+    <span th:text= "${ExaminationsReport.size()}"></span>
+     
+    <div class="" th:unless="${ExaminationsReport.size() > 0}">
       <span>No record found!</span>
     </div>
   </div>
-
+  
   <div class="modal fade text-center" id="confirmModal">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -99,29 +116,33 @@
       </div>
     </div>
   </div>
-
+  
+  
+  
   <div th:replace="fragments/footer :: footer"></div>
 
-  <script type="text/javascript">
+
+	<script type="text/javascript">
     $(document).ready(function () {
       $(".btn-delete").on("click", function (e) {
         e.preventDefault();
         link = $(this);
 
-        orderTypeCode = link.attr("orderTypeCode");
+        examTypeCode = link.attr("examTypeCode");
         $("#yesBtn").attr("href", link.attr("href"));
-        $("#confirmText").html("Do you want to delete the  \<strong\>" + orderTypeCode + "\<\/strong\>?");
+        $("#confirmText").html("Do you want to delete the  \<strong\>" + examTypeCode + "\<\/strong\>?");
         $("#confirmModal").modal();
       });
 
       $("#btnClear").on("click", function (e) {
         e.preventDefault();
         $("#keyword").text("");
-        window.location = "[[@{/attendance/list}]]";
+        window.location = "[[@{/ordertype/list}]]";
       });
     });
   </script>
-
+	
 </body>
 
 </html>
+

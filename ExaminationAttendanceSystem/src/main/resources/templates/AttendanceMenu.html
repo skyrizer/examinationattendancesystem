@@ -18,52 +18,37 @@
 	  <div th:replace="fragments/header :: header"></div>
 	
 	  <div id = "Attendance" class="container-fluid" style="max-width: 900px; margin: 0 auto;">
-	    <h2 class="text-center"><b style = "font-family: 'Rockwell';">Absent Report</b></h2>
+	    <h2 class="text-center"><b style = "font-family: 'Rockwell';">Attendance For Subject</b></h2>
 	  </div>
 	  
 	  
-	  <div id = "TABLES" th:if="${studentAbsent.size() > 0}">
+	  <div id = "TABLES" th:if="${studentAttendance.size() > 0}">
       <table class="table table-bordered table-l  table-hover " style = "position: auto">
         <thead class="thead-light">
           <tr>
            
+            <th scope="col">Subject Code</th>
+            <th scope="col">Subject Name</th>
             <th scope="col">Student Matric Number</th>
             <th scope="col">Student Name</th>
-           
+            <th scope="col">Student Course</th>
           </tr>
         </thead>
         <tbody>
-          <tr th:each="student : ${studentAbsent}">
-              
-               	<td>[[${student.StudentMatricNo}]]</td>
-               	<td>[[${student.StudentName}]]</td>
-       
+          <tr th:each="student : ${studentAttendance}">
+              	<td>[[${student.getExamination().getSubject().getSubjectCode}]]</td>
+              	<td>[[${student.getExamination().getSubject().getSubjectName}]]</td>
+               	<td>[[${student.getStudentId().getStudentMatricNo()}]]</td>
+               	<td>[[${student.getStudentId().getStudentName()}]]</td>
+               	<td>[[${student.getStudentId().getStudentCourse()}]]</td>
           </tr>
         </tbody>
       </table>
     </div>
 	  
-	 <label> Total Absent Student Records: </label>
-    <span th:text= "${studentAbsent.size()}"></span>
-	<div class="" th:unless="${studentAbsent.size() > 0}">
-	</br>
+	<div class="" th:unless="${studentAttendance.size() > 0}">
       <span>No record found!</span>
     </div>
-
-
-	 <input type="button" value="Print" class="btn btn-secondary btn-sm" onclick = "printDivContent()">
-	 
-	 <script>
-     function printDivContent() {
-            var contentOfDiv = document.getElementById("Attendance").innerHTML;
-            var contentOfDiv2 = document.getElementById("TABLES").innerHTML;
-            var newWin = window.open('', '', 'height=650, width=1250');
- 			newWin.document.write(contentOfDiv);
- 			newWin.document.write(contentOfDiv2);
- 			newWin.document.close();
-            newWin.print();
-	}
-    </script>
      
     <div th:replace="fragments/footer :: footer"></div>
   </body>
