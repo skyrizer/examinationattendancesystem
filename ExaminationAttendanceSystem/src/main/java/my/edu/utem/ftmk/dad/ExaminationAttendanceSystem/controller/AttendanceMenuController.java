@@ -105,7 +105,7 @@ public class AttendanceMenuController {
 			examinationAttendance.setStudentId(currentStudent);
 		} 
 
-
+		System.out.println("test" +currentStudent.getStudentId());
 
 		// Attach value to pass to front end
 		model.addAttribute("examinationAttendance", examinationAttendance);
