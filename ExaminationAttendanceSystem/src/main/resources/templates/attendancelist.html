@@ -56,6 +56,10 @@
             <th scope="col">Input Type</th>
             <th scope="col">Examination Id</th>
             <th scope="col">Student Id</th>
+            <th scope="col">Student Matric No</th>
+            <th scope="col">Student Name</th>
+            <th scope="col">Subject Code</th>
+            <th scope="col">Subject Name</th>
             <!-- <th scope="col">Action</th>  -->
           </tr>
         </thead>
@@ -66,14 +70,20 @@
             <td>[[${examinationAttendance.InputType}]]</td>
             <td>[[${examinationAttendance.getExamination().getExaminationId()}]]</td>
  			<td>[[${examinationAttendance.getStudentId().getStudentId()}]]</td>
-          
+ 			<td>[[${examinationAttendance.getStudentId().getStudentMatricNo()}]]</td>
+ 			<td>[[${examinationAttendance.getStudentId().getStudentName()}]]</td>
+          <td>[[${examinationAttendance.getExamination().getSubject().getSubjectCode}]]</td>
+          <td>[[${examinationAttendance.getExamination().getSubject().getSubjectName}]]</td>
           </tr>
         </tbody>
       </table>
     </div>
+    
  	<label> Total records: </label>
     <span th:text= "${examinationAttendance.size()}"></span>
+    
     <div class="" th:unless="${examinationAttendance.size() > 0}">
+    
       <span>No record found!</span>
     </div>
   </div>
@@ -125,3 +135,4 @@
 </body>
 
 </html>
+		
