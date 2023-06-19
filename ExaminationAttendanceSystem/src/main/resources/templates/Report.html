@@ -17,6 +17,7 @@
 <body>
 	  <div th:replace="fragments/header :: header"></div>
 	
+    
 	  <div id = "Attendance" class="container-fluid" style="max-width: 900px; margin: 0 auto;">
 	    <h2 class="text-center"><b style = "font-family: 'Rockwell';">Attendance Report</b></h2>
 	  </div>
@@ -31,15 +32,16 @@
 		  <table class="table-spacing">
 		    <tbody>
 		      <tr th:each="student, iteration : ${studentAttendance}" th:if="${iteration.index == 0}">
-		        <td><p>Subject Code:</p><b>[[${student.getExamination().getSubject().getSubjectCode}]]</b></td>
-		        <td><p>Subject Name:</p><b>[[${student.getExamination().getSubject().getSubjectName}]]</b></td>
+		        <td style="text-align: right;">Subject Code:<br>Subject Name:</td>
+		        <td style="text-align: left;"><b>[[${student.getExamination().getSubject().getSubjectCode}]]</b><br><b>[[${student.getExamination().getSubject().getSubjectName}]]</b></td>
 		      </tr>
 		    </tbody>
 		  </table>
 		</div>
-		
 	  <div style="text-align: center;">
 	 	 <p><b>Student Attend</b></p>
+	 	  <label> Total Student Attend: </label>
+	 	 <span th:text= "${studentAttendance.size()}"></span>
 	  </div>
 	  
 	  <div id = "TABLES" th:if="${studentAttendance.size() > 0}">
@@ -67,6 +69,8 @@
     </div>
     <div style="text-align: center;">
 	 	 <p><b>Student Absent</b></p>
+	 	  <label> Total Student Absent: </label>
+	 	 <span th:text= "${studentAbsent.size()}"></span>
 	  </div>
       <div id = "TABLES" th:if="${studentAbsent.size() > 0}">
       <table class="table table-bordered table-l  table-hover " style = "position: auto">
