@@ -313,4 +313,58 @@ public class AttendanceMenuController {
 		return "AttendanceMenu";
 
 	}
+	
+	
+	/*
+	 * This method will force redirect to late attendance record page
+	 * after 10 minute
+	 *
+	 */
+	@GetMapping("/showLate")
+    public String showPage(Model model) {
+        model.addAttribute("popupVisible", false);
+        return "examinationlateattendance"; // Replace with the name of your Thymeleaf template
+    }
+
+    // Handle the button click in the pop-up message
+    @GetMapping("/disabledActive")
+    public String disablePage(Model model) {
+        model.addAttribute("popupVisible", false);
+        return "examinationattendance"; // Replace with the name of the disabled Thymeleaf template
+    }
+	
+	/**
+	 * This method gets an late examination attendance id
+	 * Author :Ng Wei Hen
+	 * @param examinationId
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/examinationlateattendance/{examinationId}")
+	public String getLateAttendance (@PathVariable Integer examinationId, Model model,
+			@RequestParam(name = "matricNo",required=false) String matricNo) {
+
+		String pageTitle = "New Late Attendance";
+		ExaminationAttendance examinationAttendance = new ExaminationAttendance();
+		examinationAttendance.getExamination().setExaminationId(examinationId);
+
+		Student currentStudent = new Student();
+		if(!Strings.isBlank(matricNo)) {
+
+			RestTemplate studentREST = new RestTemplate();
+			currentStudent = studentREST.getForObject("http://localhost:8080/examinationattendancesystem/api/student/matric/"+matricNo, Student.class);
+			examinationAttendance.setStudentId(currentStudent);
+		} 
+
+		System.out.println("test" +currentStudent.getStudentId());
+
+		// Attach value to pass to front end
+		model.addAttribute("examinationAttendance", examinationAttendance);
+		model.addAttribute("pageTitle", pageTitle);
+		model.addAttribute("studId", currentStudent);
+		//return an HTML file, examinationattendance.html, to the browser
+
+		return "examinationlateattendance";
+
+	}
 }

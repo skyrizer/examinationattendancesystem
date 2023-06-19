@@ -24,6 +24,52 @@
 			
 		} 
   }
+  
+  function startTimer() {
+            var startTime = new Date().getTime();
+            localStorage.setItem('startTime', startTime);
+            updateTimer();
+        }
+
+        function updateTimer() {
+            var startTime = localStorage.getItem('startTime');
+            if (startTime) {
+                var currentTime = new Date().getTime();
+                var elapsedTime = currentTime - parseInt(startTime);
+                localStorage.setItem('elapsedTime', elapsedTime);
+
+                var remainingTime = 5 * 1000 - elapsedTime; // 10 seconds in milliseconds
+
+                if (remainingTime <= 0) {
+                    localStorage.removeItem('startTime');
+                    localStorage.removeItem('elapsedTime');
+                    showPopup();
+                    return;
+                }
+                
+                var seconds = Math.floor(remainingTime / 1000);
+
+                setTimeout(updateTimer, 1000); // Update every second
+            }
+        }
+
+        function showPopup() {
+            alert('Times out');
+            disablePage();
+           	setTimeout(showEnd(), 8000);
+        }
+        
+        function showEnd() {
+         	alert('End exam1');
+        }
+	
+		function disablePage() {
+            // Disable the entire page
+            document.body.style.pointerEvents = "none";
+            
+            // Redirect to another page
+            window.location.href = "/examinationattendancesystem/examinationlateattendance/0"; // Change '/disabled-page' to the desired page URL
+        }
   </script>
 </head>
 
@@ -43,6 +89,8 @@
     </div>
 
 	 <input type="button" value="Add Schedule" id="btnAdd" class="btn btn-secondary btn-sm" />
+	 
+	 <button class="btn btn-primary btn-sm" onclick="startTimer()" id="btnStart" >Start examination recording</button>
 	 <br><br>
 
 
