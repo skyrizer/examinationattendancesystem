@@ -15,6 +15,7 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
+//Model Name: Examination
 
 @Entity
 @Table(name = "examination")
@@ -47,66 +48,101 @@ public class Examination {
 	@JoinColumn(name = "UnitId")
 	private ExaminationUnit unit;
 	
+	/*
+	* Returns the ID of the examination.
+	* @return The ID of the examination.
+	*/
 	public int getExaminationId() {
 		return ExaminationId;
 	}
 
-
+	/*
+	* Sets the ID of the examination.
+	* @param examinationId The ID of the examination to set.
+	*/
 	public void setExaminationId(int examinationId) {
 		ExaminationId = examinationId;
 	}
 	
+	/*
+	* Returns the date of the examination.
+	* @return The date of the examination.
+	*/
 	public Date getExaminationDate() {
 		return ExaminationDate;
 	}
 
+	/*
+	* Sets the date of the examination.
+	* @param examinationDate The date of the examination to set.
+	*/
 	public void setExaminationDate(Date examinationDate) {
 		ExaminationDate = examinationDate;
 	}
 
+	/*
+	* Returns the time of the examination.
+	* @return The time of the examination.
+	*/
 	public String getExaminationTime() {
 		return ExaminationTime;
 	}
 
+	/*
+	* Sets the time of the examination.
+	* @param examinationTime The time of the examination to set.
+	*/
 	public void setExaminationTime(String examinationTime) {
 		ExaminationTime = examinationTime;
 	}
  
+	/*
+	* Returns the lecturer associated with the examination.
+	* @return The lecturer associated with the examination.
+	*/
 	public Lecturer getLecturer() {
 		return lecturer;
 	}
 
-
+	/*
+	* Sets the lecturer associated with the examination.
+	* @param lecturer The lecturer to set for the examination.
+	*/
 	public void setLecturer(Lecturer lecturer) {
 		this.lecturer = lecturer;
 	}
 
-
+	/*
+	* Returns the subject associated with the examination.
+	* @return The subject associated with the examination.
+	*/
 	public Subject getSubject() {
 		return subject;
 	}
 
 
+	/*
+	* Sets the subject associated with the examination.
+	* @param subject The subject to set for the examination.
+	*/
 	public void setSubject(Subject subject) {
 		this.subject = subject;
 	}
 
-
+	/*
+	* Returns the examination unit associated with the examination.
+	* @return The examination unit associated with the examination.
+	*/
 	public ExaminationUnit getUnit() {
 		return unit;
 	}
 
-
+	/*
+	* Sets the examination unit associated with the examination.
+	* @param unit The examination unit to set for the examination.
+	*/
 	public void setUnit(ExaminationUnit unit) {
 		this.unit = unit;
 	}
-
-	/*
-	 * public String getUnitName() { return unitName; }
-	 * 
-	 * 
-	 * public void setUnitName(String unitName) { this.unitName = unitName; }
-	 */
-	 
 }
 	

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Examination;
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.repository.ExaminationRepository;
-import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.repository.LecturerRepository;
+
 
 @RestController
 @RequestMapping("/api/examination")
@@ -22,9 +22,6 @@ public class ExaminationRESTController {
 
 	@Autowired
 	private ExaminationRepository exams;
-	
-	@Autowired
-	private LecturerRepository lecturerRepository;
 	
 	/*
 	 * This method retrieve all examination schedule information

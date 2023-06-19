@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -135,31 +134,6 @@ public class AttendanceRESTController {
 		// Retrieve and return the list of ExaminationAttendance for the given examinationId
 		return attendanceRepository.findExaminationI(examinationId);
 	}
-	
-	/*
-	@GetMapping("/students/present/{ExaminationId}")
-	public List<Student> getStudentsAttendStatusAndExaminationId(@PathVariable int ExaminationId) {
-	    List<Object[]> queryResult = attendanceRepository.getStudentsWithAttendStatusAndExaminationId(ExaminationId);
-	    List<Student> studentList = new ArrayList<>();
-	    List<ExaminationAttendance> ExaminationAttendanceList = new ArrayList<>();
-	    for (Object[] row : queryResult) {
-	        String studentName = (String) row[0];
-	        String studentMatricNo = (String) row[1];
-	        String ExamAttendStatus = (String) row[2];
-	        String InputType = (String) row[3];
-	        Student student = new Student();
-	        ExaminationAttendance examinationAttendance = new ExaminationAttendance();
-	        student.setStudentName(studentName);
-	        student.setStudentMatricNo(studentMatricNo);
-	        examinationAttendance.setExamAttendStatus(ExamAttendStatus);
-	        examinationAttendance.setExamAttendStatus(InputType);
-	        student.setExaminationAttendance(examinationAttendance);
-	        studentList.add(student);
-	    }
-
-	    return studentList;
-	}
-	*/
 
 	
 }
