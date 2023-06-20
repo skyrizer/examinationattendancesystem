@@ -67,7 +67,7 @@
             <th scope="col" >Subject Code</th>
             <th scope="col" >Subject Name</th>
             <th scope="col">Venue</th>
-            <th scope="col">Action</th>
+            <th scope="col" class="toHide">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -80,7 +80,7 @@
                  <td>[[${examType.subject.subjectCode}]]</td>
                  <td>[[${examType.subject.subjectName}]]</td>
                  <td>[[${examType.unit.unitName}]]</td> 
-                 <td>
+                 <td  class="toHide">
 		              <!-- A link to edit an order type -->
 		              <a th:href="@{'/schedule/' + ${examType.ExaminationId}}" 
 		              	title="Edit this Examination Schedule"
@@ -106,13 +106,18 @@
      
     <script>
      function printDivContent() {
+     		document.querySelectorAll(".toHide").forEach(e => {
+     			e.style.display="none"
+     		})
             var contentOfDiv = document.getElementById("SCHEDULE").innerHTML;
             var contentOfDiv2 = document.getElementById("TABLES").innerHTML;
             var newWin = window.open('', '', 'height=650, width=1250');
  			newWin.document.write(contentOfDiv);
  			newWin.document.write(contentOfDiv2);
  			newWin.document.close();
-            newWin.print();
+            newWin.print();document.querySelectorAll(".toHide").forEach(e => {
+     			e.style.display="table-cell"
+     		})
 	}
     </script>
      

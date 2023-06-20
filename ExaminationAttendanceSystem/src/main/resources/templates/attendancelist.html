@@ -19,7 +19,7 @@
   <div th:replace="fragments/header :: header"></div>
 
   <div class="container-fluid" style="max-width: 900px; margin: 0 auto;">
-    <h2 class="text-center">List of Attendance</h2>
+    <h2 id = "ATTEND" class="text-center">List of Attendance</h2>
 
     <div th:if="${message != null}" class="alert alert-success alert-dismissible fade show text-center message"
       role="alert">
@@ -47,7 +47,7 @@
       </form>
     </div> -->
 
-    <div th:if="${examinationAttendance.size() > 0}">
+    <div id="TABLES" th:if="${examinationAttendance.size() > 0}">
       <table class="table table-hover table-responsive-xl">
         <thead class="thead-light">
           <tr>
@@ -81,6 +81,21 @@
     
  	<label> Total records: </label>
     <span th:text= "${examinationAttendance.size()}"></span>
+    
+    <br>
+     <input type="button" value="Print" class="btn btn-secondary btn-sm" onclick = "printDivContent()">
+     
+    <script>
+     function printDivContent() {
+            var contentOfDiv = document.getElementById("ATTEND").innerHTML;
+            var contentOfDiv2 = document.getElementById("TABLES").innerHTML;
+            var newWin = window.open('', '', 'height=650, width=1250');
+ 			newWin.document.write(contentOfDiv);
+ 			newWin.document.write(contentOfDiv2);
+ 			newWin.document.close();
+            newWin.print();
+	}
+    </script>
     
     <div class="" th:unless="${examinationAttendance.size() > 0}">
     
