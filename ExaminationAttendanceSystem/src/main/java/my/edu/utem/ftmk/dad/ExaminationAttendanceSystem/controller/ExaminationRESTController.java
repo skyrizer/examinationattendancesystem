@@ -82,7 +82,7 @@ public class ExaminationRESTController {
 	 * 
 	 */
 	@DeleteMapping("{examId}")
-	public ResponseEntity<HttpStatus> deleteOrderType(@PathVariable long examId)
+	public ResponseEntity<HttpStatus> deleteSchedule(@PathVariable long examId)
 	{
 		exams.deleteById(examId);
 		

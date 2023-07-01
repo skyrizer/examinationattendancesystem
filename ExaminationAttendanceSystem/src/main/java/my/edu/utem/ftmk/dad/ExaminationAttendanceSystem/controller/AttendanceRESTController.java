@@ -41,7 +41,7 @@ public class AttendanceRESTController {
 	 * @throws NoSuchElementException if the ExaminationAttendance entity does not exist with the provided ID
 	 * @author : Hafiz Suhaizal
 	 */
-	@GetMapping("{examinationAttendanceId}")
+	@GetMapping("/{ExamAttendId}")
 	public ExaminationAttendance getExamAttendId(@PathVariable long ExamAttendId)
 	{
 		 // Retrieve the ExaminationAttendance entity with the given examinationAttendanceId
