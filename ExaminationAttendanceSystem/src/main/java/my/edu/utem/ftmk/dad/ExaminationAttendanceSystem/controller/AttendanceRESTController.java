@@ -91,7 +91,7 @@ public class AttendanceRESTController {
 		return attendanceRepository.findExaminationId(examinationId);
 	}
 	
-	/*
+	/**
 	 * This method retrieves the list of students who have a null attendance status for a specific examination.
 	 * 
 	 * @param examinationId The ID of the examination to retrieve students with null attendance status for
