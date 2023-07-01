@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.Lecturer;
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.repository.LecturerRepository;
 
-/*
+/**
  * This class mainly used to display all lecturers in dropdown menu list.
  * 
  * @author Ng Wei Hen
@@ -24,7 +24,8 @@ public class LecturerRESTController{
 	private LecturerRepository lecturerRepos;
 	
 	
-	/* retrieve all lecturers' information
+	/**
+	 * retrieve all lecturers' information
 	 * @author Ng Wei Hen
 	 * 
 	 * @return a list of all lecturers' information

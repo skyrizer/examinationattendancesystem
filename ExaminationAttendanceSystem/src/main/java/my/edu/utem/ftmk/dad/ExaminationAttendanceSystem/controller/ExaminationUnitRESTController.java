@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.model.ExaminationUnit;
 import my.edu.utem.ftmk.dad.ExaminationAttendanceSystem.repository.ExaminationUnitRepository;
 
-/*
+/**
  * This class mainly used to retrieve all examination unit in dropdown menu list.
  * 
  * @author Ng Wei Hen
@@ -21,7 +21,8 @@ public class ExaminationUnitRESTController {
 	@Autowired
 	private ExaminationUnitRepository examUnit;
 	
-	/* retrieve all examination units' information
+	/**
+	 * retrieve all examination units' information
 	 * @author Ng Wei Hen
 	 * 
 	 * @return a list of all examination units' information
