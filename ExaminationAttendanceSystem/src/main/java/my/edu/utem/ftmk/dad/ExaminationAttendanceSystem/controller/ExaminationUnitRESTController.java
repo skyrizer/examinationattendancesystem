@@ -27,7 +27,7 @@ public class ExaminationUnitRESTController {
 	 * @return a list of all examination units' information
 	 */
 	@GetMapping
-	public List<ExaminationUnit> getExamination()
+	public List<ExaminationUnit> getExaminationUnit()
 	{
 		return examUnit.findAll();
 	}

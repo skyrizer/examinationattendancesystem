@@ -30,7 +30,7 @@ public class LecturerRESTController{
 	 * @return a list of all lecturers' information
 	 */
 	@GetMapping
-	public List<Lecturer> getExamination()
+	public List<Lecturer> getLecturer()
 	{
 		return lecturerRepos.findAll();
 	}
